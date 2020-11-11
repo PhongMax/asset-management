@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, Typography, Button } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     background: "#0d131d",
     color: "#fff",
@@ -11,20 +11,20 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   statusCode: {
     background: "#fff",
     padding: ".3rem",
     borderRadius: 13,
-    color: "#0d131d"
+    color: "#0d131d",
   },
   button: {
-    marginTop: ".85rem"
-  }
+    marginTop: ".85rem",
+  },
 }));
 
-const Error500Page = props => {
+const Error500Page = (props) => {
   const classes = useStyles();
   const { history } = props;
 
@@ -34,7 +34,7 @@ const Error500Page = props => {
         Oops! <span className={classes.statusCode}>500</span>
       </Typography>
       <Typography variant="body1">
-        The page you are looking for is temporarily unavailable.
+        Trang bạn đang tìm tạm thời không có sẵn.
       </Typography>
       <Button
         variant="contained"
@@ -42,7 +42,7 @@ const Error500Page = props => {
         className={classes.button}
         onClick={() => history.push("/")}
       >
-        Back to Home
+        Quay về trang chủ
       </Button>
     </div>
   );

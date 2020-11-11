@@ -70,6 +70,13 @@ const navigationConfig = [
             exact: true,
           },
           {
+            id: "Login",
+            title: "Login",
+            type: "item",
+            url: "/pages/auth/login",
+            exact: true,
+          },
+          {
             id: "Register",
             title: "Register",
             type: "item",

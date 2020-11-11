@@ -11,7 +11,7 @@ import "bootstrap/dist/css/bootstrap.css";
 ReactDOM.render(
   <Router>
     <App />
-  </Router>,
+  </Router>,  
   document.getElementById("root")
 );
 

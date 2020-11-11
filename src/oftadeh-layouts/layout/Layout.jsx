@@ -5,6 +5,7 @@ import OftadehDrawer from "./OftadehDrawer";
 
 import Main from "./Main";
 import Header from "./Header";
+import Footer from "./Footer";
 import OftadehRightPanel from "../../components/OftadehRightPanel/OftadehRightPanel";
 
 const handleDrawerResponsive = () => {
@@ -66,6 +67,7 @@ const Layout = (props) => {
       <OftadehDrawer drawerWidth={240} />
       <OftadehRightPanel />
       <Main drawerWidth={240} />
+      <Footer />
     </NavigationContext.Provider>
   );
 };

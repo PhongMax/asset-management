@@ -4,12 +4,12 @@ import List from "@material-ui/core/List";
 
 import OftadehListItems from "../OftadehListItems/OftadehListItems";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 const notifList = [
@@ -18,25 +18,25 @@ const notifList = [
     title: "Complete 2 projects",
     icon: "info",
     color: "primary",
-    subTitle: "July 13, 2020, 2:20:11 pm"
+    subTitle: "July 13, 2020, 2:20:11 pm",
   },
   {
     id: 2,
     title: "Updates",
     icon: "adjust",
     color: "secondary",
-    subTitle: "July 16, 2020, 12:57:11 am"
+    subTitle: "July 16, 2020, 12:57:11 am",
   },
   {
     id: 3,
-    title: "wakeup",
+    title: "Thức dậy",
     icon: "alarm",
     color: "error",
-    subTitle: "July 20, 2020, 1:03:13 pm"
-  }
+    subTitle: "July 20, 2020, 1:03:13 pm",
+  },
 ];
 
-const NotificationsContainer = props => {
+const NotificationsContainer = (props) => {
   const classes = useStyles();
 
   return (

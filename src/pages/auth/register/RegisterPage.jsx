@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     background: "#0d131d",
     width: "100vw",
@@ -10,23 +10,23 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   mBottom: {
-    marginBottom: ".5rem"
+    marginBottom: ".5rem",
   },
   button: {
-    marginTop: ".85rem"
+    marginTop: ".85rem",
   },
   loginCard: {
     width: "275px",
     borderRadius: 5,
     background: "#fff",
-    padding: ".85rem"
-  }
+    padding: ".85rem",
+  },
 }));
 
-const RegisterPage = props => {
+const RegisterPage = (props) => {
   const classes = useStyles();
   const { history } = props;
 
@@ -34,13 +34,13 @@ const RegisterPage = props => {
     <div className={classes.root}>
       <div className={classes.loginCard}>
         <Typography variant="h5" component="h1">
-          Register
+          Đăng ký
         </Typography>
         {/* <Typography className={classes.brand} variant="h5" component="h1">
           Login
         </Typography> */}
         <Typography className={classes.mBottom} variant="body1">
-          Create your account
+          Tạo tài khoản
         </Typography>
         <form noValidate autoComplete="off">
           <TextField
@@ -81,7 +81,7 @@ const RegisterPage = props => {
               className={classes.button}
               onClick={() => history.push("/")}
             >
-              Register
+              Đăng ký
             </Button>
             <Button
               variant="outlined"
@@ -90,11 +90,11 @@ const RegisterPage = props => {
               className={classes.button}
               onClick={() => history.push("/pages/auth/login")}
             >
-              Sign in
+              Sign in (chỗ này sẽ để back to pag chính)
             </Button>
           </div>
         </form>
-        <Typography variant="caption">&copy; Oftadeh | React Admin</Typography>
+        <Typography variant="caption">&copy; Team K&P | QLTSHV</Typography>
       </div>
       {/* <Typography variant="h3" gutterBottom>
         Oops! <span className={classes.statusCode}>404</span>

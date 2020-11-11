@@ -24,7 +24,7 @@ const MsgList = [
     title: "Team K&P",
     avatar:
       "https://lh5.googleusercontent.com/-WqhFe4eMggE/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rdFUa5CK9Wi6g5qd8ZUt6apKFYSwA/photo.jpg?sz=328",
-    subTitle: "Hi I'm Team K&P",
+    subTitle: "Phong ne",
   },
   {
     id: 3,

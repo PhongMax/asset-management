@@ -1,17 +1,20 @@
 import jwtDecode from "jwt-decode";
 import http from "./httpService";
-import { apiUrl } from "../config.json";
+import { baseApiUrl } from "../config.json";
 
-const apiEndpoint = apiUrl + "/auth";
+const apiEndpoint = baseApiUrl + "/auth/login";
 const tokenKey = "token";
+console.log(apiEndpoint);
 
-// như vậy là mỗi lần gọi api nó sẽ get JWT này ...
-// viêt như này thì hàm này nó chạy luôn
-// viết như dưới kia thì nó còn gọi ở bên file khác.
 http.setJwt(getJwt());
 
-export async function login(email, password) {
-  const { data: jwt } = await http.post(apiEndpoint, { email, password });
+export async function login(username, password) {
+  console.log(username + ":" + password);
+  const { data: jwt } = await http.post(apiEndpoint, { username, password });
+
+  console.log(JSON.Stringify(jwt));
+
+  console.log(" data là gì: " + jwt);
   localStorage.setItem(tokenKey, jwt);
 }
 
@@ -33,6 +36,7 @@ export function getCurrentUser() {
 }
 
 export function getJwt() {
+  console.log("hàm get JWT " + localStorage.getItem(tokenKey));
   return localStorage.getItem(tokenKey);
 }
 

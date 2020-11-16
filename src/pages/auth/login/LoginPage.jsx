@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import auth from "../../../services/authService";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,8 +29,47 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LoginPage = (props) => {
+  const [AuthObj, setAuthObj] = useState({ username: "", password: "" });
+
   const classes = useStyles();
   const { history } = props;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("phong ===========================");
+    doSubmit();
+  };
+
+  const handleChange = ({ currentTarget: input }) => {
+    // const errors = { ...this.state.errors };
+    // const errorMessage = this.validateProperty(input);
+    // if (errorMessage) errors[input.name] = errorMessage;
+    // else delete errors[input.name];
+
+    const data = { ...AuthObj };
+    data[input.name] = input.value;
+
+    setAuthObj(data);
+    console.log("giá trị bị thay đổi: " + data);
+  };
+
+  const doSubmit = async () => {
+    try {
+      await auth.login(AuthObj.username, AuthObj.password);
+
+      // const { state } = this.props.location;
+      // window.location = state ? state.from.pathname : "/";
+
+      console.log("login thành công");
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        // const errors = { ...this.state.errors };
+        // errors.username = ex.response.data;
+        // this.setState({ errors });
+        console.log("lỗi rồi , lỗi rồi á");
+      }
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -42,21 +83,29 @@ const LoginPage = (props) => {
         <Typography className={classes.mBottom} variant="body1">
           Hãy đăng nhập tài khoản của bạn
         </Typography>
-        <form noValidate autoComplete="off">
+
+        <form onSubmit={handleSubmit}>
+          {/* <form> */}
           <TextField
             size="small"
             label="Usename"
+            name="username"
             variant="outlined"
             margin="dense"
             fullWidth
+            value={AuthObj.username}
+            onChange={handleChange}
           />
           <TextField
             size="small"
             label="Password"
+            name="password"
             type="password"
             variant="outlined"
             margin="dense"
             fullWidth
+            value={AuthObj.password}
+            onChange={handleChange}
           />
           {/* <Button
             onClick={() => history.push("/pages/auth/forgot-password")}
@@ -70,7 +119,8 @@ const LoginPage = (props) => {
               color="primary"
               fullWidth
               className={classes.button}
-              onClick={() => history.push("/")}
+              // onClick={() => history.push("/")}
+              onClick={handleSubmit}
             >
               Đăng nhập
             </Button>

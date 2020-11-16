@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,16 +41,27 @@ const RegisterPage = (props) => {
           Login
         </Typography> */}
         <Typography className={classes.mBottom} variant="body1">
-          Tạo tài khoản
+          Nhanh chóng và dễ dàng
         </Typography>
+
+        <Divider />
         <form noValidate autoComplete="off">
           <TextField
             size="small"
-            label="Username"
+            label="Họ tên"
             variant="outlined"
             margin="dense"
             fullWidth
           />
+
+          <TextField
+            size="small"
+            label="Số điện thoại"
+            variant="outlined"
+            margin="dense"
+            fullWidth
+          />
+
           <TextField
             size="small"
             label="Email"
@@ -57,9 +69,19 @@ const RegisterPage = (props) => {
             margin="dense"
             fullWidth
           />
+          <Divider />
+
           <TextField
             size="small"
-            label="Password"
+            label="Tên đăng nhập"
+            variant="outlined"
+            margin="dense"
+            fullWidth
+          />
+
+          <TextField
+            size="small"
+            label="Mật khẩu"
             type="password"
             variant="outlined"
             margin="dense"
@@ -67,12 +89,13 @@ const RegisterPage = (props) => {
           />
           <TextField
             size="small"
-            label="Repeat password"
+            label="Nhập lại mật khẩu"
             type="password"
             variant="outlined"
             margin="dense"
             fullWidth
           />
+          <Divider />
           <div className={classes.mBottom}>
             <Button
               variant="contained"
@@ -88,9 +111,9 @@ const RegisterPage = (props) => {
               color="primary"
               fullWidth
               className={classes.button}
-              onClick={() => history.push("/pages/auth/login")}
+              onClick={() => history.push("/")}
             >
-              Sign in (chỗ này sẽ để back to pag chính)
+              Trang chủ
             </Button>
           </div>
         </form>

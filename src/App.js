@@ -10,7 +10,7 @@ const App = () => {
 
   const [themeType, setThemeType] = useState(curThemeName);
 
-  const setThemeName = themeName => {
+  const setThemeName = (themeName) => {
     localStorage.setItem("appTheme", themeName);
     setThemeType(themeName);
   };
@@ -27,6 +27,7 @@ const App = () => {
         </div>
       </ThemeProvider>
     </ThemeContext.Provider>
+    
   );
 };
 

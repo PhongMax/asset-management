@@ -11,5 +11,4 @@ const OftadehRoutes = () => {
     </Switch>
   );
 };
-
 export default OftadehRoutes;

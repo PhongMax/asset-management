@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 
@@ -49,6 +49,7 @@ const RegisterPage = (props) => {
           <TextField
             size="small"
             label="Họ tên"
+            name="fullName"
             variant="outlined"
             margin="dense"
             fullWidth
@@ -57,6 +58,7 @@ const RegisterPage = (props) => {
           <TextField
             size="small"
             label="Số điện thoại"
+            name="phone"
             variant="outlined"
             margin="dense"
             fullWidth
@@ -65,6 +67,7 @@ const RegisterPage = (props) => {
           <TextField
             size="small"
             label="Email"
+            name="email"
             variant="outlined"
             margin="dense"
             fullWidth
@@ -74,6 +77,7 @@ const RegisterPage = (props) => {
           <TextField
             size="small"
             label="Tên đăng nhập"
+            name="username"
             variant="outlined"
             margin="dense"
             fullWidth
@@ -82,6 +86,7 @@ const RegisterPage = (props) => {
           <TextField
             size="small"
             label="Mật khẩu"
+            name="password"
             type="password"
             variant="outlined"
             margin="dense"

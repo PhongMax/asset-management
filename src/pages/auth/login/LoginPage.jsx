@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import auth from "../../../services/authService";
+import authService from "../../../services/authService";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,6 @@ const LoginPage = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("phong ===========================");
     doSubmit();
   };
 
@@ -50,12 +49,11 @@ const LoginPage = (props) => {
     data[input.name] = input.value;
 
     setAuthObj(data);
-    console.log("giá trị bị thay đổi: " + data);
   };
 
   const doSubmit = async () => {
     try {
-      await auth.login(AuthObj.username, AuthObj.password);
+      await authService.login(AuthObj);
 
       // const { state } = this.props.location;
       // window.location = state ? state.from.pathname : "/";

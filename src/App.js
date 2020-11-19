@@ -16,7 +16,7 @@ const App = () => {
   };
 
   const theme = getTheme({
-    paletteType: themeType
+    paletteType: themeType,
   });
 
   return (
@@ -27,7 +27,6 @@ const App = () => {
         </div>
       </ThemeProvider>
     </ThemeContext.Provider>
-    
   );
 };
 

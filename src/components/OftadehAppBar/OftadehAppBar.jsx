@@ -103,7 +103,7 @@ const OftadehAppBar = (props) => {
     NavigationContext
   );
 
-  const { setThemeName, curThemeName } = React.useContext(ThemeContext);
+  // const { setThemeName, curThemeName } = React.useContext(ThemeContext);
 
   return (
     <AppBar
@@ -137,7 +137,7 @@ const OftadehAppBar = (props) => {
         </div>
         <div className={classes.grow} />
         <div className={classes.appbarSection}>
-          <IconButton
+          {/* <IconButton
             aria-haspopup="true"
             onClick={() =>
               curThemeName === "dark"
@@ -151,15 +151,15 @@ const OftadehAppBar = (props) => {
             ) : (
               <Brightness4Icon />
             )}
-          </IconButton>
+          </IconButton> */}
           <div className={classes.appbarToday}>
-            <IconButton
+            {/* <IconButton
               aria-haspopup="true"
               onClick={(event) => handleRightPanelOpen(event, 0)}
               color="inherit"
             >
               <TodayIcon />
-            </IconButton>
+            </IconButton> */}
             <IconButton
               aria-haspopup="true"
               onClick={(event) => handleRightPanelOpen(event, 2)}

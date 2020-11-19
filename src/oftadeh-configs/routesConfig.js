@@ -11,7 +11,10 @@ import { LoginPageConfig } from "../pages/auth/login/LoginPageConfig";
 import { RegisterPageConfig } from "../pages/auth/register/RegisterPageConfig";
 import { Error404PageConfig } from "../pages/errors/404/Error404PageConfig";
 import { Error500PageConfig } from "../pages/errors/500/Error500PageConfig";
+
+import { EmployeesConfig } from "../pages/CrudPages/Employees/EmployeesConfig";
 // import { DocumentationConfig } from "../pages/documentation/DocumentationConfig";
+import TableTest from "../tests/TableTest";
 
 const routeConfigs = [
   ...DashboardPageConfig.routes,
@@ -23,20 +26,21 @@ const routeConfigs = [
   ...RegisterPageConfig.routes,
   ...Error404PageConfig.routes,
   ...Error500PageConfig.routes,
-  ...AboutPageConfig.routes
+  ...AboutPageConfig.routes,
+  ...EmployeesConfig.routes,
   // ...DocumentationConfig.routes
 ];
 
 const routes = [
   ...routeConfigs,
   {
-    component: () => <Redirect to="/pages/errors/error-404" />
-  }
-  // {
-  //   path: "/test",
-  //   exact: true,
-  //   component: <Example />
-  // }
+    path: "/test",
+    exact: true,
+    component: TableTest,
+  },
+  {
+    component: () => <Redirect to="/pages/errors/error-404" />,
+  },
 ];
 
 export default routes;

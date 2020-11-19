@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import NavigationContext from "../../context/NavigationContext";
 import LayoutContext from "../../context/LayoutContext";
-
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: "flex",

@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import NavigationContext from "../../context/NavigationContext";
 import LayoutContext from "../../context/LayoutContext";
-
+import Footer from "./Footer";
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: "flex",
@@ -46,6 +46,7 @@ const Main = (props) => {
     >
       <div className={classes.drawerHeader} />
       {content}
+      <Footer />
     </main>
   );
 };

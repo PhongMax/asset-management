@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import authService from "../../../services/authService";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
 
@@ -32,7 +31,7 @@ const LoginPage = (props) => {
   const [AuthObj, setAuthObj] = useState({ username: "", password: "" });
 
   const classes = useStyles();
-  const { history } = props;
+  // const { history } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();

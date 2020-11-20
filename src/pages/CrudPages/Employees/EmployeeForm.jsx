@@ -43,12 +43,13 @@ export default function EmployeeForm(props) {
         fieldValues.mobile.length > 9 ? "" : "Minimum 10 numbers required.";
     if ("departmentId" in fieldValues)
       temp.departmentId =
-        fieldValues.departmentId.length != 0 ? "" : "This field is required.";
+        fieldValues.departmentId.length !== 0 ? "" : "This field is required.";
     setErrors({
       ...temp,
     });
 
-    if (fieldValues == values) return Object.values(temp).every((x) => x == "");
+    if (fieldValues === values)
+      return Object.values(temp).every((x) => x === "");
   };
 
   // đoạn code này dùng để get các state, hàm từ hàm use form

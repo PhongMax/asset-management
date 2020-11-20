@@ -8,14 +8,10 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import { InputBase, Badge } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import MailIcon from "@material-ui/icons/Mail";
-import TodayIcon from "@material-ui/icons/Today";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import OftadehAvatarMenu from "../OftadehAvatarMenu/OftadehAvatarMenu";
 import clsx from "clsx";
 import NavigationContext from "../../context/NavigationContext";
-import ThemeContext from "../../context/ThemeContext";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

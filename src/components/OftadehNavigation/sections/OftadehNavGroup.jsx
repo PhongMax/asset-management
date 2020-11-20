@@ -5,16 +5,16 @@ import OftadehNavItem from "./OftadehNavItem";
 import OftadehNavLink from "./OftadehNavLink";
 import { ListSubheader } from "@material-ui/core";
 
-const OftadehNavGroup = props => {
+const OftadehNavGroup = (props) => {
   const { item } = props;
 
   return (
     <>
-      <ListSubheader>{item.title}</ListSubheader>
+      <ListSubheader disableSticky>{item.title}</ListSubheader>
 
       {item.children && (
         <React.Fragment>
-          {item.children.map(item => (
+          {item.children.map((item) => (
             <React.Fragment key={item.id}>
               {item.type === "group" && <NavGroup item={item} />}
 

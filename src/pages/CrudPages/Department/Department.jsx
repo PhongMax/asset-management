@@ -89,7 +89,7 @@ export default function Department(props) {
     let target = e.target;
     setFilterFn({
       fn: (items) => {
-        if (target.value == "") return items;
+        if (target.value === "") return items;
         else
           return items.filter((x) =>
             x.name.toLowerCase().includes(target.value)
@@ -99,7 +99,7 @@ export default function Department(props) {
   };
 
   const addOrEdit = (department, resetForm) => {
-    if (department.id == 0) departmentService.insertDepartment(department);
+    if (department.id === 0) departmentService.insertDepartment(department);
     else departmentService.updateDepartment(department);
     resetForm();
     setRecordForEdit(null);

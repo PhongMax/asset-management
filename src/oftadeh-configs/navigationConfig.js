@@ -201,7 +201,7 @@ const navigationConfig = [
     ],
   },
   {
-    id: "divider-1",
+    id: "divider-2",
     type: "divider",
   },
   {

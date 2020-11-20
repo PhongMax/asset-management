@@ -17,15 +17,10 @@ import ptitLogo from "../../assets/images/ptit-logo.png";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
-  logoBg: {
-    backgroundColor: theme.palette.type !== "dark" && "#18202c",
-    // backgroundColor: "#18202c"
-  },
   logo: {
     padding: "1rem",
     "& span": {
       display: "block",
-      color: "rgba(41, 113, 245, 0.87)",
     },
   },
   navCustom: {
@@ -46,10 +41,9 @@ const OftadehNavigation = (props) => {
 
   return (
     <div>
-      <div className={clsx(classes.toolbar, classes.logoBg)}>
-        <Paper variant="outlined" square>
-          <img src={ptitLogo} />
-        </Paper>
+      <div className={clsx(classes.toolbar)}>
+        <img style={{ padding: "15px" }} src={ptitLogo} />
+
         <Typography
           className={classes.logo}
           variant="h6"

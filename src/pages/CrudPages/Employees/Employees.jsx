@@ -89,7 +89,7 @@ export default function Employees(props) {
     let target = e.target;
     setFilterFn({
       fn: (items) => {
-        if (target.value == "") return items;
+        if (target.value === "") return items;
         else
           return items.filter((x) =>
             x.fullName.toLowerCase().includes(target.value)
@@ -99,7 +99,7 @@ export default function Employees(props) {
   };
 
   const addOrEdit = (employee, resetForm) => {
-    if (employee.id == 0) employeeService.insertEmployee(employee);
+    if (employee.id === 0) employeeService.insertEmployee(employee);
     else employeeService.updateEmployee(employee);
     resetForm();
     setRecordForEdit(null);

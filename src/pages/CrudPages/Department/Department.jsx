@@ -27,7 +27,8 @@ import ConfirmDialog from "../commons/ConfirmDialog";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
-    margin: theme.spacing(5),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(5),
     padding: theme.spacing(3),
   },
   searchInput: {
@@ -142,7 +143,7 @@ export default function Department(props) {
         subTitle="Form design with validation"
         icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
       />
-      <Paper className={classes.pageContent}>
+      <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>

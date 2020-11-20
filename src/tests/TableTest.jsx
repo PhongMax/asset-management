@@ -26,7 +26,6 @@ function TableTest(props) {
   return (
     <OftadehLayout>
       <Department />
-      <Grid container spacing={2}></Grid>
     </OftadehLayout>
   );
 }

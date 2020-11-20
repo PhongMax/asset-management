@@ -16,10 +16,10 @@ import {
   InputAdornment,
 } from "@material-ui/core";
 
-import EmployeeForm from "./EmployeeForm";
+import DepartmentForm from "./DepartmentForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
-import * as employeeService from "../../../services/employeeService";
+import * as departmentService from "../../../services/departmentService";
 import Controls from "../commons/Controls";
 import Popup from "../commons/Popup";
 import Notification from "../commons/Notification";
@@ -48,19 +48,19 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "fullName", label: "Employee Name" },
-  { id: "email", label: "Email Address (Personal)" },
-  { id: "mobile", label: "Mobile Number" },
-  { id: "department", label: "Department" },
+  { id: "name", label: "Tên phòng ban" },
+  { id: "description", label: "Mô tả" },
+  { id: "createdAt", label: "Ngày tạo dữ liệu" },
+  { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
-export default function Employees(props) {
+export default function Department(props) {
+  const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null);
 
-  //get employ từ server. dùng useafffect chứ đừng dùng use sate như này.
-  const [records, setRecords] = useState(employeeService.getAllEmployees());
+  const [records, setRecords] = useState(departmentService.getAllDepartments());
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -92,22 +92,22 @@ export default function Employees(props) {
         if (target.value == "") return items;
         else
           return items.filter((x) =>
-            x.fullName.toLowerCase().includes(target.value)
+            x.name.toLowerCase().includes(target.value)
           );
       },
     });
   };
 
-  const addOrEdit = (employee, resetForm) => {
-    if (employee.id == 0) employeeService.insertEmployee(employee);
-    else employeeService.updateEmployee(employee);
+  const addOrEdit = (department, resetForm) => {
+    if (department.id == 0) departmentService.insertDepartment(department);
+    else departmentService.updateDepartment(department);
     resetForm();
     setRecordForEdit(null);
     //  save txong r phải đóng popup
     setOpenPopup(false);
 
     // đúng rồi, lưu vào database xong thì phải mock lên.
-    setRecords(employeeService.getAllEmployees());
+    setRecords(departmentService.getAllDepartments());
     setNotify({
       isOpen: true,
       message: "Đã gửi thành công",
@@ -125,8 +125,8 @@ export default function Employees(props) {
       ...confirmDialog,
       isOpen: false,
     });
-    employeeService.deleteEmployee(id);
-    setRecords(employeeService.getAllEmployees());
+    departmentService.deleteDepartment(id);
+    setRecords(departmentService.getAllDepartments());
     setNotify({
       isOpen: true,
       message: "Đã xoá thành công",
@@ -137,7 +137,8 @@ export default function Employees(props) {
   return (
     <>
       <PageHeader
-        title="New Employee"
+        history={history}
+        title="New department"
         subTitle="Form design with validation"
         icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
       />
@@ -146,7 +147,7 @@ export default function Employees(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm"
+                label="Tìm kiếm "
                 className={classes.searchInput}
                 // thực ra cái này có thèn order nó hứng bên kia rồi
                 // ko phải import props other bên này
@@ -180,10 +181,10 @@ export default function Employees(props) {
           <TableBody>
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
-                <TableCell>{item.fullName}</TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell>{item.mobile}</TableCell>
-                <TableCell>{item.department}</TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.description}</TableCell>
+                <TableCell>{item.createdAt}</TableCell>
+                <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -216,12 +217,12 @@ export default function Employees(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Employee Form"
+        title="Biểu mẫu bộ phận"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        {/* // gọi employee form ở trong popup nó sẽ hiện employee đó ở trong popup */}
-        <EmployeeForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
+        {/* // gọi department form ở trong popup nó sẽ hiện department đó ở trong popup */}
+        <DepartmentForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
@@ -232,5 +233,5 @@ export default function Employees(props) {
   );
 }
 
-// const Employees = () => <h1>helo</h1>;
-// export default Employees;
+// const departments = () => <h1>helo</h1>;
+// export default departments;

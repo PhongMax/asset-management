@@ -1,8 +1,9 @@
 import React from "react";
 import OftadehLayout from "../components/OftadehLayout/OftadehLayout";
 import { Grid, makeStyles } from "@material-ui/core";
-import OftadehBreadcrumbs from "../components/OftadehBreadcrumbs/OftadehBreadcrumbs";
 import Employees from "../pages/CrudPages/Employees/Employees";
+import Department from "../pages/CrudPages/Department/Department";
+
 const useStyles = makeStyles((them) => ({
   paddingPaper: {
     padding: "10px 5px 5px 10px",
@@ -19,12 +20,12 @@ const useStyles = makeStyles((them) => ({
 }));
 
 function TableTest(props) {
-  const { history } = props;
+  // const { history } = props;
   const classes = useStyles();
 
   return (
     <OftadehLayout>
-      <Employees history={history} />
+      <Department />
       <Grid container spacing={2}></Grid>
     </OftadehLayout>
   );

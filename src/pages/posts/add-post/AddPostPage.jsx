@@ -10,25 +10,25 @@ import OftadehBreadcrumbs from "../../../components/OftadehBreadcrumbs/OftadehBr
 import { Typography, Grid, makeStyles, TextField } from "@material-ui/core";
 import AddPostRightPanels from "../../../components/extra/AddPostRightPanels/AddPostRightPanels";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   my3: {
-    margin: "1.3rem 0"
+    margin: "1.3rem 0",
   },
   mb3: {
-    margin: "1.3rem 0"
+    margin: "1.3rem 0",
   },
   mb0: {
-    marginBottom: 0
+    marginBottom: 0,
   },
   mRight: {
-    marginRight: ".85rem"
+    marginRight: ".85rem",
   },
   p1: {
-    padding: ".85rem"
-  }
+    padding: ".85rem",
+  },
   // demoEditor: {
   //   border: "1px solid #eee",
   //   padding: "5px",
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   // }
 }));
 
-const AddPostPage = props => {
+const AddPostPage = (props) => {
   const editor = useRef(null);
   const [bodyPost, setBodyPost] = useState("");
 
@@ -62,7 +62,7 @@ const AddPostPage = props => {
                 fullWidth
                 margin="normal"
                 InputLabelProps={{
-                  shrink: true
+                  shrink: true,
                 }}
               />
             </Grid>
@@ -79,12 +79,12 @@ const AddPostPage = props => {
                 config={{
                   readonly: false,
                   style: {
-                    height: "350px"
-                  }
+                    height: "350px",
+                  },
                 }}
                 tabIndex={1}
-                onBlur={value => setBodyPost(value)}
-                onChange={value => {}}
+                onBlur={(value) => setBodyPost(value)}
+                onChange={(value) => {}}
               />
             </Grid>
           </Grid>

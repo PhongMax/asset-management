@@ -1,3 +1,5 @@
+// KHU VỰC FAKE DATA ĐỂ LÀM CHO EMPLOYEES, LÀM GIAO DIỆN XONG R GỌI API
+
 const KEYS = {
   employees: "employees",
   employeeId: "employeeId",

@@ -4,12 +4,14 @@ import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 import * as employeeService from "../../../services/employeeService";
 
+// KHỎI TẠO GIÁ TRỊ COMBOX GENDER
 const genderItems = [
   { id: "male", title: "Male" },
   { id: "female", title: "Female" },
   { id: "other", title: "Other" },
 ];
 
+//  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
 const initialFValues = {
   id: 0,
   fullName: "",
@@ -22,9 +24,12 @@ const initialFValues = {
   isPermanent: false,
 };
 
+// COMPONENT : FORM SỬA , UPDATE EMPLOYEE
 export default function EmployeeForm(props) {
+  // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;
 
+  // khu vực validate các thuộc tính của Employee, nếu ko bị lỗi trả về true, bị lội trả về false
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("fullName" in fieldValues)
@@ -46,6 +51,8 @@ export default function EmployeeForm(props) {
     if (fieldValues == values) return Object.values(temp).every((x) => x == "");
   };
 
+  // đoạn code này dùng để get các state, hàm từ hàm use form
+  // tách ra như thế giúp cho việc reusable lại ở các component khác
   const {
     values,
     setValues,
@@ -55,6 +62,7 @@ export default function EmployeeForm(props) {
     resetForm,
   } = useForm(initialFValues, true, validate);
 
+  // sử lý sự kiện ở nút submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -62,6 +70,7 @@ export default function EmployeeForm(props) {
     }
   };
 
+  // dùng reactHook để get giá trị record for edit
   useEffect(() => {
     if (recordForEdit != null)
       setValues({
@@ -69,6 +78,7 @@ export default function EmployeeForm(props) {
       });
   }, [recordForEdit]);
 
+  // render lại form
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>

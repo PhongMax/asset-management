@@ -82,19 +82,14 @@ export default function Department(props) {
     subTitle: "",
   });
 
-  // use affect
+  // Xử lý call api
+
   const getDepartmentss = async () => {
     try {
-      console.log("===> vAafohafm getDepartments ");
+      const { data: responseData } = await testService.getAllDepartment();
+      const { data: department } = responseData;
 
-      // lấy dữ liệu depart từ api
-      const { data: temp } = await testService.getAllDepartment();
-      const { data } = temp;
-
-      // gán vào state
-      setRecords(data);
-
-      console.log("===> sau khi đọc dữ liệu department ");
+      setRecords(department);
     } catch (ex) {
       console.log("===> lỗi ");
       if (ex.response && ex.response.status === 404)
@@ -103,10 +98,7 @@ export default function Department(props) {
   };
 
   useEffect(() => {
-    console.log("===>Vào hàm use affect ");
-
     getDepartmentss();
-    console.log("===> Sau khi vào hàm use affece ");
   }, []);
 
   const {
@@ -134,7 +126,6 @@ export default function Department(props) {
     else departmentService.updateDepartment(department);
     resetForm();
     setRecordForEdit(null);
-    //  save txong r phải đóng popup
     setOpenPopup(false);
 
     // đúng rồi, lưu vào database xong thì phải mock lên.

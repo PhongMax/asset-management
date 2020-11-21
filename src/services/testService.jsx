@@ -1,29 +1,29 @@
 import HTTP from "./httpService";
 import { baseApiUrl } from "../config.json";
 
+// set up Query String
 const apiEndpoint = baseApiUrl + "/department";
 const postQuery = apiEndpoint + ":create";
 const deleteQuery = apiEndpoint + ":delete/";
 const getAllQuery = apiEndpoint + ":fetchAll";
 const putQuery = apiEndpoint + ":update";
 
-// HTTP.handleProtectedAPI();
-
-export function getAllDepartment() {
-  console.log("==> get all department " + getAllQuery);
-  return HTTP.GET(getAllQuery);
-}
+HTTP.handleProtectedAPI();
 
 // export function getDepartment(departmentId) {
 //   return HTTP.get(departmentUrl(departmentId));
 // }
 
-export function saveDepartment(department) {
-  if (department.id) {
-    return HTTP.PUT(putQuery, department);
-  }
+export function getAllDepartment() {
+  return HTTP.GET(getAllQuery);
+}
 
+export function insertDepartment(department) {
   return HTTP.POST(postQuery, department);
+}
+
+export function updateDepartment(department) {
+  return HTTP.PUT(putQuery, department);
 }
 
 export function deleteDepartment(departmentId) {
@@ -32,6 +32,7 @@ export function deleteDepartment(departmentId) {
 
 export default {
   getAllDepartment,
-  saveDepartment,
+  insertDepartment,
+  updateDepartment,
   deleteDepartment,
 };

@@ -6,10 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../../oftadeh-layouts/layout/Layout";
 import LayoutContext from "../../context/LayoutContext";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
-  }
+    display: "flex",
+  },
 }));
 
 function OftadehLayout(props) {
@@ -30,7 +30,7 @@ OftadehLayout.propTypes = {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  container: PropTypes.any
+  container: PropTypes.any,
 };
 
 export default OftadehLayout;

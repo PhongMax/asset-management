@@ -25,7 +25,6 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 
 import * as departmentService from "../../../services/departmentService";
-import * as testService from "../../../services/testService";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -82,31 +81,67 @@ export default function Department(props) {
     subTitle: "",
   });
 
-  // use affect
-  const getDepartmentss = async () => {
+  //=======================================   XỬ LÝ CALL API    ===========================================
+
+  const getDepartmentAndUpdateToState = async () => {
     try {
-      console.log("===> vAafohafm getDepartments ");
+      const { data: responseData } = await departmentService.getAllDepartment();
+      const { data: department } = responseData;
 
-      // lấy dữ liệu depart từ api
-      const { data: temp } = await testService.getAllDepartment();
-      const { data } = temp;
-
-      // gán vào state
-      setRecords(data);
-
-      console.log("===> sau khi đọc dữ liệu department ");
+      setRecords(department);
     } catch (ex) {
       console.log("===> lỗi ");
-      if (ex.response && ex.response.status === 404)
-        console.log("===> lỗi rồi, mời bạn xem lại ");
     }
   };
 
-  useEffect(() => {
-    console.log("===>Vào hàm use affect ");
+  const insertDepartment = async (department) => {
+    try {
+      await departmentService.insertDepartment(department);
+      getDepartmentAndUpdateToState();
+      setNotify({
+        isOpen: true,
+        message: "Thêm thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      console.log("===> lỗi ");
+    }
+  };
+  const updateDepartment = async (department) => {
+    try {
+      await departmentService.updateDepartment(department);
+      getDepartmentAndUpdateToState();
+      setNotify({
+        isOpen: true,
+        message: "Cập nhật thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      console.log("===> lỗi ");
+    }
+  };
+  const deleteDepartment = async (departmentId) => {
+    const originalDepartmentRecord = records;
+    const newDepartmentRecord = originalDepartmentRecord.filter(
+      (x) => x.id != departmentId
+    );
+    setRecords(newDepartmentRecord);
+    try {
+      await departmentService.deleteDepartment(departmentId);
+      setNotify({
+        isOpen: true,
+        message: "Đã xoá thành công",
+        type: "error",
+      });
+    } catch (ex) {
+      console.log("===> lỗi ");
+      setRecords(originalDepartmentRecord);
+    }
+  };
+  //===================================================================================
 
-    getDepartmentss();
-    console.log("===> Sau khi vào hàm use affece ");
+  useEffect(() => {
+    getDepartmentAndUpdateToState();
   }, []);
 
   const {
@@ -130,20 +165,12 @@ export default function Department(props) {
   };
 
   const addOrEdit = (department, resetForm) => {
-    if (department.id === 0) departmentService.insertDepartment(department);
-    else departmentService.updateDepartment(department);
+    if (department.id === 0) insertDepartment(department);
+    else updateDepartment(department);
+
     resetForm();
     setRecordForEdit(null);
-    //  save txong r phải đóng popup
     setOpenPopup(false);
-
-    // đúng rồi, lưu vào database xong thì phải mock lên.
-    setRecords(departmentService.getAllDepartments());
-    setNotify({
-      isOpen: true,
-      message: "Đã gửi thành công",
-      type: "success",
-    });
   };
 
   const openInPopup = (item) => {
@@ -156,13 +183,7 @@ export default function Department(props) {
       ...confirmDialog,
       isOpen: false,
     });
-    departmentService.deleteDepartment(id);
-    setRecords(departmentService.getAllDepartments());
-    setNotify({
-      isOpen: true,
-      message: "Đã xoá thành công",
-      type: "error",
-    });
+    deleteDepartment(id);
   };
 
   return (

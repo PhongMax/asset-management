@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
@@ -19,11 +19,13 @@ import {
 import DepartmentForm from "./DepartmentForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
-import * as departmentService from "../../../services/departmentService";
 import Controls from "../commons/Controls";
 import Popup from "../commons/Popup";
 import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
+
+import * as departmentService from "../../../services/departmentService";
+import * as testService from "../../../services/testService";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -61,7 +63,8 @@ export default function Department(props) {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null);
 
-  const [records, setRecords] = useState(departmentService.getAllDepartments());
+  const [records, setRecords] = useState([]);
+
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -78,6 +81,33 @@ export default function Department(props) {
     title: "",
     subTitle: "",
   });
+
+  // use affect
+  const getDepartmentss = async () => {
+    try {
+      console.log("===> vAafohafm getDepartments ");
+
+      // lấy dữ liệu depart từ api
+      const { data: temp } = await testService.getAllDepartment();
+      const { data } = temp;
+
+      // gán vào state
+      setRecords(data);
+
+      console.log("===> sau khi đọc dữ liệu department ");
+    } catch (ex) {
+      console.log("===> lỗi ");
+      if (ex.response && ex.response.status === 404)
+        console.log("===> lỗi rồi, mời bạn xem lại ");
+    }
+  };
+
+  useEffect(() => {
+    console.log("===>Vào hàm use affect ");
+
+    getDepartmentss();
+    console.log("===> Sau khi vào hàm use affece ");
+  }, []);
 
   const {
     TblContainer,
@@ -233,6 +263,3 @@ export default function Department(props) {
     </>
   );
 }
-
-// const departments = () => <h1>helo</h1>;
-// export default departments;

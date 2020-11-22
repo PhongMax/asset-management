@@ -90,7 +90,7 @@ export default function Department(props) {
 
       setRecords(department);
     } catch (ex) {
-      console.log("===> lỗi ");
+      console.log("Errors: Lỗi lấy dữ liệu ");
     }
   };
 
@@ -104,7 +104,7 @@ export default function Department(props) {
         type: "success",
       });
     } catch (ex) {
-      console.log("===> lỗi ");
+      console.log("Errors: Lỗi  thêm mới ");
     }
   };
   const updateDepartment = async (department) => {
@@ -117,7 +117,7 @@ export default function Department(props) {
         type: "success",
       });
     } catch (ex) {
-      console.log("===> lỗi ");
+      console.log("Errors: Lỗi cập nhật dữ liệu");
     }
   };
   const deleteDepartment = async (departmentId) => {
@@ -134,7 +134,7 @@ export default function Department(props) {
         type: "error",
       });
     } catch (ex) {
-      console.log("===> lỗi ");
+      console.log("Errors: Lỗi xóa dữ liệu");
       setRecords(originalDepartmentRecord);
     }
   };

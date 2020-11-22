@@ -1,7 +1,8 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+
 const userKey = "user";
 
-//  cái này chạy đầu tiên
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&
@@ -9,12 +10,7 @@ axios.interceptors.response.use(null, (error) => {
     error.response.status < 500;
 
   if (!expectedError) {
-    // logger.log(error);
-    // từ từ xử lý nè... login toast các kiểu nè.
-    // toast.error("An unexpected error occurrred.");
-    console.log(
-      "==> lỗi không phải 400 hay 500, chõ này phải in ra lỗi mà chưa in ne"
-    );
+    toast.error("An unexpected error occurrred.");
   }
 
   return Promise.reject(error);

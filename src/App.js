@@ -4,6 +4,8 @@ import OftadehRoutes from "./components/OftadehRoutes/OftadehRoutes";
 import { ThemeProvider } from "@material-ui/core/styles";
 import getTheme from "./oftadeh-configs/themeConfig";
 import ThemeContext from "./context/ThemeContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const curThemeName = localStorage.getItem("appTheme") || "light";
@@ -23,6 +25,7 @@ const App = () => {
     <ThemeContext.Provider value={{ setThemeName, curThemeName }}>
       <ThemeProvider theme={theme}>
         <div className="App">
+          <ToastContainer />
           <OftadehRoutes />
         </div>
       </ThemeProvider>

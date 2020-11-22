@@ -2,8 +2,6 @@ import React from "react";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { Paper } from "@material-ui/core";
 import navigationConfig from "../../oftadeh-configs/navigationConfig";
 
 import OftadehNavGroup from "./sections/OftadehNavGroup";
@@ -42,7 +40,7 @@ const OftadehNavigation = (props) => {
   return (
     <div>
       <div className={clsx(classes.toolbar)}>
-        <img style={{ padding: "15px" }} src={ptitLogo} />
+        <img style={{ padding: "15px" }} src={ptitLogo} alt="logo ptit" />
 
         <Typography
           className={classes.logo}

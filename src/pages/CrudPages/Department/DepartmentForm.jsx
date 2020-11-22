@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
@@ -47,7 +47,7 @@ export default function DepartmentForm(props) {
       setValues({
         ...recordForEdit,
       });
-  }, [recordForEdit]);
+  }, [recordForEdit, setValues]);
 
   return (
     <Form onSubmit={handleSubmit}>

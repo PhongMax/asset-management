@@ -25,7 +25,7 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 
 import * as departmentService from "../../../services/departmentService";
-
+import * as utils from "../../../utils/Utils.js";
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     marginTop: theme.spacing(4),
@@ -81,6 +81,15 @@ export default function Department(props) {
     subTitle: "",
   });
 
+  // ======================================    XỬ LÝ DATA FROM SERVER ====================================
+  const departmentHandled = (object) => {
+    const objectConverted = object.map((item) => {
+      item.createdAt = utils.convertDateTime(item.createdAt);
+      item.updatedAt = utils.convertDateTime(item.updatedAt);
+      return item;
+    });
+    return objectConverted;
+  };
   //=======================================   XỬ LÝ CALL API    ===========================================
 
   const getDepartmentAndUpdateToState = async () => {
@@ -88,7 +97,7 @@ export default function Department(props) {
       const { data: responseData } = await departmentService.getAllDepartment();
       const { data: department } = responseData;
 
-      setRecords(department);
+      setRecords(departmentHandled(department));
     } catch (ex) {
       console.log("Errors: Lỗi lấy dữ liệu ");
     }
@@ -123,7 +132,7 @@ export default function Department(props) {
   const deleteDepartment = async (departmentId) => {
     const originalDepartmentRecord = records;
     const newDepartmentRecord = originalDepartmentRecord.filter(
-      (x) => x.id != departmentId
+      (x) => x.id !== departmentId
     );
     setRecords(newDepartmentRecord);
     try {
@@ -140,9 +149,7 @@ export default function Department(props) {
   };
   //===================================================================================
 
-  useEffect(() => {
-    getDepartmentAndUpdateToState();
-  }, []);
+  useEffect(getDepartmentAndUpdateToState, []);
 
   const {
     TblContainer,

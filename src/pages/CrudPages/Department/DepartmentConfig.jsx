@@ -1,6 +1,6 @@
 import Department from "./Department";
 
-export const EmployeesConfig = {
+export const DepartmentConfig = {
   routes: [
     {
       path: "/department",

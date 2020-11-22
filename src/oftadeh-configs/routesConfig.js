@@ -10,7 +10,7 @@ import { Error404PageConfig } from "../pages/errors/404/Error404PageConfig";
 import { Error500PageConfig } from "../pages/errors/500/Error500PageConfig";
 
 import { EmployeesConfig } from "../pages/CrudPages/Employees/EmployeesConfig";
-import TableTest from "../tests/TableTest";
+import { DepartmentConfig } from "../pages/CrudPages/Department/DepartmentConfig";
 
 const routeConfigs = [
   ...DashboardPageConfig.routes,
@@ -21,15 +21,11 @@ const routeConfigs = [
   ...Error404PageConfig.routes,
   ...Error500PageConfig.routes,
   ...EmployeesConfig.routes,
+  ...DepartmentConfig.routes,
 ];
 
 const routes = [
   ...routeConfigs,
-  {
-    path: "/test",
-    exact: true,
-    component: TableTest,
-  },
   {
     component: () => <Redirect to="/pages/errors/error-404" />,
   },

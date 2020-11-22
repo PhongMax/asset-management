@@ -15,7 +15,6 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
-
 import DepartmentForm from "./DepartmentForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -23,9 +22,9 @@ import Controls from "../commons/Controls";
 import Popup from "../commons/Popup";
 import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
-
 import * as departmentService from "../../../services/departmentService";
 import * as utils from "../../../utils/Utils.js";
+
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     marginTop: theme.spacing(4),
@@ -61,9 +60,7 @@ export default function Department(props) {
   const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null);
-
   const [records, setRecords] = useState([]);
-
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -90,13 +87,12 @@ export default function Department(props) {
     });
     return objectConverted;
   };
-  //=======================================   XỬ LÝ CALL API    ===========================================
 
+  //=======================================   XỬ LÝ CALL API    ===========================================
   const getDepartmentAndUpdateToState = async () => {
     try {
       const { data: responseData } = await departmentService.getAllDepartment();
       const { data: department } = responseData;
-
       setRecords(departmentHandled(department));
     } catch (ex) {
       toast.error("Errors: Lỗi lấy dữ liệu ");
@@ -116,6 +112,7 @@ export default function Department(props) {
       toast.error("Errors: Lỗi thêm mới dữ liệu ");
     }
   };
+
   const updateDepartment = async (department) => {
     try {
       await departmentService.updateDepartment(department);
@@ -129,6 +126,7 @@ export default function Department(props) {
       toast.error("Errors: Lỗi cập nhật dữ liệu ");
     }
   };
+
   const deleteDepartment = async (departmentId) => {
     const originalDepartmentRecord = records;
     const newDepartmentRecord = originalDepartmentRecord.filter(
@@ -174,7 +172,6 @@ export default function Department(props) {
   const addOrEdit = (department, resetForm) => {
     if (department.id === 0) insertDepartment(department);
     else updateDepartment(department);
-
     resetForm();
     setRecordForEdit(null);
     setOpenPopup(false);
@@ -208,8 +205,6 @@ export default function Department(props) {
               <Controls.Input
                 label="Tìm kiếm "
                 className={classes.searchInput}
-                // thực ra cái này có thèn order nó hứng bên kia rồi
-                // ko phải import props other bên này
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -280,7 +275,6 @@ export default function Department(props) {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        {/* // gọi department form ở trong popup nó sẽ hiện department đó ở trong popup */}
         <DepartmentForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />

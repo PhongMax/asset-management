@@ -185,7 +185,7 @@ const navigationConfig = [
         title: "Employee template ko có gán api",
         type: "link",
         icon: "link",
-        url: "/ke/test",
+        url: "/employees",
         exact: true,
       },
       {
@@ -193,7 +193,7 @@ const navigationConfig = [
         title: "Department template có gán api ",
         type: "link",
         icon: "link",
-        url: "/test",
+        url: "/department",
         exact: true,
       },
     ],

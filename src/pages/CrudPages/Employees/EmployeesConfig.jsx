@@ -3,7 +3,7 @@ import Employees from "./Employees";
 export const EmployeesConfig = {
   routes: [
     {
-      path: "/ke/test",
+      path: "/employees",
       exact: true,
       component: Employees,
     },

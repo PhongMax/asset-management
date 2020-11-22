@@ -1,17 +1,41 @@
 import HTTP from "./httpService";
 import { baseApiUrl } from "../config.json";
 
-const apiEndpoint = baseApiUrl + "/campus/1";
-const userKey = "user";
+// set up Query String
+const apiEndpoint = baseApiUrl + "/campus";
+const postQuery = apiEndpoint + ":create";
+const deleteQuery = apiEndpoint + ":delete/";
+const getAllQuery = apiEndpoint + ":fetchAll";
+const getOneQuery = apiEndpoint + "/";
+const putQuery = apiEndpoint + ":update";
+
 
 HTTP.handleProtectedAPI();
 
-// - - - - - - - - - CRUD --------------
-export function getCampus() {
-  console.log("Here campus");
-  return HTTP.GET(apiEndpoint);
+export function getCampus(campusId) {
+  return HTTP.get(`${getOneQuery}${campusId}`;
+}
+
+export function getAllCampus() {
+  return HTTP.GET(getAllQuery);
+}
+
+export function insertCampus(campus) {
+  return HTTP.POST(postQuery, campus);
+}
+
+export function updateCampus(campus) {
+  return HTTP.PUT(putQuery, campus);
+}
+
+export function deleteCampus(campusId) {
+  return HTTP.DELETE(`${deleteQuery}${campusId}`);
 }
 
 export default {
   getCampus,
+  getAllCampus,
+  insertCampus,
+  updateCampus,
+  deleteCampus,
 };

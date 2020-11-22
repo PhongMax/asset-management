@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
+import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
-
+import { toast } from "react-toastify";
 import {
   Paper,
   makeStyles,
@@ -25,7 +25,7 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 
 import * as departmentService from "../../../services/departmentService";
-
+import * as utils from "../../../utils/Utils.js";
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     marginTop: theme.spacing(4),
@@ -81,6 +81,15 @@ export default function Department(props) {
     subTitle: "",
   });
 
+  // ======================================    XỬ LÝ DATA FROM SERVER ====================================
+  const departmentHandled = (object) => {
+    const objectConverted = object.map((item) => {
+      item.createdAt = utils.convertDateTime(item.createdAt);
+      item.updatedAt = utils.convertDateTime(item.updatedAt);
+      return item;
+    });
+    return objectConverted;
+  };
   //=======================================   XỬ LÝ CALL API    ===========================================
 
   const getDepartmentAndUpdateToState = async () => {
@@ -88,9 +97,9 @@ export default function Department(props) {
       const { data: responseData } = await departmentService.getAllDepartment();
       const { data: department } = responseData;
 
-      setRecords(department);
+      setRecords(departmentHandled(department));
     } catch (ex) {
-      console.log("Errors: Lỗi lấy dữ liệu ");
+      toast.error("Errors: Lỗi lấy dữ liệu ");
     }
   };
 
@@ -104,7 +113,7 @@ export default function Department(props) {
         type: "success",
       });
     } catch (ex) {
-      console.log("Errors: Lỗi  thêm mới ");
+      toast.error("Errors: Lỗi thêm mới dữ liệu ");
     }
   };
   const updateDepartment = async (department) => {
@@ -117,13 +126,13 @@ export default function Department(props) {
         type: "success",
       });
     } catch (ex) {
-      console.log("Errors: Lỗi cập nhật dữ liệu");
+      toast.error("Errors: Lỗi cập nhật dữ liệu ");
     }
   };
   const deleteDepartment = async (departmentId) => {
     const originalDepartmentRecord = records;
     const newDepartmentRecord = originalDepartmentRecord.filter(
-      (x) => x.id != departmentId
+      (x) => x.id !== departmentId
     );
     setRecords(newDepartmentRecord);
     try {
@@ -134,15 +143,13 @@ export default function Department(props) {
         type: "error",
       });
     } catch (ex) {
-      console.log("Errors: Lỗi xóa dữ liệu");
+      toast.error("Errors: Lỗi xóa dữ liệu ");
       setRecords(originalDepartmentRecord);
     }
   };
   //===================================================================================
 
-  useEffect(() => {
-    getDepartmentAndUpdateToState();
-  }, []);
+  useEffect(getDepartmentAndUpdateToState, []);
 
   const {
     TblContainer,
@@ -190,9 +197,9 @@ export default function Department(props) {
     <>
       <PageHeader
         history={history}
-        title="New department"
-        subTitle="Form design with validation"
-        icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
+        title="Phòng ban"
+        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
+        icon={<DomainTwoToneIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>

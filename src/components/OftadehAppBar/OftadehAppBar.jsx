@@ -7,7 +7,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import { InputBase, Badge } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import OftadehAvatarMenu from "../OftadehAvatarMenu/OftadehAvatarMenu";
 import clsx from "clsx";
@@ -123,7 +122,7 @@ const OftadehAppBar = (props) => {
             <SearchIcon />
           </div>
           <InputBase
-            placeholder="Search…"
+            placeholder="Tìm kiếm..."
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,
@@ -156,7 +155,7 @@ const OftadehAppBar = (props) => {
             >
               <TodayIcon />
             </IconButton> */}
-            <IconButton
+            {/* <IconButton
               aria-haspopup="true"
               onClick={(event) => handleRightPanelOpen(event, 2)}
               aria-label="show 4 new messages"
@@ -165,7 +164,7 @@ const OftadehAppBar = (props) => {
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
           </div>
           <IconButton
             aria-haspopup="true"

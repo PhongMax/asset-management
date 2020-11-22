@@ -4,23 +4,23 @@ import {
   ListItemIcon,
   ListItemText,
   Icon,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import NavLinkAdapter from "../../NavLinkAdapter/NavLinkAdapter";
 import OftadehNavBadge from "../OftadehNavBadge";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   active: {
     background: "#2467db",
     color: "#fff",
     "&:hover": {
-      background: "#1a4fab"
-    }
+      background: "#1a4fab",
+    },
     // // borderRadius: "10px 0 0 10px"
-  }
+  },
 }));
 
-const OftadehNavItem = props => {
+const OftadehNavItem = (props) => {
   const classes = useStyles();
   const { item } = props;
 

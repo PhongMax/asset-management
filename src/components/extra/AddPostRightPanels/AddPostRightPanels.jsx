@@ -16,27 +16,31 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
 } from "@material-ui/core";
 import AddPostRightPanelsAutoComplete from "./AddPostRightPanelsAutoComplete";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%"
+    width: "100%",
+  },
+  dividers: {
+    height: "4px",
+    backgroundColor: theme.palette.common.white,
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+    fontWeight: theme.typography.fontWeightRegular,
   },
   mb3: {
-    marginBottom: "1.3rem"
+    marginBottom: "1.3rem",
   },
   mb1: {
-    marginBottom: ".85rem"
+    marginBottom: ".85rem",
   },
   my1: {
-    margin: ".85rem 0"
-  }
+    margin: ".85rem 0",
+  },
 }));
 
 export default function AddPostRightPanels() {
@@ -59,7 +63,7 @@ export default function AddPostRightPanels() {
         >
           <Typography className={classes.heading}>Publish</Typography>
         </ExpansionPanelSummary>
-        <Divider />
+        <Divider className={classes.my1} />
         <ExpansionPanelDetails>
           <Grid container>
             <Grid

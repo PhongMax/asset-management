@@ -9,11 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
-
 HTTP.handleProtectedAPI();
 
 export function getUser(userId) {
-  return HTTP.get(`${getOneQuery}${userId}`;
+  return HTTP.get(`${getOneQuery}${userId}`);
 }
 
 export function getAllUser() {

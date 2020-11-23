@@ -9,11 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
-
 HTTP.handleProtectedAPI();
 
 export function getInventoryMaterial(inventoryMaterialId) {
-  return HTTP.get(`${getOneQuery}${inventoryMaterialId}`;
+  return HTTP.get(`${getOneQuery}${inventoryMaterialId}`);
 }
 
 export function getAllInventoryMaterial() {

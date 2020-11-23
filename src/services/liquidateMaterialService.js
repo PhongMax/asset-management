@@ -9,11 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
-
 HTTP.handleProtectedAPI();
 
 export function getLiquidateMaterial(liquidateMaterialId) {
-  return HTTP.get(`${getOneQuery}${liquidateMaterialId}`;
+  return HTTP.get(`${getOneQuery}${liquidateMaterialId}`);
 }
 
 export function getAllLiquidateMaterial() {

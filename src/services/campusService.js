@@ -9,11 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
-
 HTTP.handleProtectedAPI();
 
 export function getCampus(campusId) {
-  return HTTP.get(`${getOneQuery}${campusId}`;
+  return HTTP.get(`${getOneQuery}${campusId}`);
 }
 
 export function getAllCampus() {

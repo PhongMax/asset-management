@@ -35,7 +35,9 @@ export default function EmployeeForm(props) {
     if ("fullName" in fieldValues)
       temp.fullName = fieldValues.fullName ? "" : "This field is required.";
     if ("email" in fieldValues)
-      temp.email = /$^|.+@.+..+/.test(fieldValues.email)
+      temp.email = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/.test(
+        fieldValues.email
+      )
         ? ""
         : "Email is not valid.";
     if ("mobile" in fieldValues)

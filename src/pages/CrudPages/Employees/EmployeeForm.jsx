@@ -10,7 +10,12 @@ const genderItems = [
   { id: "female", title: "Female" },
   { id: "other", title: "Other" },
 ];
-
+const names = [
+  "ROLE_ACCOUNTANT",
+  "ROLE_CHIEF_ACCOUNTANT",
+  "ROLE_LECTURES",
+  "ROLE_ADMIN",
+];
 //  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
 const initialFValues = {
   id: 0,
@@ -130,6 +135,9 @@ export default function EmployeeForm(props) {
             options={employeeService.getDepartmentCollection()}
             error={errors.departmentId}
           />
+
+          {/* <Controls.MultipleSelect /> */}
+
           <Controls.DatePicker
             name="hireDate"
             label="Hire Date"

@@ -6,8 +6,6 @@ import { useForm, Form } from "../commons/useForm";
 import * as categoryService from "../../../services/categoryService";
 import * as calculationUnitService from "../../../services/calculationUnitService";
 
-// import { isInteger } from "lodash";
-
 const initialFValues = {
   id: 0,
   origin: "",
@@ -21,7 +19,13 @@ const initialFValues = {
   },
   allocationDuration: 0,
 };
-//=================================== LẤY DATA TỪ FEILD KHÁC  ĐẨY VÀO SELECT========================//
+
+const getProductCollection = () => [
+  { id: "YEAR", title: "YEAR" },
+  { id: "MONTH", title: "MONTH" },
+];
+
+//=================================== XỬ LÝ DATA THEO ĐÚNG FORMAT ĐỂ XỬ DỤNG ========================//
 const DataCategory = [];
 async function getDataCategory() {
   const result = await categoryService.getAllCategory();
@@ -46,10 +50,8 @@ async function getDataCalculationUnit() {
 getDataCalculationUnit();
 const getCalculationUnitCollection = () => DataCalculationUnit;
 
-const getProductCollection = () => [
-  { id: "YEAR", title: "YEAR" },
-  { id: "MONTH", title: "MONTH" },
-];
+// ==============================================================================================
+
 export default function ProductForm(props) {
   const { addOrEdit, recordForEdit } = props;
 

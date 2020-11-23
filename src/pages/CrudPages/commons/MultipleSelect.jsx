@@ -6,13 +6,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
-import { FormHelperText } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 400,
+    margin: theme.spacing(5),
   },
   chips: {
     display: "flex",
@@ -23,17 +20,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const names = [
-//   'ROLE_ACCOUNTANT',
-//   'ROLE_CHIEF_ACCOUNTANT',
-//   'ROLE_LECTURES',
-//   'ROLE_ADMIN',
-// ];
+const names = [
+  "ROLE_ACCOUNTANT",
+  "ROLE_CHIEF_ACCOUNTANT",
+  "ROLE_LECTURES",
+  "ROLE_ADMIN",
+];
 
-function getStyles(name, value, theme) {
+function getStyles(name, personName, theme) {
   return {
     fontWeight:
-      value.indexOf(name) === -1
+      personName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -41,23 +38,19 @@ function getStyles(name, value, theme) {
 
 export default function MultipleSelect(props) {
   const classes = useStyles();
-  const { name, label, value, error = null, onChange, options } = props;
-
   const theme = useTheme();
+
+  const { name, label, value, error = null, onChange, options } = props;
   return (
     <div>
-      <FormControl
-        className={classes.formControl}
-        variant="outlined"
-        {...(error && { error: true })}
-      >
+      <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-mutiple-chip-label">{label}</InputLabel>
         <Select
           labelId="demo-mutiple-chip-label"
           label={label}
+          name={name}
           id="demo-mutiple-chip"
           multiple
-          name={name}
           value={value}
           onChange={onChange}
           input={<Input id="select-multiple-chip" />}
@@ -71,15 +64,14 @@ export default function MultipleSelect(props) {
         >
           {options.map((option) => (
             <MenuItem
-              key={option}
-              value={option}
-              style={getStyles(option, value, theme)}
+              key={option.id}
+              value={option.title}
+              style={getStyles(option.title, value, theme)}
             >
-              {option}
+              {option.title}
             </MenuItem>
           ))}
         </Select>
-        {error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
@@ -10,7 +10,22 @@ const genderItems = [
   { id: "female", title: "Female" },
   { id: "other", title: "Other" },
 ];
-const names = [
+
+export const getDepartmentCollection = () => [
+  { id: "1", title: "Development" },
+  { id: "2", title: "Marketing" },
+  { id: "3", title: "Accounting" },
+  { id: "4", title: "HR" },
+];
+
+const roles = [
+  { id: "1", title: "ROLE_ACCOUNTANT" },
+  { id: "2", title: "ROLE_CHIEF_ACCOUNTANT" },
+  { id: "3", title: "ROLE_LECTURES" },
+  { id: "4", title: "ROLE_ADMIN" },
+];
+
+const valueRole = [
   "ROLE_ACCOUNTANT",
   "ROLE_CHIEF_ACCOUNTANT",
   "ROLE_LECTURES",
@@ -37,20 +52,29 @@ export default function EmployeeForm(props) {
   // khu vực validate các thuộc tính của Employee, nếu ko bị lỗi trả về true, bị lội trả về false
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    if ("fullName" in fieldValues)
-      temp.fullName = fieldValues.fullName ? "" : "This field is required.";
+    if ("fullName" in fieldValues) {
+      temp.fullName = fieldValues.fullName
+        ? ""
+        : "Trường dữ liệu không được để trống.";
+    }
+
     if ("email" in fieldValues)
       temp.email = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/.test(
         fieldValues.email
       )
         ? ""
-        : "Email is not valid.";
+        : "Email không hợp lệ.";
     if ("mobile" in fieldValues)
-      temp.mobile =
-        fieldValues.mobile.length > 9 ? "" : "Minimum 10 numbers required.";
+      temp.mobile = /((05[5|8|9]|08[1|2|3|4|5|86|9]|03[2|3|4|5|6|7|8|9]|07[0|9|7|6|8]|09[0|2|1|4|3|6|7|8|9]|01[2|9])+([0-9]{7,8})\b)/g.test(
+        fieldValues.mobile
+      )
+        ? ""
+        : "Số điện thoại không hợp lệ.";
     if ("departmentId" in fieldValues)
       temp.departmentId =
-        fieldValues.departmentId.length !== 0 ? "" : "This field is required.";
+        fieldValues.departmentId.length !== 0
+          ? ""
+          : "Trường này không được để trống.";
     setErrors({
       ...temp,
     });
@@ -86,6 +110,14 @@ export default function EmployeeForm(props) {
       });
   }, [recordForEdit, setValues]);
 
+  //======================================FAKE DATA =============================================
+
+  const [ValueRole, setValueRole] = useState(valueRole);
+  const handleInputChange1 = (event) => {
+    setValueRole(event.target.value);
+  };
+
+  //==============================================================================================
   // render lại form
   return (
     <Form onSubmit={handleSubmit}>
@@ -136,7 +168,13 @@ export default function EmployeeForm(props) {
             error={errors.departmentId}
           />
 
-          {/* <Controls.MultipleSelect /> */}
+          <Controls.MultipleSelect
+            name="Role"
+            label="Quyền hạn"
+            value={ValueRole}
+            onChange={handleInputChange1}
+            options={roles}
+          />
 
           <Controls.DatePicker
             name="hireDate"

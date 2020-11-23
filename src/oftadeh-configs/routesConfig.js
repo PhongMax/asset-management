@@ -10,7 +10,7 @@ import { Error404PageConfig } from "../pages/errors/404/Error404PageConfig";
 import { Error500PageConfig } from "../pages/errors/500/Error500PageConfig";
 
 import { EmployeesConfig } from "../pages/CrudPages/Employees/EmployeesConfig";
-import { DepartmentConfig } from "../pages/CrudPages/Department/DepartmentConfig";
+import { TableTestConfig } from "../tests/TableTestConfig";
 
 const routeConfigs = [
   ...DashboardPageConfig.routes,
@@ -21,7 +21,7 @@ const routeConfigs = [
   ...Error404PageConfig.routes,
   ...Error500PageConfig.routes,
   ...EmployeesConfig.routes,
-  ...DepartmentConfig.routes,
+  ...TableTestConfig.routes,
 ];
 
 const routes = [

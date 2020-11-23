@@ -9,11 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
-
 HTTP.handleProtectedAPI();
 
 export function getTypePlace(typePlaceId) {
-  return HTTP.get(`${getOneQuery}${typePlaceId}`;
+  return HTTP.get(`${getOneQuery}${typePlaceId}`);
 }
 
 export function getAllTypePlace() {

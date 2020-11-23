@@ -9,11 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
-
 HTTP.handleProtectedAPI();
 
 export function getOrganization(organizationId) {
-  return HTTP.get(`${getOneQuery}${organizationId}`;
+  return HTTP.get(`${getOneQuery}${organizationId}`);
 }
 
 export function getAllOrganization() {

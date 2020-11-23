@@ -9,11 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
-
 HTTP.handleProtectedAPI();
 
 export function getCalculationUnit(calculationUnitId) {
-  return HTTP.get(`${getOneQuery}${calculationUnitId}`;
+  return HTTP.get(`${getOneQuery}${calculationUnitId}`);
 }
 
 export function getAllCalculationUnit() {

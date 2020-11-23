@@ -5,15 +5,17 @@ import Checkbox from "./Checkbox";
 import DatePicker from "./DatePicker";
 import Button from "./Button";
 import ActionButton from "./ActionButton";
+import MultipleSelect from "./MultipleSelect";
 
 const Controls = {
-    Input,
-    RadioGroup,
-    Select,
-    Checkbox,
-    DatePicker,
-    Button,
-    ActionButton
-}
+  Input,
+  RadioGroup,
+  Select,
+  Checkbox,
+  DatePicker,
+  Button,
+  ActionButton,
+  MultipleSelect,
+};
 
 export default Controls;

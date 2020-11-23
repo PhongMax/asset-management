@@ -1,11 +1,10 @@
 import React from "react";
 import OftadehLayout from "../components/OftadehLayout/OftadehLayout";
-import Department from "../pages/CrudPages/Department/Department";
-
+import TypePlace from "../pages/CrudPages/TypePlace/TypePlace";
 function TableTest(props) {
   return (
     <OftadehLayout>
-      <Department />
+      <TypePlace />
     </OftadehLayout>
   );
 }

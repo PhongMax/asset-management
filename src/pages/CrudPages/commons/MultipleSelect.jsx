@@ -20,13 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const names = [
-  "ROLE_ACCOUNTANT",
-  "ROLE_CHIEF_ACCOUNTANT",
-  "ROLE_LECTURES",
-  "ROLE_ADMIN",
-];
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -40,7 +33,7 @@ export default function MultipleSelect(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { name, label, value, error = null, onChange, options } = props;
+  const { name, label, value, onChange, options } = props;
   return (
     <div>
       <FormControl variant="outlined" className={classes.formControl}>

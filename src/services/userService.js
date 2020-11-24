@@ -3,7 +3,7 @@ import { baseApiUrl } from "../config.json";
 
 // set up Query String
 const apiEndpoint = baseApiUrl + "/user";
-const postQuery = apiEndpoint + ":create";
+const postQuery = baseApiUrl + "/auth/register";
 const deleteQuery = apiEndpoint + ":delete/";
 const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";

@@ -87,20 +87,18 @@ export default function Product(props) {
     const objConverted = obj.map((item) => {
       item.createdAt = utils.convertDateTime(item.createdAt);
       item.updatedAt = utils.convertDateTime(item.updatedAt);
-      const a = {
+      const aditionalProps = {
         categoryId: item.category.id,
         calculationUnitId: item.calculationUnit.id,
       };
-      const c = Object.assign(item, a);
-      return c;
+
+      return Object.assign(item, aditionalProps);
     });
 
-    console.log(objConverted);
     return objConverted;
   };
 
   const ProductHandledToInsert = (obj) => {
-    console.log(obj, " truyền vào bị linserỗi");
     const temp = {
       name: obj.name,
       description: obj.description,
@@ -117,7 +115,6 @@ export default function Product(props) {
   };
 
   const ProductHandledToUpdate = (obj) => {
-    console.log(obj, " truyền vào update");
     const temp = {
       id: obj.id,
       name: obj.name,
@@ -131,7 +128,7 @@ export default function Product(props) {
         calculationUnitId: obj.calculationUnitId,
       },
     };
-    console.log(temp, " sau khi udpate convvert");
+
     return temp;
   };
   //=======================================   XỬ LÝ CALL API    ===========================================

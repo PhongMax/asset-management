@@ -7,10 +7,11 @@ import * as departmentService from "../../../services/departmentService";
 
 // KHỎI TẠO GIÁ TRỊ COMBOX ROLE
 const roles = [
-  { id: "1", title: "ROLE_ACCOUNTANT" },
+  { id: "1", title: "ROLE_ADMIN" },
   { id: "2", title: "ROLE_CHIEF_ACCOUNTANT" },
-  { id: "3", title: "ROLE_LECTURES" },
-  { id: "4", title: "ROLE_ADMIN" },
+  { id: "3", title: "ROLE_ACCOUNTANT" },
+  { id: "4", title: "ROLE_LECTURES" },
+  { id: "5", title: "ROLE_INSPECTOR" },
 ];
 
 //  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
@@ -76,11 +77,6 @@ export default function UserForm(props) {
     if ("username" in fieldValues)
       temp.username =
         fieldValues.username.length !== 0
-          ? ""
-          : "Trường này không được để trống.";
-    if ("password" in fieldValues)
-      temp.password =
-        fieldValues.password.length !== 0
           ? ""
           : "Trường này không được để trống.";
 

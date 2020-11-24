@@ -28,8 +28,6 @@ export function getCurrentUser() {
   }
 }
 
-// chỗ này thiếu hàm register nè, làm sau
-
 export default {
   login,
   logout,

@@ -82,21 +82,19 @@ export default function User(props) {
 
   // ======================================    XỬ LÝ DATA FROM SERVER ====================================
   const UserHandledToShow = (obj) => {
-    console.log(obj, " đổi tượng gửi về từ server là gì");
     const objConverted = obj.map((item) => {
       item.createdAt = utils.convertDateTime(item.createdAt);
       item.updatedAt = utils.convertDateTime(item.updatedAt);
 
       const additionalProps = {
         departmentId: item.department.id,
+        password: "",
         roles: item.roles.map((e) => {
           return e.roleName;
         }),
       };
-      console.log(additionalProps, "s Collection");
       return Object.assign(item, additionalProps);
     });
-    console.log(objConverted, " đổi tượng g handlesserver là gì");
     return objConverted;
   };
 
@@ -131,7 +129,6 @@ export default function User(props) {
         departmentId: obj.departmentId,
       },
     };
-    console.log(temp, "tesst ne");
     return temp;
   };
   // ======================================================================================================
@@ -149,9 +146,7 @@ export default function User(props) {
 
   const insertUser = async (User) => {
     try {
-      console.log(UserHandledToInsert(User), "truoc");
       await UserService.insertUser(UserHandledToInsert(User));
-      console.log(UserHandledToInsert(User), "sau");
       getUserAndUpdateToState();
       setNotify({
         isOpen: true,
@@ -165,7 +160,6 @@ export default function User(props) {
 
   const updateUser = async (User) => {
     try {
-      console.log(UserHandledToUpdate(User), "usser beffor upda");
       await UserService.updateUser(UserHandledToUpdate(User));
       getUserAndUpdateToState();
       setNotify({
@@ -278,18 +272,18 @@ export default function User(props) {
             </Grid>
           </Grid>
         </div>
-
         <TblContainer>
           <TblHead />
           <TableBody>
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
+                <TableCell>{item.active ? "Hoạt động" : "Khóa"}</TableCell>
                 <TableCell>{item.fullName}</TableCell>
                 <TableCell>{item.phone}</TableCell>
                 <TableCell>{item.email}</TableCell>
                 <TableCell>{item.username}</TableCell>
-                <TableCell>{item.department.name}</TableCell>
-                <TableCell>{item.roles}</TableCell>
+                <TableCell>{item.department.description}</TableCell>
+
                 {/* <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell> */}
                 <TableCell>
@@ -306,7 +300,7 @@ export default function User(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa người dùng này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);

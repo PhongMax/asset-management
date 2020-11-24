@@ -80,7 +80,6 @@ export default function ProductForm(props) {
   } = useForm(initialFValues, true, validate);
 
   const handleSubmit = (e) => {
-    console.log(initialFValues);
     e.preventDefault();
     if (validate()) {
       addOrEdit(values, resetForm);

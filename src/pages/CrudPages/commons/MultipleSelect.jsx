@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
+import { FormHelperText } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -33,10 +34,14 @@ export default function MultipleSelect(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { name, label, value, onChange, options } = props;
+  const { name, label, value, error = null, onChange, options } = props;
   return (
     <div>
-      <FormControl variant="outlined" className={classes.formControl}>
+      <FormControl
+        variant="outlined"
+        className={classes.formControl}
+        {...(error && { error: true })}
+      >
         <InputLabel id="demo-mutiple-chip-label">{label}</InputLabel>
         <Select
           labelId="demo-mutiple-chip-label"
@@ -65,6 +70,7 @@ export default function MultipleSelect(props) {
             </MenuItem>
           ))}
         </Select>
+        {error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>
     </div>
   );

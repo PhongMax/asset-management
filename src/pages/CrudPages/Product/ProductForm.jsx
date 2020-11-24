@@ -13,10 +13,8 @@ const initialFValues = {
   timeAllocationType: "",
   name: "",
   description: "",
-  embedded: {
-    categoryId: 1,
-    calculationUnitId: 1,
-  },
+  categoryId: 0,
+  calculationUnitId: 0,
   allocationDuration: 0,
 };
 
@@ -117,7 +115,6 @@ export default function ProductForm(props) {
           <Controls.Input
             name="allocationDuration"
             label="allocationDuration"
-            type="number"
             value={values.allocationDuration}
             onChange={handleInputChange}
             error={errors.allocationDuration}
@@ -146,16 +143,16 @@ export default function ProductForm(props) {
             options={getProductCollection()}
           />
           <Controls.Select
-            name="embedded.categoryId"
+            name="categoryId"
             label="Danh mục"
-            value={values.embedded.categoryId}
+            value={values.categoryId}
             onChange={handleInputChange}
             options={getCategoryCollection()}
           />
           <Controls.Select
-            name="embedded.calculationUnitId"
+            name="calculationUnitId"
             label="Đơn vị tính"
-            value={values.embedded.calculationUnitId}
+            value={values.calculationUnitId}
             onChange={handleInputChange}
             options={getCalculationUnitCollection()}
           />

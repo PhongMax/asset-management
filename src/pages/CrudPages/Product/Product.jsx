@@ -83,27 +83,63 @@ export default function Product(props) {
   });
 
   // ======================================    XỬ LÝ DATA FROM SERVER ====================================
-  const ProductHandled = (object) => {
-    const objectConverted = object.map((item) => {
+  const ProductHandledToShow = (obj) => {
+    const objConverted = obj.map((item) => {
       item.createdAt = utils.convertDateTime(item.createdAt);
       item.updatedAt = utils.convertDateTime(item.updatedAt);
       const a = {
-        embedded: {
-          categoryId: item.category.id,
-          calculationUnitId: item.calculationUnit.id,
-        },
+        categoryId: item.category.id,
+        calculationUnitId: item.calculationUnit.id,
       };
       const c = Object.assign(item, a);
       return c;
     });
-    return objectConverted;
+
+    console.log(objConverted);
+    return objConverted;
+  };
+
+  const ProductHandledToInsert = (obj) => {
+    console.log(obj, " truyền vào bị linserỗi");
+    const temp = {
+      name: obj.name,
+      description: obj.description,
+      origin: obj.origin,
+      warranty: obj.warranty,
+      timeAllocationType: obj.timeAllocationType,
+      allocationDuration: obj.allocationDuration,
+      embedded: {
+        categoryId: obj.categoryId,
+        calculationUnitId: obj.calculationUnitId,
+      },
+    };
+    return temp;
+  };
+
+  const ProductHandledToUpdate = (obj) => {
+    console.log(obj, " truyền vào update");
+    const temp = {
+      id: obj.id,
+      name: obj.name,
+      description: obj.description,
+      origin: obj.origin,
+      warranty: obj.warranty,
+      timeAllocationType: obj.timeAllocationType,
+      allocationDuration: obj.allocationDuration,
+      embedded: {
+        categoryId: obj.categoryId,
+        calculationUnitId: obj.calculationUnitId,
+      },
+    };
+    console.log(temp, " sau khi udpate convvert");
+    return temp;
   };
   //=======================================   XỬ LÝ CALL API    ===========================================
   const getProductAndUpdateToState = async () => {
     try {
       const { data: responseData } = await ProductService.getAllProduct();
       const { data: Product } = responseData;
-      setRecords(ProductHandled(Product));
+      setRecords(ProductHandledToShow(Product));
     } catch (ex) {
       toast.error("Errors: Lỗi lấy dữ liệu ");
     }
@@ -111,7 +147,7 @@ export default function Product(props) {
 
   const insertProduct = async (Product) => {
     try {
-      await ProductService.insertProduct(Product);
+      await ProductService.insertProduct(ProductHandledToInsert(Product));
       getProductAndUpdateToState();
       setNotify({
         isOpen: true,
@@ -125,7 +161,7 @@ export default function Product(props) {
 
   const updateProduct = async (Product) => {
     try {
-      await ProductService.updateProduct(Product);
+      await ProductService.updateProduct(ProductHandledToUpdate(Product));
       getProductAndUpdateToState();
       setNotify({
         isOpen: true,

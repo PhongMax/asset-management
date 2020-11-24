@@ -17,7 +17,6 @@ function TableTest(props) {
        <Category /> */}
       <Product />
       {/* <TypePlace /> */}
-      <Product />
     </OftadehLayout>
   );
 }

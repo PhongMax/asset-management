@@ -7,6 +7,8 @@ import Product from "../pages/CrudPages/Product/Product";
 // import Category from "../pages/CrudPages/Category/Category";
 // import Department from "../pages/CrudPages/Department/Department";
 // import TypePlace from "../pages/CrudPages/TypePlace/TypePlace";
+
+import UserForm from "../pages/CrudPages/User/UserForm";
 function TableTest(props) {
   return (
     <OftadehLayout>
@@ -15,7 +17,8 @@ function TableTest(props) {
        <Organization />
        <CalculationUnit />
        <Category /> */}
-      <Product />
+      {/* <Product /> */}
+      <UserForm />
       {/* <TypePlace /> */}
     </OftadehLayout>
   );

@@ -18,6 +18,10 @@ export default function TypePlaceForm(props) {
     let temp = { ...errors };
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
+    if ("description" in fieldValues)
+      temp.description = fieldValues.description
+        ? ""
+        : "Trường này là bắt buộc.";
     setErrors({
       ...temp,
     });
@@ -67,6 +71,7 @@ export default function TypePlaceForm(props) {
             name="description"
             value={values.description}
             onChange={handleInputChange}
+            error={errors.description}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

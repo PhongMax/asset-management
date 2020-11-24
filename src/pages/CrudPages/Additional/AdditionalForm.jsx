@@ -66,7 +66,6 @@ export default function AdditionalForm(props) {
   } = useForm(initialFValues, true, validate);
 
   const handleSubmit = (e) => {
-    console.log(initialFValues, "adasdas");
     e.preventDefault();
     if (validate()) {
       addOrEdit(values, resetForm);

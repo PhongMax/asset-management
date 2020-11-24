@@ -6,7 +6,7 @@ import OftadehLayout from "../components/OftadehLayout/OftadehLayout";
 import Product from "../pages/CrudPages/Product/Product";
 // import Category from "../pages/CrudPages/Category/Category";
 // import Department from "../pages/CrudPages/Department/Department";
-// import TypePlace from "../pages/CrudPages/TypePlace/TypePlace";
+import TypePlace from "../pages/CrudPages/TypePlace/TypePlace";
 
 // import UserForm from "../pages/CrudPages/User/UserForm";
 import User from "../pages/CrudPages/User/User";
@@ -20,8 +20,8 @@ function TableTest(props) {
        <Category /> */}
       {/* <Product /> */}
       {/* <UserForm /> */}
-      <User />
-      {/* <TypePlace /> */}
+      {/* <User /> */}
+      <TypePlace />
     </OftadehLayout>
   );
 }

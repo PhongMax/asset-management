@@ -12,6 +12,15 @@ import { Error500PageConfig } from "../pages/errors/500/Error500PageConfig";
 import { EmployeesConfig } from "../pages/CrudPages/Employees/EmployeesConfig";
 import { TableTestConfig } from "../tests/TableTestConfig";
 
+import { OrganizationConfig } from "../pages/CrudPages/Organization/OrganizationConfig";
+import { CalculationUnitConfig } from "../pages/CrudPages/CalculationUnit/CalculationUnitConfig";
+import { CategoryConfig } from "../pages/CrudPages/Category/CategoryConfig";
+import { ProductConfig } from "../pages/CrudPages/Product/ProductConfig";
+import { CampusConfig } from "../pages/CrudPages/Campus/CampusConfig";
+import { TypePlaceConfig } from "../pages/CrudPages/TypePlace/TypePlaceConfig";
+import { DepartmentConfig } from "../pages/CrudPages/Department/DepartmentConfig";
+import { UserConfig } from "../pages/CrudPages/User/UserConfig";
+
 const routeConfigs = [
   ...DashboardPageConfig.routes,
   ...AllPostsPageConfig.routes,
@@ -20,8 +29,18 @@ const routeConfigs = [
   ...RegisterPageConfig.routes,
   ...Error404PageConfig.routes,
   ...Error500PageConfig.routes,
+
   ...EmployeesConfig.routes,
   ...TableTestConfig.routes,
+
+  ...OrganizationConfig.routes,
+  ...CalculationUnitConfig.routes,
+  ...CategoryConfig.routes,
+  ...ProductConfig.routes,
+  ...CampusConfig.routes,
+  ...TypePlaceConfig.routes,
+  ...DepartmentConfig.routes,
+  ...UserConfig.routes,
 ];
 
 const routes = [

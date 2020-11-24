@@ -80,15 +80,15 @@ export default function UserForm(props) {
           ? ""
           : "Trường này không được để trống.";
 
-    if ("username" in fieldValues)
-      temp.username =
-        fieldValues.username.length !== 0
-          ? ""
-          : "Trường này không được để trống.";
-
     if ("roles" in fieldValues)
       temp.roles =
         fieldValues.roles.length !== 0 ? "" : "Trường này không được để trống.";
+
+    if ("password" in fieldValues)
+      temp.password =
+        fieldValues.password.length !== 0
+          ? ""
+          : "Trường này không được để trống.";
     setErrors({
       ...temp,
     });
@@ -97,8 +97,6 @@ export default function UserForm(props) {
       return Object.values(temp).every((x) => x === "");
   };
 
-  // đoạn code này dùng để get các state, hàm từ hàm use form
-  // tách ra như thế giúp cho việc reusable lại ở các component khác
   const {
     values,
     setValues,
@@ -108,7 +106,6 @@ export default function UserForm(props) {
     resetForm,
   } = useForm(initialFValues, true, validate);
 
-  // sử lý sự kiện ở nút submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -118,10 +115,9 @@ export default function UserForm(props) {
 
   const handleInputChangeMultipleSeclect = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-
     validate({ [event.target.name]: event.target.value });
   };
-  // dùng reactHook để get giá trị record for edit
+
   useEffect(() => {
     if (recordForEdit != null)
       setValues({
@@ -129,7 +125,6 @@ export default function UserForm(props) {
       });
   }, [recordForEdit, setValues]);
 
-  // render lại form
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
@@ -193,6 +188,7 @@ export default function UserForm(props) {
             value={values.roles}
             onChange={handleInputChangeMultipleSeclect}
             options={roles}
+            error={errors.roles}
           />
 
           <div>

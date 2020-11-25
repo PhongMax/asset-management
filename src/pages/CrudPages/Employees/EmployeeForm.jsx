@@ -82,8 +82,6 @@ export default function EmployeeForm(props) {
       return Object.values(temp).every((x) => x === "");
   };
 
-  // đoạn code này dùng để get các state, hàm từ hàm use form
-  // tách ra như thế giúp cho việc reusable lại ở các component khác
   const {
     values,
     setValues,

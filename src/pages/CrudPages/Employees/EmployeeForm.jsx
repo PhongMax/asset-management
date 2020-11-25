@@ -44,7 +44,6 @@ const initialFValues = {
   isPermanent: false,
 };
 
-// COMPONENT : FORM SỬA , UPDATE EMPLOYEE
 export default function EmployeeForm(props) {
   // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;

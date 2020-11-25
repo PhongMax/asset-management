@@ -20,7 +20,7 @@ import { CampusConfig } from "../pages/CrudPages/Campus/CampusConfig";
 import { TypePlaceConfig } from "../pages/CrudPages/TypePlace/TypePlaceConfig";
 import { DepartmentConfig } from "../pages/CrudPages/Department/DepartmentConfig";
 import { UserConfig } from "../pages/CrudPages/User/UserConfig";
-
+import { PlaceConfig } from "../pages/CrudPages/Place/PlaceConfig";
 const routeConfigs = [
   ...DashboardPageConfig.routes,
   ...AllPostsPageConfig.routes,
@@ -41,6 +41,7 @@ const routeConfigs = [
   ...TypePlaceConfig.routes,
   ...DepartmentConfig.routes,
   ...UserConfig.routes,
+  ...PlaceConfig.routes,
 ];
 
 const routes = [

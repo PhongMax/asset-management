@@ -22,7 +22,7 @@ import Controls from "../commons/Controls";
 import Popup from "../commons/Popup";
 import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
-import * as UserService from "../../../services/userService";
+import * as userService from "../../../services/userService";
 import * as utils from "../../../utils/Utils.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -136,7 +136,7 @@ export default function User(props) {
   //=======================================   XỬ LÝ CALL API    ===========================================
   const getUserAndUpdateToState = async () => {
     try {
-      const { data: responseData } = await UserService.getAllUser();
+      const { data: responseData } = await userService.getAllUser();
       const { data: User } = responseData;
       setRecords(UserHandledToShow(User));
     } catch (ex) {
@@ -146,7 +146,7 @@ export default function User(props) {
 
   const insertUser = async (User) => {
     try {
-      await UserService.insertUser(UserHandledToInsert(User));
+      await userService.insertUser(UserHandledToInsert(User));
       getUserAndUpdateToState();
       setNotify({
         isOpen: true,
@@ -160,7 +160,7 @@ export default function User(props) {
 
   const updateUser = async (User) => {
     try {
-      await UserService.updateUser(UserHandledToUpdate(User));
+      await userService.updateUser(UserHandledToUpdate(User));
       getUserAndUpdateToState();
       setNotify({
         isOpen: true,
@@ -177,7 +177,7 @@ export default function User(props) {
     const newUserRecord = originalUserRecord.filter((x) => x.id !== UserId);
     setRecords(newUserRecord);
     try {
-      await UserService.deleteUser(UserId);
+      await userService.deleteUser(UserId);
       setNotify({
         isOpen: true,
         message: "Đã xoá thành công",

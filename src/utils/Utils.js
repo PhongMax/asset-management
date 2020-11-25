@@ -3,7 +3,8 @@ import * as calculationUnitService from "../services/calculationUnitService";
 import * as categoryService from "../services/categoryService";
 import * as userService from "../services/userService";
 import * as organizationService from "../services/organizationService";
-
+import * as campusService from "../services/campusService";
+import * as typePlaceService from "../services/typePlaceService";
 // ============== Dùng để truyền vào các component như select v.v.v==========================
 export const getDataDepartment = async () => {
   const { data: responseData } = await departmentService.getAllDepartment();
@@ -43,6 +44,22 @@ export const getDataOrganization = async () => {
   const { data: responseData } = await organizationService.getAllOrganization();
   const { data: Organizations } = responseData;
   return Organizations.map((item) => {
+    return { id: item.id, title: item.name };
+  });
+};
+
+export const getDataCampus = async () => {
+  const { data: responseData } = await campusService.getAllCampus();
+  const { data: Campus } = responseData;
+  return Campus.map((item) => {
+    return { id: item.id, title: item.name };
+  });
+};
+
+export const getDataTypePlace = async () => {
+  const { data: responseData } = await typePlaceService.getAllTypePlace();
+  const { data: typePlaces } = responseData;
+  return typePlaces.map((item) => {
     return { id: item.id, title: item.name };
   });
 };

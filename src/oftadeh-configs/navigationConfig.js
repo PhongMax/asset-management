@@ -143,6 +143,14 @@ const navigationConfig = [
         url: "/user",
         exact: true,
       },
+      {
+        id: "9",
+        title: "place",
+        type: "item",
+        icon: "apps",
+        url: "/place",
+        exact: true,
+      },
     ],
   },
   {

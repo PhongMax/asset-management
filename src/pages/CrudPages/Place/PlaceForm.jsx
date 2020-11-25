@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
@@ -18,53 +18,47 @@ const initialFValues = {
   departmentId: 0,
 };
 
-// COMPONENT : FORM SỬA , UPDATE EMPLOYEE
-export default function UserForm(props) {
+export default function PlaceForm(props) {
   // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;
-  const [departments, setDepartments] = useState([]);
-
+  const [Departments, setDepartments] = useState([]);
+  const [TypePlaces, setTypePlaces] = useState([]);
+  const [Campus, setCampus] = useState([]);
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    if ("fullName" in fieldValues) {
-      temp.fullName = fieldValues.fullName
+
+    if ("code" in fieldValues) {
+      temp.code = fieldValues.code ? "" : "Trường dữ liệu không được để trống.";
+    }
+    if ("nameSpecification" in fieldValues) {
+      temp.nameSpecification = fieldValues.nameSpecification
+        ? ""
+        : "Trường dữ liệu không được để trống.";
+    }
+    if ("description" in fieldValues) {
+      temp.description = fieldValues.description
         ? ""
         : "Trường dữ liệu không được để trống.";
     }
 
-    if ("email" in fieldValues)
-      temp.email = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/.test(
-        fieldValues.email
-      )
+    if ("typePlaceId" in fieldValues) {
+      temp.typePlaceId = fieldValues.typePlaceId
         ? ""
-        : "Email không hợp lệ.";
-    if ("phone" in fieldValues)
-      temp.phone = /((05[5|8|9]|08[1|2|3|4|5|86|9]|03[2|3|4|5|6|7|8|9]|07[0|9|7|6|8]|09[0|2|1|4|3|6|7|8|9]|01[2|9])+([0-9]{7,8})\b)/g.test(
-        fieldValues.phone
-      )
-        ? ""
-        : "Số điện thoại không hợp lệ.";
+        : "Trường dữ liệu không được để trống.";
+    }
+
     if ("departmentId" in fieldValues)
       temp.departmentId =
         fieldValues.departmentId.length !== 0
           ? ""
           : "Trường này không được để trống.";
 
-    if ("username" in fieldValues)
-      temp.username =
-        fieldValues.username.length !== 0
+    if ("campusId" in fieldValues)
+      temp.campusId =
+        fieldValues.campusId.length !== 0
           ? ""
           : "Trường này không được để trống.";
 
-    if ("roles" in fieldValues)
-      temp.roles =
-        fieldValues.roles.length !== 0 ? "" : "Trường này không được để trống.";
-
-    if ("password" in fieldValues)
-      temp.password =
-        fieldValues.password.length !== 0
-          ? ""
-          : "Trường này không được để trống.";
     setErrors({
       ...temp,
     });
@@ -89,11 +83,6 @@ export default function UserForm(props) {
     }
   };
 
-  const handleInputChangeMultipleSeclect = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
-    validate({ [event.target.name]: event.target.value });
-  };
-
   useEffect(() => {
     if (recordForEdit != null)
       setValues({
@@ -105,6 +94,13 @@ export default function UserForm(props) {
     Utils.getDataDepartment().then((response) => {
       setDepartments([...response]);
     });
+
+    Utils.getDataCampus().then((response) => {
+      setCampus([...response]);
+    });
+    Utils.getDataTypePlace().then((response) => {
+      setTypePlaces([...response]);
+    });
   }, []);
 
   return (
@@ -112,66 +108,70 @@ export default function UserForm(props) {
       <Grid container>
         <Grid item xs={6}>
           <Controls.Input
-            name="fullName"
-            label="Họ tên"
-            value={values.fullName}
+            name="code"
+            label="Code"
+            value={values.code}
             onChange={handleInputChange}
-            error={errors.fullName}
+            error={errors.code}
           />
           <Controls.Input
-            label="Email"
-            name="email"
-            value={values.email}
+            label="nameSpecification"
+            name="nameSpecification"
+            value={values.nameSpecification}
             onChange={handleInputChange}
-            error={errors.email}
+            error={errors.nameSpecification}
           />
           <Controls.Input
-            label="Số điện thoại"
-            name="phone"
-            value={values.phone}
+            label="description"
+            name="description"
+            value={values.description}
             onChange={handleInputChange}
-            error={errors.phone}
+            error={errors.description}
           />
+
+          <Controls.Input
+            label="floor"
+            name="floor"
+            value={values.floor}
+            onChange={handleInputChange}
+            error={errors.floor}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Controls.Input
+            label="direction"
+            name="direction"
+            value={values.direction}
+            onChange={handleInputChange}
+            error={errors.direction}
+          />
+
           <Controls.Select
             name="departmentId"
             label="Bộ phận"
             value={values.departmentId}
             onChange={handleInputChange}
-            options={departments}
+            options={Departments}
             error={errors.departmentId}
           />
-
-          <Controls.Checkbox
-            name="active"
-            label="Trạng thái hoạt động"
-            value={values.active}
+          <Controls.Select
+            name="campusId"
+            label="campusId"
+            value={values.campusId}
             onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Controls.Input
-            label="Tên đăng nhập"
-            name="username"
-            value={values.username}
-            onChange={handleInputChange}
-            error={errors.username}
-          />
-          <Controls.Input
-            label="Mật khẩu"
-            name="password"
-            value={values.password}
-            onChange={handleInputChange}
-            error={errors.password}
+            options={Campus}
+            error={errors.campusId}
           />
 
-          <Controls.MultipleSelect
-            name="roles"
-            label="Danh sách các quyền"
-            value={values.roles}
-            onChange={handleInputChangeMultipleSeclect}
-            options={roles}
-            error={errors.roles}
+          <Controls.Select
+            name="typePlaceId"
+            label="typePlaceId"
+            value={values.typePlaceId}
+            onChange={handleInputChange}
+            options={TypePlaces}
+            error={errors.typePlaceId}
           />
+
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

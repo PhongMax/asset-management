@@ -26,7 +26,6 @@ const initialFValues = {
   departmentId: 0,
 };
 
-// COMPONENT : FORM SỬA , UPDATE EMPLOYEE
 export default function UserForm(props) {
   // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;

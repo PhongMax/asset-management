@@ -52,9 +52,7 @@ const headCells = [
   { id: "name", label: "name" },
   { id: "description", label: "description" },
   { id: "origin", label: "origin" },
-  { id: "timeAllocationType", label: "timeAllocationType" },
-  { id: "allocationDuration", label: "allocationDuration" },
-  { id: "warranty", label: "warranty" },
+
   { id: "createdAt", label: "createdAt" },
   { id: "updatedAt", label: "updatedAt" },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -103,9 +101,7 @@ export default function Product(props) {
       name: obj.name,
       description: obj.description,
       origin: obj.origin,
-      warranty: obj.warranty,
-      timeAllocationType: obj.timeAllocationType,
-      allocationDuration: obj.allocationDuration,
+
       embedded: {
         categoryId: obj.categoryId,
         calculationUnitId: obj.calculationUnitId,
@@ -120,9 +116,7 @@ export default function Product(props) {
       name: obj.name,
       description: obj.description,
       origin: obj.origin,
-      warranty: obj.warranty,
-      timeAllocationType: obj.timeAllocationType,
-      allocationDuration: obj.allocationDuration,
+
       embedded: {
         categoryId: obj.categoryId,
         calculationUnitId: obj.calculationUnitId,
@@ -281,9 +275,6 @@ export default function Product(props) {
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
                 <TableCell>{item.origin}</TableCell>
-                <TableCell>{item.timeAllocationType}</TableCell>
-                <TableCell>{item.allocationDuration}</TableCell>
-                <TableCell>{item.warranty}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>

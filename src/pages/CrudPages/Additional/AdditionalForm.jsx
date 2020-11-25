@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 
-import * as userService from "../../../services/userService";
-import * as organizationService from "../../../services/organizationService";
+import * as Utils from "../../../utils/Utils";
 
 const initialFValues = {
   id: 0,
@@ -15,35 +14,10 @@ const initialFValues = {
   },
 };
 
-//=================================== XỬ LÝ DATA THEO ĐÚNG FORMAT ĐỂ XỬ DỤNG ========================//
-const DataUser = [];
-async function getDataUser() {
-  const result = await userService.getAllUser();
-  const data = await result.data;
-  data.data.map((x) => {
-    return DataUser.push({ id: x.id, title: x.fullName });
-  });
-  return DataUser;
-}
-getDataUser();
-const getUserCollection = () => DataUser;
-
-const DataOrganization = [];
-async function getDataOrganization() {
-  const result = await organizationService.getAllOrganization();
-  const data = await result.data;
-  data.data.map((x) => {
-    return DataOrganization.push({ id: x.id, title: x.name });
-  });
-  return DataOrganization;
-}
-getDataOrganization();
-const getOrganizationCollection = () => DataOrganization;
-
-// ==============================================================================================
-
 export default function AdditionalForm(props) {
   const { addOrEdit, recordForEdit } = props;
+  const [Users, setUsers] = useState([]);
+  const [Organizations, setOrganizations] = useState([]);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -79,6 +53,15 @@ export default function AdditionalForm(props) {
       });
   }, [recordForEdit, setValues]);
 
+  useEffect(() => {
+    Utils.getDataOrganization().then((response) => {
+      setOrganizations([...response]);
+    });
+    Utils.getDataUser().then((response) => {
+      setUsers([...response]);
+    });
+  }, []);
+
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
@@ -88,7 +71,7 @@ export default function AdditionalForm(props) {
             label="userId"
             value={values.embedded.userId}
             onChange={handleInputChange}
-            options={getUserCollection()}
+            options={Users}
           />
           <Controls.DatePicker
             name="time"
@@ -103,7 +86,7 @@ export default function AdditionalForm(props) {
             label="organizationId"
             value={values.embedded.organizationId}
             onChange={handleInputChange}
-            options={getOrganizationCollection()}
+            options={Organizations}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

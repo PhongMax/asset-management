@@ -3,7 +3,7 @@ import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 
-import * as departmentService from "../../../services/departmentService";
+import * as Utils from "../../../utils/Utils";
 
 //  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
 const initialFValues = {
@@ -18,26 +18,11 @@ const initialFValues = {
   departmentId: 0,
 };
 
-//=================================== XỬ LÝ DATA THEO ĐÚNG FORMAT ĐỂ XỬ DỤNG ========================//
-
-const DataDepartment = [];
-async function getDataDepartment() {
-  const result = await departmentService.getAllDepartment();
-  const data = await result.data;
-  data.data.map((x) => {
-    return DataDepartment.push({ id: x.id, title: x.name });
-  });
-  return DataDepartment;
-}
-getDataDepartment();
-const getDepartmentCollection = () => DataDepartment;
-
-// ==============================================================================================
-
 // COMPONENT : FORM SỬA , UPDATE EMPLOYEE
 export default function UserForm(props) {
   // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;
+  const [departments, setDepartments] = useState([]);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -116,6 +101,12 @@ export default function UserForm(props) {
       });
   }, [recordForEdit, setValues]);
 
+  useEffect(() => {
+    Utils.getDataDepartment().then((response) => {
+      setDepartments([...response]);
+    });
+  }, []);
+
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
@@ -146,7 +137,7 @@ export default function UserForm(props) {
             label="Bộ phận"
             value={values.departmentId}
             onChange={handleInputChange}
-            options={getDepartmentCollection()}
+            options={departments}
             error={errors.departmentId}
           />
 
@@ -181,7 +172,6 @@ export default function UserForm(props) {
             options={roles}
             error={errors.roles}
           />
-
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

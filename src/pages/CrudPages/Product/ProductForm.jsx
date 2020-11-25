@@ -1,64 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 
-import * as categoryService from "../../../services/categoryService";
-import * as calculationUnitService from "../../../services/calculationUnitService";
+import * as Utils from "../../../utils/Utils";
 
 const initialFValues = {
   id: 0,
   origin: "",
-  warranty: "",
-  timeAllocationType: "",
   name: "",
   description: "",
   categoryId: 0,
   calculationUnitId: 0,
-  allocationDuration: 0,
 };
-
-const getProductCollection = () => [
-  { id: "YEAR", title: "YEAR" },
-  { id: "MONTH", title: "MONTH" },
-];
-
-//=================================== XỬ LÝ DATA THEO ĐÚNG FORMAT ĐỂ XỬ DỤNG ========================//
-const DataCategory = [];
-async function getDataCategory() {
-  const result = await categoryService.getAllCategory();
-  const data = await result.data;
-  data.data.map((x) => {
-    return DataCategory.push({ id: x.id, title: x.name });
-  });
-  return DataCategory;
-}
-getDataCategory();
-const getCategoryCollection = () => DataCategory;
-
-const DataCalculationUnit = [];
-async function getDataCalculationUnit() {
-  const result = await calculationUnitService.getAllCalculationUnit();
-  const data = await result.data;
-  data.data.map((x) => {
-    return DataCalculationUnit.push({ id: x.id, title: x.name });
-  });
-  return DataCalculationUnit;
-}
-getDataCalculationUnit();
-const getCalculationUnitCollection = () => DataCalculationUnit;
-
-// ==============================================================================================
 
 export default function ProductForm(props) {
   const { addOrEdit, recordForEdit } = props;
+  const [CalculationUnits, setCalculationUnits] = useState([]);
+  const [Categories, setCategories] = useState([]);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
-    if ("warranty" in fieldValues)
-      temp.warranty = fieldValues.warranty ? "" : "Trường này là bắt buộc.";
+
     if ("origin" in fieldValues)
       temp.origin = fieldValues.origin ? "" : "Trường này là bắt buộc.";
 
@@ -93,6 +58,16 @@ export default function ProductForm(props) {
       });
   }, [recordForEdit, setValues]);
 
+  useEffect(() => {
+    Utils.getDataCalculationUnit().then((response) => {
+      setCalculationUnits([...response]);
+    });
+
+    Utils.getDataCategory().then((response) => {
+      setCategories([...response]);
+    });
+  }, []);
+
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
@@ -112,48 +87,27 @@ export default function ProductForm(props) {
           />
 
           <Controls.Input
-            name="allocationDuration"
-            label="allocationDuration"
-            value={values.allocationDuration}
-            onChange={handleInputChange}
-            error={errors.allocationDuration}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Controls.Input
             label="Nguồn gốc"
             name="origin"
             value={values.origin}
             onChange={handleInputChange}
             error={errors.origin}
           />
-          <Controls.Input
-            label="Bảo hành"
-            name="warranty"
-            value={values.warranty}
-            onChange={handleInputChange}
-            error={errors.warranty}
-          />
-          <Controls.Select
-            name="timeAllocationType"
-            label="Thời hạn"
-            value={values.timeAllocationType}
-            onChange={handleInputChange}
-            options={getProductCollection()}
-          />
+        </Grid>
+        <Grid item xs={6}>
           <Controls.Select
             name="categoryId"
             label="Danh mục"
             value={values.categoryId}
             onChange={handleInputChange}
-            options={getCategoryCollection()}
+            options={Categories}
           />
           <Controls.Select
             name="calculationUnitId"
             label="Đơn vị tính"
             value={values.calculationUnitId}
             onChange={handleInputChange}
-            options={getCalculationUnitCollection()}
+            options={CalculationUnits}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

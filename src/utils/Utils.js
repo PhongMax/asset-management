@@ -36,7 +36,7 @@ export const getDataUser = async () => {
   const { data: responseData } = await userService.getAllUser();
   const { data: Users } = responseData;
   return Users.map((item) => {
-    return { id: item.id, title: item.name };
+    return { id: item.id, title: item.fullName };
   });
 };
 
@@ -66,7 +66,7 @@ export const getDataTypePlace = async () => {
 
 //==========================================================================================
 export const convertDateTime = (epochTime) => {
-  const dateConverted = new Date(epochTime);
+  const dateConverted = new Date(epochTime * 1000);
   return dateConverted.toLocaleString();
 };
 

@@ -207,10 +207,12 @@ export default function Place(props) {
     setFilterFn({
       fn: (items) => {
         if (target.value === "") return items;
-        else
+        else {
+          console.log(items, " item là gì ");
           return items.filter((x) =>
-            x.name.toLowerCase().includes(target.value)
+            x.code.toLowerCase().includes(target.value)
           );
+        }
       },
     });
   };
@@ -224,7 +226,6 @@ export default function Place(props) {
   };
 
   const openInPopup = (item) => {
-    console.log(item, " xem thu");
     setRecordForEdit(item);
     setOpenPopup(true);
   };

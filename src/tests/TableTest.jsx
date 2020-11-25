@@ -7,7 +7,7 @@ import Product from "../pages/CrudPages/Product/Product";
 // import Category from "../pages/CrudPages/Category/Category";
 // import Department from "../pages/CrudPages/Department/Department";
 import TypePlace from "../pages/CrudPages/TypePlace/TypePlace";
-
+import LiquidateForm from "../pages/CrudPages/Liquidate/LiquidateForm";
 import Place from "../pages/CrudPages/Place/Place";
 
 // import UserForm from "../pages/CrudPages/User/UserForm";
@@ -24,7 +24,8 @@ function TableTest(props) {
       {/* <UserForm /> */}
       {/* <User /> */}
       {/* <TypePlace /> */}
-      <Place />
+      {/* <Place /> */}
+      <LiquidateForm />
     </OftadehLayout>
   );
 }

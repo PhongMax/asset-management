@@ -15,14 +15,14 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
-import CategoryForm from "./CategoryForm";
+import GroupForm from "./GroupForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
 import Controls from "../commons/Controls";
 import Popup from "../commons/Popup";
 import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
-import * as categoryService from "../../../services/categoryService";
+import * as groupService from "../../../services/groupService";
 import * as utils from "../../../utils/Utils.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -49,15 +49,14 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "name", label: "Tên danh mục" },
+  { id: "code", label: "code" },
   { id: "description", label: "Mô tả" },
-  { id: "group", label: "Nhóm" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
-export default function Category(props) {
+export default function Group(props) {
   const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null);
@@ -80,59 +79,30 @@ export default function Category(props) {
   });
 
   // ======================================    XỬ LÝ DATA FROM SERVER ====================================
-  const categoryHandledToShow = (object) => {
+  const groupHandled = (object) => {
     const objectConverted = object.map((item) => {
       item.createdAt = utils.convertDateTime(item.createdAt);
       item.updatedAt = utils.convertDateTime(item.updatedAt);
-      const additionalProps = {
-        groupId: item.group.id,
-      };
-      return Object.assign(item, additionalProps);
+      return item;
     });
     return objectConverted;
   };
 
-  const CategoryHandledToInsert = (obj) => {
-    const temp = {
-      name: obj.name,
-      description: obj.description,
-
-      embedded: {
-        groupId: obj.groupId,
-      },
-    };
-    console.log(temp);
-    return temp;
-  };
-
-  const CategoryHandledToUpdate = (obj) => {
-    const temp = {
-      id: obj.id,
-      name: obj.name,
-      description: obj.description,
-
-      embedded: {
-        groupId: obj.groupId,
-      },
-    };
-    return temp;
-  };
-
   //=======================================   XỬ LÝ CALL API    ===========================================
-  const getCategoryAndUpdateToState = async () => {
+  const getGroupAndUpdateToState = async () => {
     try {
-      const { data: responseData } = await categoryService.getAllCategory();
-      const { data: category } = responseData;
-      setRecords(categoryHandledToShow(category));
+      const { data: responseData } = await groupService.getAllGroup();
+      const { data: group } = responseData;
+      setRecords(groupHandled(group));
     } catch (ex) {
       toast.error("Errors: Lỗi lấy dữ liệu ");
     }
   };
 
-  const insertCategory = async (category) => {
+  const insertGroup = async (group) => {
     try {
-      await categoryService.insertCategory(CategoryHandledToInsert(category));
-      getCategoryAndUpdateToState();
+      await groupService.insertGroup(group);
+      getGroupAndUpdateToState();
       setNotify({
         isOpen: true,
         message: "Thêm thành công",
@@ -143,10 +113,10 @@ export default function Category(props) {
     }
   };
 
-  const updateCategory = async (category) => {
+  const updateGroup = async (group) => {
     try {
-      await categoryService.updateCategory(CategoryHandledToUpdate(category));
-      getCategoryAndUpdateToState();
+      await groupService.updateGroup(group);
+      getGroupAndUpdateToState();
       setNotify({
         isOpen: true,
         message: "Cập nhật thành công",
@@ -157,14 +127,12 @@ export default function Category(props) {
     }
   };
 
-  const deleteCategory = async (categoryId) => {
-    const originalCategoryRecord = records;
-    const newCategoryRecord = originalCategoryRecord.filter(
-      (x) => x.id !== categoryId
-    );
-    setRecords(newCategoryRecord);
+  const deleteGroup = async (groupId) => {
+    const originalGroupRecord = records;
+    const newGroupRecord = originalGroupRecord.filter((x) => x.id !== groupId);
+    setRecords(newGroupRecord);
     try {
-      await categoryService.deleteCategory(categoryId);
+      await groupService.deleteGroup(groupId);
       setNotify({
         isOpen: true,
         message: "Đã xoá thành công",
@@ -172,12 +140,12 @@ export default function Category(props) {
       });
     } catch (ex) {
       toast.error("Errors: Lỗi xóa dữ liệu ");
-      setRecords(originalCategoryRecord);
+      setRecords(originalGroupRecord);
     }
   };
   //===================================================================================
 
-  useEffect(getCategoryAndUpdateToState, []);
+  useEffect(getGroupAndUpdateToState, []);
 
   const {
     TblContainer,
@@ -199,9 +167,9 @@ export default function Category(props) {
     });
   };
 
-  const addOrEdit = (category, resetForm) => {
-    if (category.id === 0) insertCategory(category);
-    else updateCategory(category);
+  const addOrEdit = (group, resetForm) => {
+    if (group.id === 0) insertGroup(group);
+    else updateGroup(group);
     resetForm();
     setRecordForEdit(null);
     setOpenPopup(false);
@@ -217,7 +185,7 @@ export default function Category(props) {
       ...confirmDialog,
       isOpen: false,
     });
-    deleteCategory(id);
+    deleteGroup(id);
   };
 
   return (
@@ -265,9 +233,8 @@ export default function Category(props) {
           <TableBody>
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.code}</TableCell>
                 <TableCell>{item.description}</TableCell>
-                <TableCell>{item.group.code}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
@@ -306,7 +273,7 @@ export default function Category(props) {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <CategoryForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
+        <GroupForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

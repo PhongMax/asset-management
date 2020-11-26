@@ -5,6 +5,7 @@ import * as userService from "../services/userService";
 import * as organizationService from "../services/organizationService";
 import * as campusService from "../services/campusService";
 import * as typePlaceService from "../services/typePlaceService";
+import * as groupService from "../services/groupService";
 // ============== Dùng để truyền vào các component như select v.v.v==========================
 export const getDataDepartment = async () => {
   const { data: responseData } = await departmentService.getAllDepartment();
@@ -64,6 +65,13 @@ export const getDataTypePlace = async () => {
   });
 };
 
+export const getDataGroup = async () => {
+  const { data: responseData } = await groupService.getAllGroup();
+  const { data: groups } = responseData;
+  return groups.map((item) => {
+    return { id: item.id, title: item.description };
+  });
+};
 //==========================================================================================
 export const convertDateTime = (epochTime) => {
   const dateConverted = new Date(epochTime * 1000);

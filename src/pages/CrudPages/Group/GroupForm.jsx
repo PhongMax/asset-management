@@ -1,33 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 
-import * as Utils from "../../../utils/Utils";
-
 const initialFValues = {
   id: 0,
-  name: "",
+  code: "",
   description: "",
-  groupId: 0,
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
-export default function CategoryFormForm(props) {
+export default function GroupFormForm(props) {
   const { addOrEdit, recordForEdit } = props;
-  const [Groups, setGroups] = useState([]);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    if ("name" in fieldValues)
-      temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
-
-    if ("description" in fieldValues)
-      temp.description = fieldValues.description
-        ? ""
-        : "Trường này là bắt buộc.";
-    if ("groupId" in fieldValues)
-      temp.groupId = fieldValues.groupId ? "" : "Trường này là bắt buộc.";
-
+    if ("code" in fieldValues)
+      temp.code = fieldValues.code ? "" : "Trường này là bắt buộc.";
     setErrors({
       ...temp,
     });
@@ -59,39 +49,24 @@ export default function CategoryFormForm(props) {
       });
   }, [recordForEdit, setValues]);
 
-  useEffect(() => {
-    Utils.getDataGroup().then((response) => {
-      setGroups([...response]);
-    });
-  }, []);
-
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={6}>
           <Controls.Input
-            name="name"
+            name="code"
             label="Nhập tên danh mục"
-            value={values.name}
+            value={values.code}
             onChange={handleInputChange}
-            error={errors.name}
-          />
-          <Controls.Select
-            name="groupId"
-            label="Group"
-            value={values.groupId}
-            onChange={handleInputChange}
-            options={Groups}
-            error={errors.name}
+            error={errors.code}
           />
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="description"
+            label="Nhập mô tả"
             name="description"
             value={values.description}
             onChange={handleInputChange}
-            error={errors.description}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

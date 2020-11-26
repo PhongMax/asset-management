@@ -8,11 +8,18 @@ import * as Utils from "../../../utils/Utils";
 const initialFValues = {
   id: 0,
   origin: "",
+  timeAllocationType: "",
   name: "",
   description: "",
   categoryId: 0,
   calculationUnitId: 0,
+  allocationDuration: 0,
 };
+
+const getProductCollection = () => [
+  { id: "YEAR", title: "YEAR" },
+  { id: "MONTH", title: "MONTH" },
+];
 
 export default function ProductForm(props) {
   const { addOrEdit, recordForEdit } = props;
@@ -93,8 +100,23 @@ export default function ProductForm(props) {
             onChange={handleInputChange}
             error={errors.origin}
           />
+
+          <Controls.Input
+            name="allocationDuration"
+            label="allocationDuration"
+            value={values.allocationDuration}
+            onChange={handleInputChange}
+            error={errors.allocationDuration}
+          />
         </Grid>
         <Grid item xs={6}>
+          <Controls.Select
+            name="timeAllocationType"
+            label="Thời hạn"
+            value={values.timeAllocationType}
+            onChange={handleInputChange}
+            options={getProductCollection()}
+          />
           <Controls.Select
             name="categoryId"
             label="Danh mục"

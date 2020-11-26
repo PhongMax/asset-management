@@ -7,18 +7,16 @@ import * as Utils from "../../../utils/Utils";
 
 const initialFValues = {
   id: 0,
-  time: "2015-06-02T21:34:33.616Z",
-  embedded: {
-    userId: 1,
-    organizationId: 1,
-  },
+  time: new Date(),
+  userId: 1,
+  organizationId: 0,
 };
 
 export default function AdditionalForm(props) {
   const { addOrEdit, recordForEdit } = props;
   const [Users, setUsers] = useState([]);
   const [Organizations, setOrganizations] = useState([]);
-
+  console.log(Users, "ádsa");
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
@@ -67,9 +65,9 @@ export default function AdditionalForm(props) {
       <Grid container>
         <Grid item xs={6}>
           <Controls.Select
-            name={initialFValues.embedded.userId}
+            name="userId"
             label="userId"
-            value={values.embedded.userId}
+            value={values.userId}
             onChange={handleInputChange}
             options={Users}
           />
@@ -82,9 +80,9 @@ export default function AdditionalForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Select
-            name={initialFValues.embedded.organizationId}
+            name="organizationId"
             label="organizationId"
-            value={values.embedded.organizationId}
+            value={values.organizationId}
             onChange={handleInputChange}
             options={Organizations}
           />

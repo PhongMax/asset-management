@@ -7,11 +7,13 @@ import Product from "../pages/CrudPages/Product/Product";
 // import Category from "../pages/CrudPages/Category/Category";
 // import Department from "../pages/CrudPages/Department/Department";
 import TypePlace from "../pages/CrudPages/TypePlace/TypePlace";
-import LiquidateForm from "../pages/CrudPages/Liquidate/LiquidateForm";
+import Liquidate from "../pages/CrudPages/Liquidate/Liquidate";
 import Place from "../pages/CrudPages/Place/Place";
 
 // import UserForm from "../pages/CrudPages/User/UserForm";
 import User from "../pages/CrudPages/User/User";
+import Inventory from "../pages/CrudPages/Inventory/Inventory";
+
 function TableTest(props) {
   return (
     <OftadehLayout>
@@ -25,7 +27,8 @@ function TableTest(props) {
       {/* <User /> */}
       {/* <TypePlace /> */}
       {/* <Place /> */}
-      <LiquidateForm />
+      <Liquidate />
+      {/* <Inventory /> */}
     </OftadehLayout>
   );
 }

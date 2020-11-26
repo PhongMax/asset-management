@@ -50,6 +50,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const headCells = [
   { id: "id", label: "id" },
+  { id: "time", label: "time" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -79,18 +80,40 @@ export default function Additional(props) {
   const AdditionalHandled = (object) => {
     const objectConverted = object.map((item) => {
       item.time = utils.convertDateTime(item.time);
-      //   item.updatedAt = utils.convertDateTime(item.updatedAt);
+      // item.updatedAt = utils.convertDateTime(item.updatedAt);
       const a = {
-        embedded: {
-          userId: item.user.id,
-          organizationId: item.organization.id,
-        },
+        userId: item.user.id,
+        organizationId: item.organization.id,
       };
-      const c = Object.assign(item, a);
-      return c;
+      return Object.assign(item, a);
     });
     return objectConverted;
   };
+
+  const ProductHandledToInsert = (obj) => {
+    const temp = {
+      time: obj.time,
+      embedded: {
+        categoryId: obj.userId,
+        calculationUnitId: obj.organizationId,
+      },
+    };
+    return temp;
+  };
+
+  const ProductHandledToUpdate = (obj) => {
+    const temp = {
+      id: obj.id,
+      time: obj.time,
+      embedded: {
+        categoryId: obj.userId,
+        calculationUnitId: obj.organizationId,
+      },
+    };
+
+    return temp;
+  };
+
   //=======================================   XỬ LÝ CALL API    ===========================================
   const getAdditionalAndUpdateToState = async () => {
     try {
@@ -104,7 +127,9 @@ export default function Additional(props) {
 
   const insertAdditional = async (Additional) => {
     try {
-      await AdditionalService.insertAdditional(Additional);
+      await AdditionalService.insertAdditional(
+        ProductHandledToInsert(Additional)
+      );
       getAdditionalAndUpdateToState();
       setNotify({
         isOpen: true,
@@ -118,7 +143,9 @@ export default function Additional(props) {
 
   const updateAdditional = async (Additional) => {
     try {
-      await AdditionalService.updateAdditional(Additional);
+      await AdditionalService.updateAdditional(
+        ProductHandledToUpdate(Additional)
+      );
       getAdditionalAndUpdateToState();
       setNotify({
         isOpen: true,
@@ -239,6 +266,7 @@ export default function Additional(props) {
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
                 <TableCell>{item.id}</TableCell>
+                <TableCell>{item.time}</TableCell>
 
                 <TableCell>
                   <Controls.ActionButton

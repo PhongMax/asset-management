@@ -13,13 +13,13 @@ const initialFValues = {
 export default function UserForm(props) {
   const { addOrEdit, recordForEdit } = props;
   const [Users, setUsers] = useState([]);
-  console.log(Users, " user bị dao v");
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
     if ("userId" in fieldValues)
-      temp.username =
-        fieldValues !== 0 ? "" : "Trường này không được để trống.";
+      temp.userId =
+        fieldValues.userId !== 0 ? "" : "Trường này không được để trống.";
 
     setErrors({
       ...temp,
@@ -75,6 +75,7 @@ export default function UserForm(props) {
             value={values.userId}
             onChange={handleInputChange}
             options={Users}
+            error={errors.userId}
           />
 
           <div>

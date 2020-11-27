@@ -63,7 +63,20 @@ export const getDataTypePlace = async () => {
     return { id: item.id, title: item.name };
   });
 };
-
+export const getDataAdditional = async () => {
+  const { data: responseData } = await typePlaceService.getAllTypePlace();
+  const { data: typePlaces } = responseData;
+  return typePlaces.map((item) => {
+    return { id: item.id, title: item.name };
+  });
+};
+export const getDataProduct = async () => {
+  const { data: responseData } = await typePlaceService.getAllTypePlace();
+  const { data: typePlaces } = responseData;
+  return typePlaces.map((item) => {
+    return { id: item.id, title: item.name };
+  });
+};
 //==========================================================================================
 export const convertDateTime = (epochTime) => {
   const dateConverted = new Date(epochTime * 1000);

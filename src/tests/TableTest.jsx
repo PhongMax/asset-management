@@ -13,7 +13,11 @@ import Place from "../pages/CrudPages/Place/Place";
 // import UserForm from "../pages/CrudPages/User/UserForm";
 import User from "../pages/CrudPages/User/User";
 import Inventory from "../pages/CrudPages/Inventory/Inventory";
+// import Material from "../pages/CrudPages/Material/Material";
 
+// import UserForm from "../pages/CrudPages/User/UserForm";
+import User from "../pages/CrudPages/User/User";
+import Material from "./../pages/CrudPages/Material/Material";
 import AutoCompleteButton from "../pages/CrudPages/commons/AutoCompleteButton";
 
 function TableTest(props) {
@@ -32,6 +36,7 @@ function TableTest(props) {
       {/* <Liquidate /> */}
       {/* <Inventory /> */}
       <AutoCompleteButton />
+      <Material />
     </OftadehLayout>
   );
 }

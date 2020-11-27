@@ -82,8 +82,8 @@ export default function Additional(props) {
       item.time = utils.convertDateTime(item.time);
       // item.updatedAt = utils.convertDateTime(item.updatedAt);
       const a = {
-        user: item.user.id,
-        organization: item.organization.id,
+        userId: item.user.id,
+        organizationId: item.organization.id,
       };
       return Object.assign(item, a);
     });

@@ -1,11 +1,10 @@
-// *https://www.registers.service.gov.uk/registers/country/use-the-api*
-
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import * as Utils from "../../../utils/Utils";
 
-export default function AutoCompleteButton() {
+export default function AutoCompleteButton(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
@@ -18,15 +17,11 @@ export default function AutoCompleteButton() {
     }
 
     (async () => {
-      const response = await fetch(
-        "https://country.register.gov.uk/records.json?page-size=5000"
-      );
-
-      const countries = await response.json();
-
-      if (active) {
-        setOptions(Object.keys(countries).map((key) => countries[key].item[0]));
-      }
+      Utils.getDataGroup().then((response) => {
+        if (active) {
+          setOptions([...response]);
+        }
+      });
     })();
 
     return () => {
@@ -40,11 +35,13 @@ export default function AutoCompleteButton() {
     }
   }, [open]);
 
-  const { name, label, value, error = null, onChange, dataColection } = props;
+  // const { name, label, value, error = null, onChange, dataColection } = props;
+  const onChange = (event, values) => {
+    console.log(event, values, " pjpm");
+  };
 
   return (
     <Autocomplete
-      id="asynchronous-demo"
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -52,8 +49,8 @@ export default function AutoCompleteButton() {
       onClose={() => {
         setOpen(false);
       }}
-      name={name}
-      value={value}
+      name={"phong"}
+      value={{ id: 1, title: "Tài Sản Cố Định Vô Hình" }}
       onChange={onChange}
       getOptionSelected={(option, value) => option.title === value.title}
       getOptionLabel={(option) => option.title}
@@ -62,7 +59,7 @@ export default function AutoCompleteButton() {
       renderInput={(params) => (
         <TextField
           {...params}
-          label={label}
+          label={"sua"}
           variant="outlined"
           InputProps={{
             ...params.InputProps,

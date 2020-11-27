@@ -82,8 +82,8 @@ export default function Additional(props) {
       item.time = utils.convertDateTime(item.time);
       // item.updatedAt = utils.convertDateTime(item.updatedAt);
       const a = {
-        userId: item.user.id,
-        organizationId: item.organization.id,
+        user: item.user.id,
+        organization: item.organization.id,
       };
       return Object.assign(item, a);
     });
@@ -94,8 +94,8 @@ export default function Additional(props) {
     const temp = {
       time: obj.time,
       embedded: {
-        categoryId: obj.userId,
-        calculationUnitId: obj.organizationId,
+        userId: obj.userId,
+        organizationId: obj.organizationId,
       },
     };
     return temp;

@@ -247,14 +247,14 @@ export default function Inventory(props) {
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
-                  <Controls.ActionButton
+                  {/* <Controls.ActionButton
                     color="primary"
                     onClick={() => {
                       openInPopup(item);
                     }}
                   >
                     <EditOutlinedIcon fontSize="small" />
-                  </Controls.ActionButton>
+                  </Controls.ActionButton> */}
                   <Controls.ActionButton
                     color="secondary"
                     onClick={() => {

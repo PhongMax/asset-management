@@ -14,6 +14,8 @@ import Place from "../pages/CrudPages/Place/Place";
 import User from "../pages/CrudPages/User/User";
 import Inventory from "../pages/CrudPages/Inventory/Inventory";
 
+import AutoCompleteButton from "../pages/CrudPages/commons/AutoCompleteButton";
+
 function TableTest(props) {
   return (
     <OftadehLayout>
@@ -27,8 +29,9 @@ function TableTest(props) {
       {/* <User /> */}
       {/* <TypePlace /> */}
       {/* <Place /> */}
-      <Liquidate />
+      {/* <Liquidate /> */}
       {/* <Inventory /> */}
+      <AutoCompleteButton />
     </OftadehLayout>
   );
 }

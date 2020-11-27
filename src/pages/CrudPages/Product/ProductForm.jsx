@@ -14,11 +14,17 @@ const initialFValues = {
   categoryId: 0,
   calculationUnitId: 0,
   allocationDuration: 0,
+  type: "",
 };
 
 const getProductCollection = () => [
   { id: "YEAR", title: "YEAR" },
   { id: "MONTH", title: "MONTH" },
+];
+
+const getProductTypeCollection = () => [
+  { id: "ASSET", title: "ASSET" },
+  { id: "TOOL", title: "TOOL" },
 ];
 
 export default function ProductForm(props) {
@@ -33,6 +39,13 @@ export default function ProductForm(props) {
 
     if ("origin" in fieldValues)
       temp.origin = fieldValues.origin ? "" : "Trường này là bắt buộc.";
+
+    if ("timeAllocationType" in fieldValues)
+      temp.timeAllocationType = fieldValues.timeAllocationType
+        ? ""
+        : "Trường này là bắt buộc.";
+    if ("type" in fieldValues)
+      temp.type = fieldValues.type ? "" : "Trường này là bắt buộc.";
 
     setErrors({
       ...temp,
@@ -116,7 +129,17 @@ export default function ProductForm(props) {
             value={values.timeAllocationType}
             onChange={handleInputChange}
             options={getProductCollection()}
+            error={errors.timeAllocationType}
           />
+          <Controls.Select
+            name="type"
+            label="Loại tài sản"
+            value={values.type}
+            onChange={handleInputChange}
+            options={getProductTypeCollection()}
+            error={errors.type}
+          />
+
           <Controls.Select
             name="categoryId"
             label="Danh mục"

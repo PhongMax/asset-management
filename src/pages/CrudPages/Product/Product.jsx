@@ -53,6 +53,7 @@ const headCells = [
   { id: "description", label: "description" },
   { id: "origin", label: "origin" },
   { id: "timeAllocationType", label: "timeAllocationType" },
+  { id: "type", label: "type" },
   { id: "allocationDuration", label: "allocationDuration" },
 
   { id: "createdAt", label: "createdAt" },
@@ -103,6 +104,7 @@ export default function Product(props) {
       name: obj.name,
       description: obj.description,
       origin: obj.origin,
+      type: obj.type,
       timeAllocationType: obj.timeAllocationType,
       allocationDuration: obj.allocationDuration,
       embedded: {
@@ -119,6 +121,7 @@ export default function Product(props) {
       name: obj.name,
       description: obj.description,
       origin: obj.origin,
+      type: obj.type,
       timeAllocationType: obj.timeAllocationType,
       allocationDuration: obj.allocationDuration,
       embedded: {
@@ -280,6 +283,7 @@ export default function Product(props) {
                 <TableCell>{item.description}</TableCell>
                 <TableCell>{item.origin}</TableCell>
                 <TableCell>{item.timeAllocationType}</TableCell>
+                <TableCell>{item.type}</TableCell>
                 <TableCell>{item.allocationDuration}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>

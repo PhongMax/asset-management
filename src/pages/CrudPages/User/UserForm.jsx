@@ -96,11 +96,6 @@ export default function UserForm(props) {
     }
   };
 
-  const handleInputChangeMultipleSeclect = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
-    validate({ [event.target.name]: event.target.value });
-  };
-
   useEffect(() => {
     if (recordForEdit != null)
       setValues({
@@ -175,7 +170,7 @@ export default function UserForm(props) {
             name="roles"
             label="Danh sách các quyền"
             value={values.roles}
-            onChange={handleInputChangeMultipleSeclect}
+            onChange={handleInputChange}
             options={roles}
             error={errors.roles}
           />

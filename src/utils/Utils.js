@@ -5,6 +5,9 @@ import * as userService from "../services/userService";
 import * as organizationService from "../services/organizationService";
 import * as campusService from "../services/campusService";
 import * as typePlaceService from "../services/typePlaceService";
+import * as placeService from "../services/placeService";
+import * as additionalService from "../services/additionalService";
+import * as productService from "../services/productService";
 import * as groupService from "../services/groupService";
 // ============== Dùng để truyền vào các component như select v.v.v==========================
 export const getDataDepartment = async () => {
@@ -64,15 +67,22 @@ export const getDataTypePlace = async () => {
     return { id: item.id, title: item.name };
   });
 };
-export const getDataAdditional = async () => {
-  const { data: responseData } = await typePlaceService.getAllTypePlace();
+export const getDataPlace = async () => {
+  const { data: responseData } = await placeService.getAllPlace();
   const { data: typePlaces } = responseData;
   return typePlaces.map((item) => {
-    return { id: item.id, title: item.name };
+    return { id: item.id, title: item.nameSpecification };
+  });
+};
+export const getDataAdditional = async () => {
+  const { data: responseData } = await additionalService.getAllAdditional();
+  const { data: typePlaces } = responseData;
+  return typePlaces.map((item) => {
+    return { id: item.id, title: convertDateTime(item.time) };
   });
 };
 export const getDataProduct = async () => {
-  const { data: responseData } = await typePlaceService.getAllTypePlace();
+  const { data: responseData } = await productService.getAllProduct();
   const { data: typePlaces } = responseData;
   return typePlaces.map((item) => {
     return { id: item.id, title: item.name };

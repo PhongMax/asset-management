@@ -49,14 +49,9 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "name", label: "name" },
   { id: "credentialCode", label: "credentialCode" },
-  { id: "type", label: "type" },
   { id: "status", label: "status" },
-  { id: "priceOrigin", label: "priceOrigin" },
   { id: "timeAllocationType", label: "timeAllocationType" },
-  { id: "allocationDuration", label: "allocationDuration" },
-  { id: "depreciationRate", label: "depreciationRate" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -88,12 +83,16 @@ export default function Material(props) {
       item.timeStartDepreciation = utils.convertDateTime(
         item.timeStartDepreciation
       );
-      //   item.updatedAt = utils.convertDateTime(item.updatedAt);
-      const aditionalProps = {
-        categoryId: item.category.id,
-        calculationUnitId: item.calculationUnit.id,
-      };
 
+      //   item.updatedAt = utils.convertDateTime(item.updatedAt);
+      // console.log(item.additional.user.id);
+      const aditionalProps = {
+        userId: item.additional.user.id,
+        productId: item.product.id,
+        placeId: item.currentPlace,
+        additionalId: item.additional.id,
+      };
+      console.log(Object.assign(item, aditionalProps), " phong ");
       return Object.assign(item, aditionalProps);
     });
 
@@ -102,13 +101,17 @@ export default function Material(props) {
 
   const MaterialHandledToInsert = (obj) => {
     const temp = {
-      name: obj.name,
-      description: obj.description,
-      origin: obj.origin,
-
+      credentialCode: obj.credentialCode,
+      status: obj.status,
+      allocationDuration: obj.allocationDuration,
+      haveInclude: obj.haveInclude,
+      timeStartDepreciation: obj.timeStartDepreciation,
+      parentCode: obj.parentCode,
       embedded: {
-        categoryId: obj.categoryId,
-        calculationUnitId: obj.calculationUnitId,
+        additionalId: obj.additionalId,
+        productId: obj.productId,
+        placeId: obj.placeId,
+        userId: obj.plauserIdceId,
       },
     };
     return temp;
@@ -117,13 +120,17 @@ export default function Material(props) {
   const MaterialHandledToUpdate = (obj) => {
     const temp = {
       id: obj.id,
-      name: obj.name,
-      description: obj.description,
-      origin: obj.origin,
-
+      credentialCode: obj.credentialCode,
+      status: obj.status,
+      allocationDuration: obj.allocationDuration,
+      haveInclude: obj.haveInclude,
+      timeStartDepreciation: obj.timeStartDepreciation,
+      parentCode: obj.parentCode,
       embedded: {
-        categoryId: obj.categoryId,
-        calculationUnitId: obj.calculationUnitId,
+        additionalId: obj.additionalId,
+        productId: obj.productId,
+        placeId: obj.placeId,
+        userId: obj.plauserIdceId,
       },
     };
 
@@ -276,14 +283,9 @@ export default function Material(props) {
           <TableBody>
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
                 <TableCell>{item.credentialCode}</TableCell>
-                <TableCell>{item.type}</TableCell>
                 <TableCell>{item.status}</TableCell>
-                <TableCell>{item.priceOrigin}</TableCell>
-                <TableCell>{item.timeAllocationType}</TableCell>
-                <TableCell>{item.allocationDuration}</TableCell>
-                <TableCell>{item.depreciationRate}</TableCell>
+                <TableCell>{item.timeStartDepreciation}</TableCell>
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -316,7 +318,7 @@ export default function Material(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu sản phẩm"
+        title="Biểu mẫu bộ phận"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

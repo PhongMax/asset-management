@@ -17,8 +17,8 @@ import Material from "../pages/CrudPages/Material/Material";
 
 // import UserForm from "../pages/CrudPages/User/UserForm";
 // import Material from "./../pages/CrudPages/Material/Material";
-// import AutoCompleteButton from "../pages/CrudPages/commons/AutoCompleteButton";
-
+import AutoCompleteButton from "../pages/CrudPages/commons/AutoCompleteButton";
+import * as Utils from "../utils/Utils";
 function TableTest(props) {
   return (
     <OftadehLayout>
@@ -34,7 +34,7 @@ function TableTest(props) {
       {/* <Place /> */}
       {/* <Liquidate /> */}
       {/* <Inventory /> */}
-      {/* <AutoCompleteButton /> */}
+      <AutoCompleteButton dataColection={Utils.getDataGroup} />
       <Material />
     </OftadehLayout>
   );

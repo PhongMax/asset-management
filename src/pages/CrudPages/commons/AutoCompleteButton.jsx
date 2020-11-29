@@ -2,7 +2,6 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import * as Utils from "../../../utils/Utils";
 
 export default function AutoCompleteButton(props) {
   const [open, setOpen] = React.useState(false);
@@ -17,7 +16,7 @@ export default function AutoCompleteButton(props) {
     }
 
     (async () => {
-      Utils.getDataGroup().then((response) => {
+      dataColection().then((response) => {
         if (active) {
           setOptions([...response]);
         }
@@ -35,7 +34,7 @@ export default function AutoCompleteButton(props) {
     }
   }, [open]);
 
-  // const { name, label, value, error = null, onChange, dataColection } = props;
+  const { name, label, value, error = null, dataColection } = props;
   const onChange = (event, values) => {
     console.log(event, values, " pjpm");
   };
@@ -49,7 +48,7 @@ export default function AutoCompleteButton(props) {
       onClose={() => {
         setOpen(false);
       }}
-      name={"phong"}
+      name={name}
       value={{ id: 1, title: "Tài Sản Cố Định Vô Hình" }}
       onChange={onChange}
       getOptionSelected={(option, value) => option.title === value.title}

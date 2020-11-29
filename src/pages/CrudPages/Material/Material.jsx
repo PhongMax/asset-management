@@ -13,6 +13,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Icon,
   InputAdornment,
 } from "@material-ui/core";
 import MaterialForm from "./MaterialForm";
@@ -84,15 +85,13 @@ export default function Material(props) {
         item.timeStartDepreciation
       );
 
-      //   item.updatedAt = utils.convertDateTime(item.updatedAt);
-      // console.log(item.additional.user.id);
       const aditionalProps = {
         userId: item.additional.user.id,
         productId: item.product.id,
-        placeId: item.currentPlace,
+        placeId: item.currentPlace.id,
         additionalId: item.additional.id,
       };
-      console.log(Object.assign(item, aditionalProps), " phong ");
+
       return Object.assign(item, aditionalProps);
     });
 
@@ -111,7 +110,7 @@ export default function Material(props) {
         additionalId: obj.additionalId,
         productId: obj.productId,
         placeId: obj.placeId,
-        userId: obj.plauserIdceId,
+        userId: obj.userId,
       },
     };
     return temp;
@@ -130,7 +129,7 @@ export default function Material(props) {
         additionalId: obj.additionalId,
         productId: obj.productId,
         placeId: obj.placeId,
-        userId: obj.plauserIdceId,
+        userId: obj.userId,
       },
     };
 
@@ -309,6 +308,15 @@ export default function Material(props) {
                     }}
                   >
                     <CloseIcon fontSize="small" />
+                  </Controls.ActionButton>
+                  <Controls.ActionButton
+                    color="primary"
+                    onClick={() => {
+                      openInPopup(item);
+                    }}
+                  >
+                    <EditOutlinedIcon fontSize="small" />
+                    <Icon fontSize="small">direcions</Icon>
                   </Controls.ActionButton>
                 </TableCell>
               </StyledTableRow>

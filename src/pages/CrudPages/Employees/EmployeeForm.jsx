@@ -3,7 +3,7 @@ import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 import * as employeeService from "../../../services/employeeService";
-
+import * as Utils from "../../../utils/Utils";
 // KHỎI TẠO GIÁ TRỊ COMBOX GENDER
 const genderItems = [
   { id: "male", title: "Male" },
@@ -47,6 +47,7 @@ const initialFValues = {
 export default function EmployeeForm(props) {
   // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;
+  const [DataGroup, setDataGroup] = useState([]);
 
   // khu vực validate các thuộc tính của Employee, nếu ko bị lỗi trả về true, bị lội trả về false
   const validate = (fieldValues = values) => {
@@ -107,11 +108,22 @@ export default function EmployeeForm(props) {
       });
   }, [recordForEdit, setValues]);
 
+  useEffect(() => {
+    Utils.getDataGroup().then((response) => {
+      setDataGroup([...response]);
+    });
+  }, []);
+
   //======================================FAKE DATA =============================================
 
   const [ValueRole, setValueRole] = useState(valueRole);
   const handleInputChange1 = (event) => {
     setValueRole(event.target.value);
+  };
+
+  const [ValueAutoComple, setValueAutoComple] = useState("1");
+  const handleInputChange2 = (event) => {
+    setValueAutoComple(event.target.value);
   };
 
   //==============================================================================================
@@ -161,7 +173,7 @@ export default function EmployeeForm(props) {
             label="Department"
             value={values.departmentId}
             onChange={handleInputChange}
-            options={employeeService.getDepartmentCollection()}
+            options={getDepartmentCollection()}
             error={errors.departmentId}
           />
 
@@ -171,6 +183,16 @@ export default function EmployeeForm(props) {
             value={ValueRole}
             onChange={handleInputChange1}
             options={roles}
+          />
+
+          <Controls.AutoCompleteButton
+            name="cccc"
+            label="group"
+            value={getDepartmentCollection().find(
+              (item) => item.id === ValueAutoComple
+            )}
+            onChange={handleInputChange2}
+            options={getDepartmentCollection()}
           />
 
           <Controls.DatePicker

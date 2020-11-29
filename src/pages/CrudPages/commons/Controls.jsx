@@ -6,7 +6,7 @@ import DatePicker from "./DatePicker";
 import Button from "./Button";
 import ActionButton from "./ActionButton";
 import MultipleSelect from "./MultipleSelect";
-
+import AutoCompleteButton from "./AutoCompleteButton";
 const Controls = {
   Input,
   RadioGroup,
@@ -16,6 +16,7 @@ const Controls = {
   Button,
   ActionButton,
   MultipleSelect,
+  AutoCompleteButton,
 };
 
 export default Controls;

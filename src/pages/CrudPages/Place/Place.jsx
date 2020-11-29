@@ -208,7 +208,6 @@ export default function Place(props) {
       fn: (items) => {
         if (target.value === "") return items;
         else {
-          console.log(items, " item là gì ");
           return items.filter((x) =>
             x.code.toLowerCase().includes(target.value)
           );

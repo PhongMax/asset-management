@@ -82,7 +82,6 @@ export default function Inventory(props) {
   // ======================================    XỬ LÝ DATA FROM SERVER ====================================
   const InventoryHandled = (object) => {
     const objectConverted = object.map((item) => {
-      console.log(item);
       item.time = utils.convertDateTime(item.time);
       item.startTime = utils.convertDateTime(item.startTime);
       item.endTime = utils.convertDateTime(item.endTime);
@@ -98,7 +97,7 @@ export default function Inventory(props) {
     try {
       const { data: responseData } = await InventoryService.getAllInventory();
       const { data: Inventory } = responseData;
-      console.log(responseData, "ádsaads");
+
       setRecords(InventoryHandled(Inventory));
     } catch (ex) {
       toast.error("Errors: Lỗi lấy dữ liệu ");

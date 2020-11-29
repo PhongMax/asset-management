@@ -52,7 +52,6 @@ export default function useTable(records, headCells, filterFn) {
       setOrder(isAsc ? "desc" : "asc");
       setOrderBy(cellId);
     };
-
     return (
       <TableHead>
         <TableRow>
@@ -119,10 +118,13 @@ export default function useTable(records, headCells, filterFn) {
   }
 
   function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
+    if (!orderBy) {
+      return 0;
+    }
+    if (b[orderBy].toLowerCase() < a[orderBy].toLowerCase()) {
       return -1;
     }
-    if (b[orderBy] > a[orderBy]) {
+    if (b[orderBy].toLowerCase() > a[orderBy].toLowerCase()) {
       return 1;
     }
     return 0;

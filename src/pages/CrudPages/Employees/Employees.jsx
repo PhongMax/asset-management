@@ -14,6 +14,7 @@ import {
   TableRow,
   TableCell,
   InputAdornment,
+  Icon,
 } from "@material-ui/core";
 
 import EmployeeForm from "./EmployeeForm";
@@ -208,6 +209,12 @@ export default function Employees(props) {
                     }}
                   >
                     <CloseIcon fontSize="small" />
+                  </Controls.ActionButton>
+                  <Controls.ActionButton color="primary">
+                    <Icon fontSize="small">directions</Icon>
+                  </Controls.ActionButton>
+                  <Controls.ActionButton color="primary">
+                    <Icon fontSize="small">gavel</Icon>
                   </Controls.ActionButton>
                 </TableCell>
               </StyledTableRow>

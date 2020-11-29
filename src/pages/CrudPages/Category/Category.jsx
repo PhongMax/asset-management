@@ -101,7 +101,7 @@ export default function Category(props) {
         groupId: obj.groupId,
       },
     };
-    console.log(temp);
+
     return temp;
   };
 

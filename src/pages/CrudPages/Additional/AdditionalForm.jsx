@@ -16,7 +16,7 @@ export default function AdditionalForm(props) {
   const { addOrEdit, recordForEdit } = props;
   const [Users, setUsers] = useState([]);
   const [Organizations, setOrganizations] = useState([]);
-  console.log(Users, "ádsa");
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 

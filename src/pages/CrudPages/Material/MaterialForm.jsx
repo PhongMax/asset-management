@@ -11,7 +11,7 @@ const initialFValues = {
   allocationDuration: 1,
   timeStartDepreciation: new Date(),
   haveInclude: false,
-  parentCode: "",
+  parentCode: null,
   productId: 0,
   additionalId: 0,
   placeId: 0,

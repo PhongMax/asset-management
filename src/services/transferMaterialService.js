@@ -2,7 +2,7 @@ import HTTP from "./httpService";
 import { baseApiUrl } from "../config.json";
 
 // set up Query String
-const apiEndpoint = baseApiUrl + "/transferMateral";
+const apiEndpoint = baseApiUrl + "/transferMaterial";
 const postQuery = apiEndpoint + ":create";
 const deleteQuery = apiEndpoint + ":delete/";
 const getAllQuery = apiEndpoint + ":fetchAll";

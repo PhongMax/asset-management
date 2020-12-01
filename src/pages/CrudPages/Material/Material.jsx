@@ -6,6 +6,7 @@ import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import { toast } from "react-toastify";
+import Tooltip from "@material-ui/core/Tooltip";
 import {
   Paper,
   makeStyles,
@@ -17,6 +18,7 @@ import {
   InputAdornment,
 } from "@material-ui/core";
 import MaterialForm from "./MaterialForm";
+import TransferMaterialForm from "../TransferMaterial/TransferMaterialForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
 import Controls from "../commons/Controls";
@@ -24,6 +26,7 @@ import Popup from "../commons/Popup";
 import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 import * as MaterialService from "../../../services/materialService";
+import * as TransferMaterialService from "../../../services/transferMaterialService";
 import * as utils from "../../../utils/Utils.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +55,7 @@ const StyledTableRow = withStyles((theme) => ({
 const headCells = [
   { id: "credentialCode", label: "credentialCode" },
   { id: "status", label: "status" },
-  { id: "timeAllocationType", label: "timeAllocationType" },
+  { id: "timeStartDepreciation", label: "timeStartDepreciation" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -61,12 +64,16 @@ export default function Material(props) {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null);
   const [records, setRecords] = useState([]);
+
+  const [inforTransfer, setInforTransfer] = useState(null);
+
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
     },
   });
   const [openPopup, setOpenPopup] = useState(false);
+  const [openPopupTransfer, setOpenPopupTransfer] = useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -88,7 +95,7 @@ export default function Material(props) {
       const aditionalProps = {
         userId: item.additional.user.id,
         productId: item.product.id,
-        placeId: item.currentPlace.id,
+        placeId: item.currentPlace && item.currentPlace.id,
         additionalId: item.additional.id,
       };
 
@@ -135,6 +142,22 @@ export default function Material(props) {
 
     return temp;
   };
+
+  const TransferMaterialHandledToInsert = (obj) => {
+    const temp = {
+      time: obj.time,
+      reason: obj.reason,
+      embedded: {
+        placeFromId: obj.placeFromId,
+        placeTargetId: obj.placeTargetId,
+        materialId: obj.materialId,
+        userId: obj.userId,
+      },
+    };
+
+    return temp;
+  };
+
   //=======================================   XỬ LÝ CALL API    ===========================================
   const getMaterialAndUpdateToState = async () => {
     try {
@@ -157,6 +180,21 @@ export default function Material(props) {
       });
     } catch (ex) {
       toast.error("Errors: Lỗi thêm mới dữ liệu ");
+    }
+  };
+  const insertTransferMaterial = async (transferedMaterial) => {
+    try {
+      await TransferMaterialService.insertTransferMaterial(
+        TransferMaterialHandledToInsert(transferedMaterial)
+      );
+      getMaterialAndUpdateToState();
+      setNotify({
+        isOpen: true,
+        message: "Thao tác điều chuyển thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      toast.error("Errors: Điều chuyển thất bại ");
     }
   };
 
@@ -224,11 +262,23 @@ export default function Material(props) {
     setOpenPopup(false);
   };
 
+  const addTransferMaterial = (transferedMaterial, resetForm) => {
+    // thực hiện gọi api và lưu vào database.
+    insertTransferMaterial(transferedMaterial);
+    resetForm();
+
+    setOpenPopupTransfer(false);
+  };
+
   const openInPopup = (item) => {
     setRecordForEdit(item);
     setOpenPopup(true);
   };
 
+  const openInPopupTransfer = (item) => {
+    setInforTransfer(item);
+    setOpenPopupTransfer(true);
+  };
   const onDelete = (id) => {
     setConfirmDialog({
       ...confirmDialog,
@@ -309,14 +359,21 @@ export default function Material(props) {
                   >
                     <CloseIcon fontSize="small" />
                   </Controls.ActionButton>
+
                   <Controls.ActionButton
                     color="primary"
                     onClick={() => {
-                      openInPopup(item);
+                      openInPopupTransfer(item);
                     }}
                   >
-                    <EditOutlinedIcon fontSize="small" />
-                    <Icon fontSize="small">direcions</Icon>
+                    <Tooltip title="Điều chuyển" arrow>
+                      <Icon fontSize="small">directions</Icon>
+                    </Tooltip>
+                  </Controls.ActionButton>
+                  <Controls.ActionButton color="primary">
+                    <Tooltip title="Thanh lý" arrow>
+                      <Icon fontSize="small">gavel</Icon>
+                    </Tooltip>
                   </Controls.ActionButton>
                 </TableCell>
               </StyledTableRow>
@@ -332,6 +389,18 @@ export default function Material(props) {
       >
         <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
       </Popup>
+
+      <Popup
+        title="Điều chuyển xxx "
+        openPopup={openPopupTransfer}
+        setOpenPopup={setOpenPopupTransfer}
+      >
+        <TransferMaterialForm
+          inforTransfer={inforTransfer}
+          addTransferMaterial={addTransferMaterial}
+        />
+      </Popup>
+
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
         confirmDialog={confirmDialog}

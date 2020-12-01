@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
-import * as employeeService from "../../../services/employeeService";
-import * as Utils from "../../../utils/Utils";
 // KHỎI TẠO GIÁ TRỊ COMBOX GENDER
 const genderItems = [
   { id: "male", title: "Male" },
@@ -47,7 +45,6 @@ const initialFValues = {
 export default function EmployeeForm(props) {
   // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;
-  const [DataGroup, setDataGroup] = useState([]);
 
   // khu vực validate các thuộc tính của Employee, nếu ko bị lỗi trả về true, bị lội trả về false
   const validate = (fieldValues = values) => {
@@ -108,12 +105,6 @@ export default function EmployeeForm(props) {
       });
   }, [recordForEdit, setValues]);
 
-  useEffect(() => {
-    Utils.getDataGroup().then((response) => {
-      setDataGroup([...response]);
-    });
-  }, []);
-
   //======================================FAKE DATA =============================================
 
   const [ValueRole, setValueRole] = useState(valueRole);
@@ -121,7 +112,7 @@ export default function EmployeeForm(props) {
     setValueRole(event.target.value);
   };
 
-  const [ValueAutoComple, setValueAutoComple] = useState("1");
+  const [ValueAutoComple, setValueAutoComple] = useState(1);
   const handleInputChange2 = (event) => {
     setValueAutoComple(event.target.value);
   };

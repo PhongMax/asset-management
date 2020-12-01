@@ -96,6 +96,14 @@ const navigationConfig = [
         exact: true,
       },
       {
+        id: "group",
+        title: "group",
+        type: "item",
+        icon: "apps",
+        url: "/group",
+        exact: true,
+      },
+      {
         id: "category",
         title: "category",
         type: "item",

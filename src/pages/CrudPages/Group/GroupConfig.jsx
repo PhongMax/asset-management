@@ -3,7 +3,7 @@ import Group from "./Group";
 export const GroupConfig = {
   routes: [
     {
-      path: "/Group",
+      path: "/group",
       exact: true,
       component: Group,
     },

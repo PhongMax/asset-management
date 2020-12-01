@@ -70,7 +70,7 @@ export default function Organization(props) {
             name="contact"
             value={values.contact}
             onChange={handleInputChange}
-            error={errors.name}
+            error={errors.contact}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

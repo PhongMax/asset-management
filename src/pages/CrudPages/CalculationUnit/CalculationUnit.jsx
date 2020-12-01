@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import AcUnitIcon from "@material-ui/icons/AcUnit";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -197,15 +197,15 @@ export default function CalculationUnit(props) {
       <PageHeader
         history={history}
         title="Đơn vị tính"
-        subTitle="Quản lý đơn vị tính tài sản"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        subTitle="Quản lý đơn vị tính cho từng tài sản"
+        icon={<AcUnitIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm đơn vị tính "
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -255,7 +255,7 @@ export default function CalculationUnit(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa đơn vị tính này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);

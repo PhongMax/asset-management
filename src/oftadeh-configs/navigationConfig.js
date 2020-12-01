@@ -272,29 +272,7 @@ const navigationConfig = [
       },
     ],
   },
-  {
-    id: "about",
-    title: "Chỗ này test các form",
-    type: "group",
-    children: [
-      {
-        id: "Team K&P",
-        title: "Employee template ko có gán api",
-        type: "link",
-        icon: "link",
-        url: "/employees",
-        exact: true,
-      },
-      {
-        id: "Team K&P",
-        title: "Department template có gán api ",
-        type: "link",
-        icon: "link",
-        url: "/test",
-        exact: true,
-      },
-    ],
-  },
+
   // {
   //   id: "pages",
   //   title: "Pages",

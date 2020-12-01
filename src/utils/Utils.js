@@ -9,6 +9,7 @@ import * as placeService from "../services/placeService";
 import * as additionalService from "../services/additionalService";
 import * as productService from "../services/productService";
 import * as groupService from "../services/groupService";
+import * as liquidateService from "../services/liquidateService";
 // ============== Dùng để truyền vào các component như select v.v.v==========================
 export const getDataDepartment = async () => {
   const { data: responseData } = await departmentService.getAllDepartment();
@@ -94,6 +95,17 @@ export const getDataGroup = async () => {
   const { data: groups } = responseData;
   return groups.map((item) => {
     return { id: item.id, title: item.description };
+  });
+};
+
+export const getDataLiquidate = async () => {
+  const { data: responseData } = await liquidateService.getAllLiquidate();
+  const { data: liquidate } = responseData;
+  return liquidate.map((item) => {
+    const status = item ? "Đã hoàn tất" : "Chưa hoàn tất";
+    const title =
+      "Đợt thanh lý ngày : " + convertDateTime(item.time) + " | " + status;
+    return { id: item.id, title: title };
   });
 };
 //==========================================================================================

@@ -18,6 +18,8 @@ export default function Organization(props) {
     let temp = { ...errors };
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
+    if ("contact" in fieldValues)
+      temp.contact = fieldValues.contact ? "" : "Trường này là bắt buộc.";
 
     setErrors({
       ...temp,
@@ -56,7 +58,7 @@ export default function Organization(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên cơ quan"
+            label="Nhập tên tổ chức"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}
@@ -64,10 +66,11 @@ export default function Organization(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="Nhập số điện thoại"
+            label="Nhập thông tin liên lạc"
             name="contact"
             value={values.contact}
             onChange={handleInputChange}
+            error={errors.name}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import HomeIcon from "@material-ui/icons/Home";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -49,8 +49,8 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "name", label: "Tên cơ quan" },
-  { id: "contact", label: "Số điện thoại" },
+  { id: "name", label: "Tên tổ chức" },
+  { id: "contact", label: "Thông tin liên hệ" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -196,16 +196,16 @@ export default function Organization(props) {
     <>
       <PageHeader
         history={history}
-        title="Phòng ban"
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        title="Tổ chức"
+        subTitle="Tất cả các tổ chức mà hệ thống đang  quản lý"
+        icon={<HomeIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm tổ chức"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -255,7 +255,7 @@ export default function Organization(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa tổ chức này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -273,7 +273,7 @@ export default function Organization(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu bộ phận"
+        title="Biểu mẫu tổ chức"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

@@ -18,6 +18,10 @@ export default function CalculationUnitForm(props) {
     let temp = { ...errors };
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
+    if ("description" in fieldValues)
+      temp.description = fieldValues.description
+        ? ""
+        : "Trường này là bắt buộc.";
     setErrors({
       ...temp,
     });
@@ -63,10 +67,11 @@ export default function CalculationUnitForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="Nhập mô tả"
+            label="Nhập mô tả chi tiết"
             name="description"
             value={values.description}
             onChange={handleInputChange}
+            error={errors.description}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

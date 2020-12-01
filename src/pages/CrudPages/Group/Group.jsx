@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import GroupWorkIcon from "@material-ui/icons/GroupWork";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -49,8 +49,8 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "code", label: "code" },
-  { id: "description", label: "Mô tả" },
+  { id: "code", label: "Mã nhóm" },
+  { id: "description", label: "Mô tả chi tiết" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -161,7 +161,7 @@ export default function Group(props) {
         if (target.value === "") return items;
         else
           return items.filter((x) =>
-            x.name.toLowerCase().includes(target.value)
+            x.code.toLowerCase().includes(target.value)
           );
       },
     });
@@ -192,16 +192,16 @@ export default function Group(props) {
     <>
       <PageHeader
         history={history}
-        title="Danh mục"
-        subTitle="Tất cả các danh mục mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        title="Nhóm Tài sản/Công cụ dụng cụ"
+        subTitle="Tất cả các nhóm của TS/CCDC mà bạn hiện đang quản lý"
+        icon={<GroupWorkIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm nhóm"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -251,7 +251,7 @@ export default function Group(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa nhóm này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -269,7 +269,7 @@ export default function Group(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu danh mục"
+        title="Biểu mẫu nhóm TS/CCDC"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

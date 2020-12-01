@@ -50,8 +50,8 @@ const StyledTableRow = withStyles((theme) => ({
 
 const headCells = [
   { id: "name", label: "Tên danh mục" },
-  { id: "description", label: "Mô tả" },
-  { id: "group", label: "Nhóm" },
+  { id: "description", label: "Mô tả chi tiết" },
+  { id: "groupId", label: "Thuộc nhóm " },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -233,7 +233,7 @@ export default function Category(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm danh mục"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -267,7 +267,7 @@ export default function Category(props) {
               <StyledTableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
-                <TableCell>{item.group.code}</TableCell>
+                <TableCell>{item.group.description}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
@@ -284,7 +284,7 @@ export default function Category(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa danh mục này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);

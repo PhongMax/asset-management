@@ -78,7 +78,7 @@ export default function CategoryFormForm(props) {
           />
           <Controls.Select
             name="groupId"
-            label="Group"
+            label="Thuộc nhóm"
             value={values.groupId}
             onChange={handleInputChange}
             options={Groups}
@@ -87,7 +87,7 @@ export default function CategoryFormForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="description"
+            label="Nhập mô tả chi tiết"
             name="description"
             value={values.description}
             onChange={handleInputChange}

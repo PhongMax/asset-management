@@ -18,6 +18,10 @@ export default function GroupFormForm(props) {
     let temp = { ...errors };
     if ("code" in fieldValues)
       temp.code = fieldValues.code ? "" : "Trường này là bắt buộc.";
+    if ("description" in fieldValues)
+      temp.description = fieldValues.description
+        ? ""
+        : "Trường này là bắt buộc.";
     setErrors({
       ...temp,
     });
@@ -55,7 +59,7 @@ export default function GroupFormForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="code"
-            label="Nhập tên danh mục"
+            label="Nhập mã nhóm"
             value={values.code}
             onChange={handleInputChange}
             error={errors.code}
@@ -63,10 +67,11 @@ export default function GroupFormForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="Nhập mô tả"
+            label="Nhập mô tả chi tiêt"
             name="description"
             value={values.description}
             onChange={handleInputChange}
+            error={errors.description}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

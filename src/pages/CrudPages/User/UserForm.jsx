@@ -6,11 +6,11 @@ import { useForm, Form } from "../commons/useForm";
 import * as Utils from "../../../utils/Utils";
 // KHỎI TẠO GIÁ TRỊ COMBOX ROLE
 const roles = [
-  { id: "1", title: "ROLE_ADMIN" },
-  { id: "2", title: "ROLE_CHIEF_ACCOUNTANT" },
-  { id: "3", title: "ROLE_ACCOUNTANT" },
-  { id: "4", title: "ROLE_LECTURES" },
-  { id: "5", title: "ROLE_INSPECTOR" },
+  { id: "ROLE_ADMIN", title: "Admin" },
+  { id: "ROLE_CHIEF_ACCOUNTANT", title: "Kế toán trưởng" },
+  { id: "ROLE_ACCOUNTANT", title: "Kế toán" },
+  { id: "ROLE_LECTURES", title: "Giảng viên" },
+  { id: "ROLE_INSPECTOR", title: "Người kiểm tra" },
 ];
 
 //  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
@@ -23,7 +23,7 @@ const initialFValues = {
   password: "",
   active: true,
   roles: [],
-  departmentId: 0,
+  departmentId: "",
 };
 
 export default function UserForm(props) {
@@ -136,7 +136,7 @@ export default function UserForm(props) {
           />
           <Controls.Select
             name="departmentId"
-            label="Bộ phận"
+            label="Chọn phòng ban"
             value={values.departmentId}
             onChange={handleInputChange}
             options={departments}

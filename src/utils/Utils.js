@@ -15,7 +15,7 @@ export const getDataDepartment = async () => {
   const { data: responseData } = await departmentService.getAllDepartment();
   const { data: Departments } = responseData;
   return Departments.map((item) => {
-    return { id: item.id, title: item.name };
+    return { id: item.id, title: item.description };
   });
 };
 

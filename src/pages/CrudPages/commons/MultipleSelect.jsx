@@ -55,7 +55,11 @@ export default function MultipleSelect(props) {
           renderValue={(selected) => (
             <div className={classes.chips}>
               {selected.map((value) => (
-                <Chip key={value} label={value} className={classes.chip} />
+                <Chip
+                  key={value}
+                  label={options.find((item) => item.id === value).title}
+                  className={classes.chip}
+                />
               ))}
             </div>
           )}
@@ -63,7 +67,7 @@ export default function MultipleSelect(props) {
           {options.map((option) => (
             <MenuItem
               key={option.id}
-              value={option.title}
+              value={option.id}
               style={getStyles(option.title, value, theme)}
             >
               {option.title}

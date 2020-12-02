@@ -51,7 +51,7 @@ const StyledTableRow = withStyles((theme) => ({
 const headCells = [
   { id: "name", label: "Mã sản phẩm" },
   { id: "description", label: "Mô tả chi tiết" },
-  { id: "origin", label: "Xuât xứ" },
+  { id: "origin", label: "Xuất xứ" },
   { id: "type", label: "Kiểu sản phẩm" },
   { id: "timeAllocationType", label: "Kiểu phân bổ" },
   { id: "allocationDuration", label: "Thời hạn phân bổ" },
@@ -239,7 +239,7 @@ export default function Product(props) {
       <PageHeader
         history={history}
         title="Sản phẩm"
-        subTitle="Tất cả các sản phẩm mà học viện đang quản lý"
+        subTitle="Tất cả các sản phẩm mà hệ thống đang quản lý"
         icon={<MarkunreadMailboxIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>

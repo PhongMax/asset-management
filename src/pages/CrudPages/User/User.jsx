@@ -3,7 +3,6 @@ import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import { toast } from "react-toastify";
 import {
@@ -50,10 +49,11 @@ const StyledTableRow = withStyles((theme) => ({
 
 const headCells = [
   { id: "acive", label: "Trạng thái" },
+  { id: "username", label: "Tên tài khoản" },
   { id: "fullName", label: "Họ tên" },
   { id: "phone", label: "Số điện thoại" },
   { id: "email", label: "Email" },
-  { id: "username", label: "Tên tài khoản" },
+
   { id: "department", label: "Thuộc phòng ban" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
@@ -85,7 +85,6 @@ export default function User(props) {
     const objConverted = obj.map((item) => {
       item.createdAt = utils.convertDateTime(item.createdAt);
       item.updatedAt = utils.convertDateTime(item.updatedAt);
-
       const additionalProps = {
         departmentId: item.department.id,
         password: "",
@@ -172,22 +171,6 @@ export default function User(props) {
     }
   };
 
-  const deleteUser = async (UserId) => {
-    const originalUserRecord = records;
-    const newUserRecord = originalUserRecord.filter((x) => x.id !== UserId);
-    setRecords(newUserRecord);
-    try {
-      await userService.deleteUser(UserId);
-      setNotify({
-        isOpen: true,
-        message: "Đã xoá thành công",
-        type: "error",
-      });
-    } catch (ex) {
-      toast.error("Errors: Lỗi xóa dữ liệu ");
-      setRecords(originalUserRecord);
-    }
-  };
   //===================================================================================
 
   useEffect(getUserAndUpdateToState, []);
@@ -206,7 +189,7 @@ export default function User(props) {
         if (target.value === "") return items;
         else
           return items.filter((x) =>
-            x.name.toLowerCase().includes(target.value)
+            x.fullName.toLowerCase().includes(target.value)
           );
       },
     });
@@ -225,20 +208,12 @@ export default function User(props) {
     setOpenPopup(true);
   };
 
-  const onDelete = (id) => {
-    setConfirmDialog({
-      ...confirmDialog,
-      isOpen: false,
-    });
-    deleteUser(id);
-  };
-
   return (
     <>
       <PageHeader
         history={history}
-        title="Quản lý xxx (user or nhân viên ) "
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
+        title="(user or nhân viên ) "
+        subTitle="Tất cả các user or nhân viên  mà bạn hiện đang quản lý"
         icon={<DomainTwoToneIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
@@ -246,7 +221,7 @@ export default function User(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Nhập họ tên để tìm kiếm"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -278,10 +253,11 @@ export default function User(props) {
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
                 <TableCell>{item.active ? "Hoạt động" : "Khóa"}</TableCell>
+                <TableCell>{item.username}</TableCell>
                 <TableCell>{item.fullName}</TableCell>
                 <TableCell>{item.phone}</TableCell>
                 <TableCell>{item.email}</TableCell>
-                <TableCell>{item.username}</TableCell>
+
                 <TableCell>{item.department.description}</TableCell>
 
                 {/* <TableCell>{item.createdAt}</TableCell>
@@ -295,21 +271,6 @@ export default function User(props) {
                   >
                     <EditOutlinedIcon fontSize="small" />
                   </Controls.ActionButton>
-                  <Controls.ActionButton
-                    color="secondary"
-                    onClick={() => {
-                      setConfirmDialog({
-                        isOpen: true,
-                        title: "Bạn có chắc chắn xóa người dùng này không?",
-                        subTitle: "Bạn không thể hoàn tác thao tác này",
-                        onConfirm: () => {
-                          onDelete(item.id);
-                        },
-                      });
-                    }}
-                  >
-                    <CloseIcon fontSize="small" />
-                  </Controls.ActionButton>
                 </TableCell>
               </StyledTableRow>
             ))}
@@ -318,7 +279,7 @@ export default function User(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu sản phẩm"
+        title="Biểu mẫu user or nhân viên"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

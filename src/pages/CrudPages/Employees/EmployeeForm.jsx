@@ -168,14 +168,6 @@ export default function EmployeeForm(props) {
             error={errors.departmentId}
           />
 
-          <Controls.MultipleSelect
-            name="Role"
-            label="Quyền hạn"
-            value={ValueRole}
-            onChange={handleInputChange1}
-            options={roles}
-          />
-
           <Controls.AutoCompleteButton
             name="cccc"
             label="group"

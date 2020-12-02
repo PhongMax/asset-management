@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -50,13 +50,13 @@ const StyledTableRow = withStyles((theme) => ({
 
 const headCells = [
   { id: "code", label: "Code" },
-  { id: "nameSpecification", label: "nameSpecification" },
-  { id: "description", label: "description" },
-  { id: "floor", label: "floor" },
-  { id: "direction", label: "direction" },
-  { id: "place", label: "place" },
-  { id: "campusname", label: "campusname" },
-  { id: "departmentname", label: "departmentname" },
+  { id: "nameSpecification", label: "Địa chỉ" },
+  { id: "description", label: "Mô tả chi tiết" },
+  { id: "floor", label: "Tầng" },
+  { id: "direction", label: "Chỉ dẫn đến" },
+  { id: "place", label: "Địa điểm" },
+  { id: "campusname", label: "Cơ sở" },
+  { id: "departmentname", label: "Phòng ban" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -241,9 +241,9 @@ export default function Place(props) {
     <>
       <PageHeader
         history={history}
-        title="Quản lý xxx (place or nhân viên ) "
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        title="Vị trí"
+        subTitle="Tất cả các vị trí mà bạn hiện đang quản lý"
+        icon={<LocationOnIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>

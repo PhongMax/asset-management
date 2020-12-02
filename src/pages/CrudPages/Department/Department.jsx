@@ -50,7 +50,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const headCells = [
   { id: "name", label: "Tên phòng ban" },
-  { id: "description", label: "Mô tả" },
+  { id: "description", label: "Mô tả chi tiết" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -203,7 +203,7 @@ export default function Department(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm phòng ban"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -253,7 +253,7 @@ export default function Department(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa phòng ban này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -271,7 +271,7 @@ export default function Department(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu bộ phận"
+        title="Biểu mẫu phòng ban"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

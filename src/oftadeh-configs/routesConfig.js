@@ -22,6 +22,8 @@ import { DepartmentConfig } from "../pages/CrudPages/Department/DepartmentConfig
 import { UserConfig } from "../pages/CrudPages/User/UserConfig";
 import { PlaceConfig } from "../pages/CrudPages/Place/PlaceConfig";
 import { GroupConfig } from "../pages/CrudPages/Group/GroupConfig";
+import { AdditionalConfig } from "../pages/CrudPages/Additional/AdditionalConfig";
+
 const routeConfigs = [
   ...DashboardPageConfig.routes,
   ...AllPostsPageConfig.routes,
@@ -44,6 +46,7 @@ const routeConfigs = [
   ...UserConfig.routes,
   ...PlaceConfig.routes,
   ...GroupConfig.routes,
+  ...AdditionalConfig.routes,
 ];
 
 const routes = [

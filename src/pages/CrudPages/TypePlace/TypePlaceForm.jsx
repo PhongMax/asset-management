@@ -59,7 +59,7 @@ export default function TypePlaceForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên loại nơi"
+            label="Nhập tên kiểu địa điểm"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}
@@ -67,7 +67,7 @@ export default function TypePlaceForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="Nhập mô tả"
+            label="Nhập mô tả chi tiết"
             name="description"
             value={values.description}
             onChange={handleInputChange}

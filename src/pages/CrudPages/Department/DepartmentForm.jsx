@@ -18,6 +18,11 @@ export default function DepartmentForm(props) {
     let temp = { ...errors };
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
+    if ("description" in fieldValues)
+      temp.description = fieldValues.description
+        ? ""
+        : "Trường này là bắt buộc.";
+
     setErrors({
       ...temp,
     });
@@ -55,7 +60,7 @@ export default function DepartmentForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên bộ phận"
+            label="Nhập tên phòng ban"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}
@@ -63,7 +68,7 @@ export default function DepartmentForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="Nhập mô tả"
+            label="Nhập mô tả chi tiết"
             name="description"
             value={values.description}
             onChange={handleInputChange}

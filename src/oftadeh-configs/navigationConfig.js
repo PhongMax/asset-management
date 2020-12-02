@@ -112,6 +112,14 @@ const navigationConfig = [
         exact: true,
       },
       {
+        id: "AdditionalConfig",
+        title: "Additional",
+        type: "item",
+        icon: "apps",
+        url: "/additional",
+        exact: true,
+      },
+      {
         id: "product",
         title: "product",
         type: "item",

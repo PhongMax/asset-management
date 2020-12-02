@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import SatelliteIcon from "@material-ui/icons/Satellite";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -49,8 +49,8 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "name", label: "Tên nơi" },
-  { id: "description", label: "Mô tả" },
+  { id: "name", label: "Kiểu địa điểm " },
+  { id: "description", label: "Mô tả chi tiết" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -194,16 +194,16 @@ export default function TypePlace(props) {
     <>
       <PageHeader
         history={history}
-        title="Loại nơi"
-        subTitle="Quản lý thông tin tất cả loại nơi quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        title="Kiểu địa điểm"
+        subTitle="Quản lý thông tin tất cả các kiểu địa điểm mà hệ thống quản lý"
+        icon={<SatelliteIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm kiểu địa điểm"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -253,7 +253,7 @@ export default function TypePlace(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa kiểu địa điểm này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -271,7 +271,7 @@ export default function TypePlace(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu loại nơi"
+        title="Biểu mẫu kiểu địa điểm "
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

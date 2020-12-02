@@ -8,7 +8,7 @@ import * as Utils from "../../../utils/Utils";
 const initialFValues = {
   id: 0,
   time: new Date(),
-  userId: 1,
+  userId: 0,
   organizationId: 0,
 };
 
@@ -19,6 +19,14 @@ export default function AdditionalForm(props) {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
+
+    if ("userId" in fieldValues)
+      temp.userId = fieldValues.userId ? "" : "Trường này là bắt buộc.";
+
+    if ("organizationId" in fieldValues)
+      temp.organizationId = fieldValues.organizationId
+        ? ""
+        : "Trường này là bắt buộc.";
 
     setErrors({
       ...temp,
@@ -66,25 +74,28 @@ export default function AdditionalForm(props) {
         <Grid item xs={6}>
           <Controls.Select
             name="userId"
-            label="userId"
+            label="Userxxx"
             value={values.userId}
             onChange={handleInputChange}
             options={Users}
+            error={errors.userId}
           />
           <Controls.DatePicker
             name="time"
-            label="time"
+            label="Nhập thời gian đợt bổ sung"
             value={values.time}
             onChange={handleInputChange}
+            error={errors.time}
           />
         </Grid>
         <Grid item xs={6}>
           <Controls.Select
             name="organizationId"
-            label="organizationId"
+            label="Thuộc tổ chức nào"
             value={values.organizationId}
             onChange={handleInputChange}
             options={Organizations}
+            error={errors.organizationId}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

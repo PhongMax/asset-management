@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import MarkunreadMailboxIcon from "@material-ui/icons/MarkunreadMailbox";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -49,15 +49,15 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "name", label: "name" },
-  { id: "description", label: "description" },
-  { id: "origin", label: "origin" },
-  { id: "timeAllocationType", label: "timeAllocationType" },
-  { id: "type", label: "type" },
-  { id: "allocationDuration", label: "allocationDuration" },
-
-  { id: "createdAt", label: "createdAt" },
-  { id: "updatedAt", label: "updatedAt" },
+  { id: "name", label: "Mã sản phẩm" },
+  { id: "description", label: "Mô tả chi tiết" },
+  { id: "origin", label: "Xuât xứ" },
+  { id: "type", label: "Kiểu sản phẩm" },
+  { id: "timeAllocationType", label: "Kiểu phân bổ" },
+  { id: "allocationDuration", label: "Thời hạn phân bổ" },
+  { id: "depreciationRate", label: "Tỉ lệ khấu hao" },
+  { id: "category.description", label: "Thuộc danh mục", disableSorting: true },
+  { id: "calculationUnit.unit", label: "Đ.v tính", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -238,16 +238,16 @@ export default function Product(props) {
     <>
       <PageHeader
         history={history}
-        title="Phòng ban"
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        title="Sản phẩm"
+        subTitle="Tất cả các sản phẩm mà học viện đang quản lý"
+        icon={<MarkunreadMailboxIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm sản phẩm"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -281,12 +281,18 @@ export default function Product(props) {
               <StyledTableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
-                <TableCell>{item.origin}</TableCell>
-                <TableCell>{item.timeAllocationType}</TableCell>
-                <TableCell>{item.type}</TableCell>
+                <TableCell>
+                  {item.origin === null ? "null" : item.origin}
+                </TableCell>
+                <TableCell>{item.type === "ASSET" ? "TSCĐ" : "CCDC"}</TableCell>
+                <TableCell>
+                  {item.timeAllocationType === "YEAR" ? "Năm" : "Tháng"}
+                </TableCell>
                 <TableCell>{item.allocationDuration}</TableCell>
-                <TableCell>{item.createdAt}</TableCell>
-                <TableCell>{item.updatedAt}</TableCell>
+                <TableCell>{item.depreciationRate}</TableCell>
+                <TableCell>{item.category.description}</TableCell>
+                <TableCell>{item.calculationUnit.name}</TableCell>
+
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -301,7 +307,7 @@ export default function Product(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa sản phẩm này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);

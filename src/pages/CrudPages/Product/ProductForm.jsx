@@ -13,18 +13,18 @@ const initialFValues = {
   description: "",
   categoryId: 0,
   calculationUnitId: 0,
-  allocationDuration: 0,
+  allocationDuration: "",
   type: "",
 };
 
 const getProductCollection = () => [
-  { id: "YEAR", title: "YEAR" },
-  { id: "MONTH", title: "MONTH" },
+  { id: "YEAR", title: "Theo năm" },
+  { id: "MONTH", title: "Theo tháng" },
 ];
 
 const getProductTypeCollection = () => [
-  { id: "ASSET", title: "ASSET" },
-  { id: "TOOL", title: "TOOL" },
+  { id: "ASSET", title: "Tài sản cố định" },
+  { id: "TOOL", title: "Công cụ dụng cụ" },
 ];
 
 export default function ProductForm(props) {
@@ -39,13 +39,31 @@ export default function ProductForm(props) {
 
     if ("origin" in fieldValues)
       temp.origin = fieldValues.origin ? "" : "Trường này là bắt buộc.";
+    if ("description" in fieldValues)
+      temp.description = fieldValues.description
+        ? ""
+        : "Trường này là bắt buộc.";
 
     if ("timeAllocationType" in fieldValues)
       temp.timeAllocationType = fieldValues.timeAllocationType
         ? ""
         : "Trường này là bắt buộc.";
+    if ("categoryId" in fieldValues)
+      temp.categoryId = fieldValues.categoryId ? "" : "Trường này là bắt buộc.";
+    if ("calculationUnitId" in fieldValues)
+      temp.calculationUnitId = fieldValues.calculationUnitId
+        ? ""
+        : "Trường này là bắt buộc.";
+
     if ("type" in fieldValues)
       temp.type = fieldValues.type ? "" : "Trường này là bắt buộc.";
+
+    if ("allocationDuration" in fieldValues)
+      temp.allocationDuration = /^([0-9.])+$/.test(
+        fieldValues.allocationDuration
+      )
+        ? ""
+        : "Trường này không hợp lệ.";
 
     setErrors({
       ...temp,
@@ -94,20 +112,21 @@ export default function ProductForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên sản phảm"
+            label="Nhập mã sản phảm"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}
           />
           <Controls.Input
             name="description"
-            label="Nhập mô tả"
+            label="Nhập mô tả chi tiết"
             value={values.description}
             onChange={handleInputChange}
+            error={errors.description}
           />
 
           <Controls.Input
-            label="Nguồn gốc"
+            label="Nguồn gốc "
             name="origin"
             value={values.origin}
             onChange={handleInputChange}
@@ -116,16 +135,25 @@ export default function ProductForm(props) {
 
           <Controls.Input
             name="allocationDuration"
-            label="allocationDuration"
+            label="Thời hạn phân bổ"
             value={values.allocationDuration}
             onChange={handleInputChange}
             error={errors.allocationDuration}
           />
         </Grid>
         <Grid item xs={6}>
+          <Controls.AutoCompleteButton
+            name="categoryId"
+            label="Thuộc danh mục"
+            value={Categories.find((item) => item.id === values.categoryId)}
+            onChange={handleInputChange}
+            options={Categories}
+            error={errors.categoryId}
+          />
+
           <Controls.Select
             name="timeAllocationType"
-            label="Thời hạn"
+            label="Kiểu phân bổ"
             value={values.timeAllocationType}
             onChange={handleInputChange}
             options={getProductCollection()}
@@ -133,26 +161,29 @@ export default function ProductForm(props) {
           />
           <Controls.Select
             name="type"
-            label="Loại tài sản"
+            label="Kiểu sản phẩm"
             value={values.type}
             onChange={handleInputChange}
             options={getProductTypeCollection()}
             error={errors.type}
           />
 
-          <Controls.Select
+          {/* <Controls.Select
             name="categoryId"
-            label="Danh mục"
+            label="Thuộc danh mục"
             value={values.categoryId}
             onChange={handleInputChange}
             options={Categories}
-          />
+            error={errors.categoryId}
+          /> */}
+
           <Controls.Select
             name="calculationUnitId"
             label="Đơn vị tính"
             value={values.calculationUnitId}
             onChange={handleInputChange}
             options={CalculationUnits}
+            error={errors.calculationUnitId}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

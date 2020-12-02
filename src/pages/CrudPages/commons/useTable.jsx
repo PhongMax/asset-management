@@ -121,16 +121,21 @@ export default function useTable(records, headCells, filterFn) {
     if (!orderBy) {
       return 0;
     }
-
-    if (
-      b[orderBy].toString().toLowerCase() < a[orderBy].toString().toLowerCase()
-    ) {
-      return -1;
-    }
-    if (
-      b[orderBy].toString().toLowerCase() > a[orderBy].toString().toLowerCase()
-    ) {
-      return 1;
+    try {
+      if (
+        b[orderBy].toString().toLowerCase() <
+        a[orderBy].toString().toLowerCase()
+      ) {
+        return -1;
+      }
+      if (
+        b[orderBy].toString().toLowerCase() >
+        a[orderBy].toString().toLowerCase()
+      ) {
+        return 1;
+      }
+    } catch (err) {
+      console.log("null r, sort ko được đâu , kkk");
     }
     return 0;
   }

@@ -33,7 +33,7 @@ export const getDataCategory = async () => {
   const { data: responseData } = await categoryService.getAllCategory();
   const { data: Categorys } = responseData;
   return Categorys.map((item) => {
-    return { id: item.id, title: item.name };
+    return { id: item.id, title: item.description };
   });
 };
 

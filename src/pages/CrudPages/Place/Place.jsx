@@ -50,13 +50,13 @@ const StyledTableRow = withStyles((theme) => ({
 
 const headCells = [
   { id: "code", label: "Code" },
-  { id: "nameSpecification", label: "Địa chỉ" },
+  { id: "nameSpecification", label: "Tên vị trí" },
   { id: "description", label: "Mô tả chi tiết" },
   { id: "floor", label: "Tầng" },
   { id: "direction", label: "Chỉ dẫn đến" },
-  { id: "place", label: "Địa điểm" },
-  { id: "campusname", label: "Cơ sở" },
-  { id: "departmentname", label: "Phòng ban" },
+  { id: "typePlaceId", label: "Loại vị trí" },
+  { id: "campusId", label: "Cơ sở" },
+  { id: "departmentId", label: "Phòng ban" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -250,7 +250,7 @@ export default function Place(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Nhập mã code để tìm kiếm vị trí"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -288,10 +288,8 @@ export default function Place(props) {
                 <TableCell>{item.direction}</TableCell>
                 <TableCell>{item.typePlace.name}</TableCell>
                 <TableCell>{item.campus.name}</TableCell>
-                <TableCell>{item.department.name}</TableCell>
+                <TableCell>{item.department.description}</TableCell>
 
-                {/* <TableCell>{item.createdAt}</TableCell>
-                <TableCell>{item.updatedAt}</TableCell> */}
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -306,7 +304,7 @@ export default function Place(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa người dùng này không?",
+                        title: "Bạn có chắc chắn xóa vị trí  này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -324,7 +322,7 @@ export default function Place(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu sản phẩm"
+        title="Biểu mẫu vị trí"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

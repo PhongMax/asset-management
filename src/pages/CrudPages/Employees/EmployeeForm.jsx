@@ -16,19 +16,6 @@ export const getDepartmentCollection = () => [
   { id: "4", title: "HR" },
 ];
 
-const roles = [
-  { id: "1", title: "ROLE_ACCOUNTANT" },
-  { id: "2", title: "ROLE_CHIEF_ACCOUNTANT" },
-  { id: "3", title: "ROLE_LECTURES" },
-  { id: "4", title: "ROLE_ADMIN" },
-];
-
-const valueRole = [
-  "ROLE_ACCOUNTANT",
-  "ROLE_CHIEF_ACCOUNTANT",
-  "ROLE_LECTURES",
-  "ROLE_ADMIN",
-];
 //  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
 const initialFValues = {
   id: 0,
@@ -104,13 +91,6 @@ export default function EmployeeForm(props) {
         ...recordForEdit,
       });
   }, [recordForEdit, setValues]);
-
-  //======================================FAKE DATA =============================================
-
-  const [ValueRole, setValueRole] = useState(valueRole);
-  const handleInputChange1 = (event) => {
-    setValueRole(event.target.value);
-  };
 
   const [ValueAutoComple, setValueAutoComple] = useState(1);
   const handleInputChange2 = (event) => {

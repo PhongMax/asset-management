@@ -11,11 +11,11 @@ const initialFValues = {
   code: "",
   nameSpecification: "",
   description: "",
-  floor: 0,
+  floor: "",
   direction: "",
-  typePlaceId: 0,
-  campusId: 0,
-  departmentId: 0,
+  typePlaceId: "",
+  campusId: "",
+  departmentId: "",
 };
 
 export default function PlaceForm(props) {
@@ -46,7 +46,10 @@ export default function PlaceForm(props) {
         ? ""
         : "Trường dữ liệu không được để trống.";
     }
-
+    if ("floor" in fieldValues)
+      temp.floor = /^([0-9])+$/.test(fieldValues.floor)
+        ? ""
+        : "Trường này không hợp lệ.";
     if ("departmentId" in fieldValues)
       temp.departmentId =
         fieldValues.departmentId.length !== 0
@@ -115,14 +118,14 @@ export default function PlaceForm(props) {
             error={errors.code}
           />
           <Controls.Input
-            label="nameSpecification"
+            label="Địa chỉ"
             name="nameSpecification"
             value={values.nameSpecification}
             onChange={handleInputChange}
             error={errors.nameSpecification}
           />
           <Controls.Input
-            label="description"
+            label="Mô tả chi tiết"
             name="description"
             value={values.description}
             onChange={handleInputChange}
@@ -130,7 +133,7 @@ export default function PlaceForm(props) {
           />
 
           <Controls.Input
-            label="floor"
+            label="Tầng"
             name="floor"
             value={values.floor}
             onChange={handleInputChange}
@@ -139,7 +142,7 @@ export default function PlaceForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
-            label="direction"
+            label="Chỉ dẫn đến"
             name="direction"
             value={values.direction}
             onChange={handleInputChange}
@@ -148,7 +151,7 @@ export default function PlaceForm(props) {
 
           <Controls.Select
             name="departmentId"
-            label="Bộ phận"
+            label="Phòng ban"
             value={values.departmentId}
             onChange={handleInputChange}
             options={Departments}
@@ -156,7 +159,7 @@ export default function PlaceForm(props) {
           />
           <Controls.Select
             name="campusId"
-            label="campusId"
+            label="Cơ sở"
             value={values.campusId}
             onChange={handleInputChange}
             options={Campus}
@@ -165,7 +168,7 @@ export default function PlaceForm(props) {
 
           <Controls.Select
             name="typePlaceId"
-            label="typePlaceId"
+            label="Loại vị trí"
             value={values.typePlaceId}
             onChange={handleInputChange}
             options={TypePlaces}

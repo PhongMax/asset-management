@@ -175,6 +175,22 @@ const navigationConfig = [
         url: "/liquidate",
         exact: true,
       },
+      {
+        id: "11",
+        title: "Inventory",
+        type: "item",
+        icon: "apps",
+        url: "/inventory",
+        exact: true,
+      },
+      {
+        id: "12",
+        title: "Matearial",
+        type: "item",
+        icon: "apps",
+        url: "/material",
+        exact: true,
+      },
     ],
   },
   {

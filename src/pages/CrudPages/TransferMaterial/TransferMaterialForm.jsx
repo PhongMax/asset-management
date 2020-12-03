@@ -63,7 +63,7 @@ export default function MaterialForm(props) {
         <Grid item sm={12}>
           <Controls.DatePicker
             name="time"
-            label="time"
+            label="Thời gian điều chuyển"
             value={values.time}
             onChange={handleInputChange}
           />
@@ -76,7 +76,7 @@ export default function MaterialForm(props) {
           /> */}
           <Controls.AutoCompleteButton
             name="placeTargetId"
-            label="placeTargetId"
+            label="Nơi điều chuyển đến"
             value={DataPlace.find((item) => item.id === values.placeTargetId)}
             onChange={handleInputChange}
             options={DataPlace}
@@ -84,7 +84,7 @@ export default function MaterialForm(props) {
           />
           <Controls.Input
             name="reason"
-            label="reason"
+            label="Lý do điều chuyển"
             value={values.reason}
             onChange={handleInputChange}
             error={errors.reason}

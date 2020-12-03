@@ -23,7 +23,8 @@ import { PlaceConfig } from "../pages/CrudPages/Place/PlaceConfig";
 import { GroupConfig } from "../pages/CrudPages/Group/GroupConfig";
 import { AdditionalConfig } from "../pages/CrudPages/Additional/AdditionalConfig";
 import { LiquidateConfig } from "../pages/CrudPages/Liquidate/LiquidateConfig";
-
+import { InventoryConfig } from "../pages/CrudPages/Inventory/InventoryConfig";
+import { MaterialConfig } from "../pages/CrudPages/Material/MaterialConfig";
 const routeConfigs = [
   ...DashboardPageConfig.routes,
   ...AllPostsPageConfig.routes,
@@ -47,6 +48,8 @@ const routeConfigs = [
   ...GroupConfig.routes,
   ...AdditionalConfig.routes,
   ...LiquidateConfig.routes,
+  ...InventoryConfig.routes,
+  ...MaterialConfig.routes,
 ];
 
 const routes = [

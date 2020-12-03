@@ -29,10 +29,10 @@ function TableTest(props) {
       {/* <User /> */}
       {/* <TypePlace /> */}
       {/* <Place /> */}
-      {/* <Liquidate /> */}
+      <Liquidate />
       {/* <Inventory /> */}
 
-      <Material />
+      {/* <Material /> */}
     </OftadehLayout>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import ChildFriendlyIcon from "@material-ui/icons/ChildFriendly";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -225,7 +225,7 @@ export default function Liquidate(props) {
         history={history}
         title="Quản lý xxx (liquidate or nhân viên ) "
         subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        icon={<ChildFriendlyIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>

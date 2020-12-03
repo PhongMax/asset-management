@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import MarkunreadMailboxIcon from "@material-ui/icons/MarkunreadMailbox";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -224,8 +224,8 @@ export default function Additional(props) {
       <PageHeader
         history={history}
         title="Phòng ban"
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        subTitle="Tất cả các xxx mà bạn hiện đang quản lý"
+        icon={<MarkunreadMailboxIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>

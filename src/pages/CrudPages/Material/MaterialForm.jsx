@@ -11,10 +11,10 @@ const initialFValues = {
   timeStartDepreciation: new Date(),
   haveInclude: false,
   parentCode: null,
-  productId: 0,
-  additionalId: 0,
-  placeId: 0,
-  userId: 0,
+  productId: "",
+  additionalId: "",
+  placeId: "",
+  userId: "",
 };
 
 export default function MaterialForm(props) {
@@ -35,8 +35,25 @@ export default function MaterialForm(props) {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    // if ("name" in fieldValues)
-    //   temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
+    if ("credentialCode" in fieldValues)
+      temp.credentialCode = fieldValues.credentialCode ? "" : "Trường này là bắt buộc.";
+
+      if ("placeId" in fieldValues)
+      temp.placeId = fieldValues.placeId ? "" : "Trường này là bắt buộc.";
+
+      if ("status" in fieldValues)
+      temp.status = fieldValues.status ? "" : "Trường này là bắt buộc.";
+
+      if ("productId" in fieldValues)
+      temp.productId = fieldValues.productId ? "" : "Trường này là bắt buộc.";
+
+      if ("userId" in fieldValues)
+      temp.userId = fieldValues.userId ? "" : "Trường này là bắt buộc.";
+
+      if ("additionalId" in fieldValues)
+      temp.additionalId = fieldValues.additionalId ? "" : "Trường này là bắt buộc.";
+
+
     setErrors({
       ...temp,
     });
@@ -173,6 +190,7 @@ export default function MaterialForm(props) {
             value={values.status}
             onChange={handleInputChange}
             options={getMaterialStatus}
+            error={errors.status}
           />
 
           {/* <Controls.Select

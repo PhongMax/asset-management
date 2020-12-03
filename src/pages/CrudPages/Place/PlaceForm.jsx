@@ -5,7 +5,6 @@ import { useForm, Form } from "../commons/useForm";
 
 import * as Utils from "../../../utils/Utils";
 
-//  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
 const initialFValues = {
   id: 0,
   code: "",
@@ -19,7 +18,6 @@ const initialFValues = {
 };
 
 export default function PlaceForm(props) {
-  // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;
   const [Departments, setDepartments] = useState([]);
   const [TypePlaces, setTypePlaces] = useState([]);

@@ -167,6 +167,14 @@ const navigationConfig = [
         url: "/place",
         exact: true,
       },
+      {
+        id: "10",
+        title: "Liquidate",
+        type: "item",
+        icon: "apps",
+        url: "/liquidate",
+        exact: true,
+      },
     ],
   },
   {
@@ -185,13 +193,6 @@ const navigationConfig = [
             title: "Login",
             type: "item",
             url: "/pages/auth/login",
-            exact: true,
-          },
-          {
-            id: "Register",
-            title: "Register",
-            type: "item",
-            url: "/pages/auth/register",
             exact: true,
           },
         ],
@@ -288,61 +289,6 @@ const navigationConfig = [
       },
     ],
   },
-
-  // {
-  //   id: "pages",
-  //   title: "Pages",
-  //   type: "group",
-  //   icon: "pages",
-  //   children: [
-  //     {
-  //       id: "all pages",
-  //       title: "Pages",
-  //       type: "collapse",
-  //       icon: "stars",
-  //       badge: {
-  //         title: "new",
-  //         bg: "#525E8A",
-  //         fg: "#FFFFFF",
-  //       },
-  //       children: [
-  //         {
-  //           id: "about",
-  //           title: "About",
-  //           type: "item",
-  //           icon: "info",
-  //           url: "/pages/about",
-  //           exact: true,
-  //         },
-  //         {
-  //           id: "contact",
-  //           title: "Contact",
-  //           type: "item",
-  //           icon: "group",
-  //           url: "/pages/contact",
-  //           exact: true,
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "divider-2",
-  //   type: "divider",
-  // },
-  // {
-  //   id: "oftadeh-github",
-  //   title: "Oftadeh Github",
-  //   type: "link",
-  //   icon: "link",
-  //   url: "https://github.com/mohammadoftadeh",
-  //   target: "_blank",
-  //   badge: {
-  //     title: "git",
-  //     bg: "green",
-  //     fg: "#FFFFFF",
-  //   },
-  // },
 ];
 
 export default navigationConfig;

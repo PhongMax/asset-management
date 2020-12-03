@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -49,15 +49,13 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "name", label: "Tên cơ quan" },
-  { id: "campusType", label: "Cơ sở " },
-  { id: "contactEmail", label: "Email" },
-  { id: "contactPhone", label: "Số điện thoại" },
-  { id: "description", label: "mô tả" },
-  { id: "location", label: "Địa chỉ" },
+  { id: "name", label: "Tên " },
+  { id: "campusType", label: "Loại khuôn viên" },
+  { id: "contactEmail", label: "Email liên lạc" },
+  { id: "contactPhone", label: "Số đ.t liên lạc" },
+  { id: "description", label: "Mô tả chi tiết" },
+  { id: "location", label: "Địa điểm" },
   { id: "mapUrl", label: "Map Url" },
-  { id: "createdAt", label: "Ngày tạo dữ liệu" },
-  { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -199,16 +197,16 @@ export default function Campus(props) {
     <>
       <PageHeader
         history={history}
-        title="Phòng ban"
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        title="Khuôn viên"
+        subTitle="Tất cả các khuôn viên mà bạn hiện đang quản lý"
+        icon={<AccountBalanceIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm khuôn viên "
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -241,14 +239,15 @@ export default function Campus(props) {
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
-                <TableCell>{item.campusType}</TableCell>
+                <TableCell>
+                  {item.campusType === "FACILITY" ? "Cơ sở" : "Trụ sở chính"}
+                </TableCell>
                 <TableCell>{item.contactEmail}</TableCell>
                 <TableCell>{item.contactPhone}</TableCell>
                 <TableCell>{item.description}</TableCell>
                 <TableCell>{item.location}</TableCell>
                 <TableCell>{item.mapUrl}</TableCell>
-                <TableCell>{item.createdAt}</TableCell>
-                <TableCell>{item.updatedAt}</TableCell>
+
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -263,7 +262,7 @@ export default function Campus(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa khuôn viên này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -281,7 +280,7 @@ export default function Campus(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu bộ phận"
+        title="Biểu mẫu khuôn viên"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

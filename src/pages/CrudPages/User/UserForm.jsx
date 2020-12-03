@@ -4,7 +4,7 @@ import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 
 import * as Utils from "../../../utils/Utils";
-// KHỎI TẠO GIÁ TRỊ COMBOX ROLE
+
 const roles = [
   { id: "ROLE_ADMIN", title: "Admin" },
   { id: "ROLE_CHIEF_ACCOUNTANT", title: "Kế toán trưởng" },
@@ -13,7 +13,6 @@ const roles = [
   { id: "ROLE_INSPECTOR", title: "Người kiểm tra" },
 ];
 
-//  KHỎI TẠO GIÁ TRỊ CỦA STATE THUỘC
 const initialFValues = {
   id: 0,
   fullName: "",
@@ -27,7 +26,6 @@ const initialFValues = {
 };
 
 export default function UserForm(props) {
-  // Khởi tạo state
   const { addOrEdit, recordForEdit } = props;
   const [departments, setDepartments] = useState([]);
 

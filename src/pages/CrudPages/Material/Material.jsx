@@ -263,7 +263,6 @@ export default function Material(props) {
   };
 
   const addTransferMaterial = (transferedMaterial, resetForm) => {
-    // thực hiện gọi api và lưu vào database.
     insertTransferMaterial(transferedMaterial);
     resetForm();
 

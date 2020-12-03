@@ -5,7 +5,6 @@ import { useForm, Form } from "../commons/useForm";
 import * as Utils from "../../../utils/Utils";
 import * as authService from "../../../services/authService";
 
-// chỗ này viết 1 cái hàm làm nè...
 const initialFValues = (materialId, placeFromId) => {
   return {
     time: new Date(),

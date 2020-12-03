@@ -80,7 +80,6 @@ export default function Additional(props) {
   const AdditionalHandled = (object) => {
     const objectConverted = object.map((item) => {
       item.price = utils.convertDateTime(item.price);
-      // item.updatedAt = utils.convertDateTime(item.updatedAt);
       const a = {
         additional: item.additional.id,
         product: item.product.id,

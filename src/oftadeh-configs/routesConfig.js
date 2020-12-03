@@ -5,7 +5,6 @@ import { DashboardPageConfig } from "../pages/dashboard/DashboardPageConfig";
 import { AddPostPageConfig } from "../pages/posts/add-post/AddPostPageConfig";
 import { AllPostsPageConfig } from "../pages/posts/all-posts/AllPostsPageConfig";
 import { LoginPageConfig } from "../pages/auth/login/LoginPageConfig";
-import { RegisterPageConfig } from "../pages/auth/register/RegisterPageConfig";
 import { Error404PageConfig } from "../pages/errors/404/Error404PageConfig";
 import { Error500PageConfig } from "../pages/errors/500/Error500PageConfig";
 
@@ -23,13 +22,13 @@ import { UserConfig } from "../pages/CrudPages/User/UserConfig";
 import { PlaceConfig } from "../pages/CrudPages/Place/PlaceConfig";
 import { GroupConfig } from "../pages/CrudPages/Group/GroupConfig";
 import { AdditionalConfig } from "../pages/CrudPages/Additional/AdditionalConfig";
+import { LiquidateConfig } from "../pages/CrudPages/Liquidate/LiquidateConfig";
 
 const routeConfigs = [
   ...DashboardPageConfig.routes,
   ...AllPostsPageConfig.routes,
   ...AddPostPageConfig.routes,
   ...LoginPageConfig.routes,
-  ...RegisterPageConfig.routes,
   ...Error404PageConfig.routes,
   ...Error500PageConfig.routes,
 
@@ -47,6 +46,7 @@ const routeConfigs = [
   ...PlaceConfig.routes,
   ...GroupConfig.routes,
   ...AdditionalConfig.routes,
+  ...LiquidateConfig.routes,
 ];
 
 const routes = [

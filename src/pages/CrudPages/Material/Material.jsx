@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
+import DevicesOtherIcon from "@material-ui/icons/DevicesOther";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -53,12 +53,52 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "credentialCode", label: "credentialCode" },
-  { id: "status", label: "status" },
-  { id: "timeStartDepreciation", label: "timeStartDepreciation" },
+  { id: "credentialCode", label: "Mã CSVC" },
+  { id: "status", label: "Trạng thái" },
+  { id: "product.name", label: "Mã sản phẩm ", disableSorting: true },
+  { id: "product.description", label: "Mô tả", disableSorting: true },
+  { id: "product.type", label: "Loại CSVC", disableSorting: true },
+  {
+    id: "product.timeAllocationType",
+    label: "Kiểu phân bổ",
+    disableSorting: true,
+  },
+  {
+    id: "currentPlace.nameSpecification",
+    label: "Vị trí",
+    disableSorting: true,
+  },
+  { id: "timeStartDepreciation", label: "Bắt đầu khấu hao" },
+  { id: "haveInclude", label: "Là bộ" },
+  { id: "parentCode", label: "Mã Cơ Sở Vật Chất đi kèm" },
+
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
+const convertStatus = (status) => {
+  switch (status) {
+    case "UN_USED":
+      return "Không Sử Dụng";
+
+    case "IN_USED":
+      return "Đang Sử Dụng";
+
+    case "DAMAGED":
+      return "Bị Hư Hại";
+
+    case "REQUEST_REPAIR":
+      return "Yêu Cầu Sửa Chửa";
+
+    case "REQUEST_LIQUIDATE ":
+      return "Yêu Cầu Thanh Lý";
+
+    case "NO_LONGER":
+      return " Không Còn";
+
+    default:
+      return "Đang Sử Dụng";
+  }
+};
 export default function Material(props) {
   const { history } = props;
   const classes = useStyles();
@@ -106,6 +146,7 @@ export default function Material(props) {
   };
 
   const MaterialHandledToInsert = (obj) => {
+    console.log(obj, " check add new");
     const temp = {
       credentialCode: obj.credentialCode,
       status: obj.status,
@@ -120,10 +161,13 @@ export default function Material(props) {
         userId: obj.userId,
       },
     };
+
+    console.log(temp, " sau convert addnewr");
     return temp;
   };
 
   const MaterialHandledToUpdate = (obj) => {
+    console.log(obj, " check updated");
     const temp = {
       id: obj.id,
       credentialCode: obj.credentialCode,
@@ -139,6 +183,8 @@ export default function Material(props) {
         userId: obj.userId,
       },
     };
+
+    console.log(temp, " sau convert updated");
 
     return temp;
   };
@@ -248,7 +294,7 @@ export default function Material(props) {
         if (target.value === "") return items;
         else
           return items.filter((x) =>
-            x.name.toLowerCase().includes(target.value)
+            x.credentialCode.toLowerCase().includes(target.value)
           );
       },
     });
@@ -290,16 +336,16 @@ export default function Material(props) {
     <>
       <PageHeader
         history={history}
-        title="Phòng ban"
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<DomainTwoToneIcon fontSize="large" />}
+        title="Cơ sở vật chất"
+        subTitle="Tất cả thông tin CSVT mà bạn hiện đang quản lý"
+        icon={<DevicesOtherIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm cơ sở vật chất"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -312,7 +358,7 @@ export default function Material(props) {
               />
             </Grid>
             <Grid item sm={3}>
-              <Controls.Button
+              {/* <Controls.Button
                 text="Thêm mới"
                 variant="outlined"
                 startIcon={<AddIcon />}
@@ -321,7 +367,7 @@ export default function Material(props) {
                   setOpenPopup(true);
                   setRecordForEdit(null);
                 }}
-              />
+              /> */}
             </Grid>
           </Grid>
         </div>
@@ -332,8 +378,24 @@ export default function Material(props) {
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
                 <TableCell>{item.credentialCode}</TableCell>
-                <TableCell>{item.status}</TableCell>
+                <TableCell>{convertStatus(item.status)}</TableCell>
+
+                <TableCell>{item.product.name}</TableCell>
+                <TableCell>{item.product.description}</TableCell>
+                <TableCell>
+                  {item.product.type === "ASSET" ? "TSCĐ" : "CCDC"}
+                </TableCell>
+                <TableCell>
+                  {item.product.timeAllocationType === "YEAR" ? "Năm" : "Tháng"}
+                </TableCell>
+                <TableCell>
+                  {item.currentPlace && item.currentPlace.nameSpecification}
+                </TableCell>
+
                 <TableCell>{item.timeStartDepreciation}</TableCell>
+                <TableCell>{item.haveInclude ? "yes" : "no"}</TableCell>
+                <TableCell>{item.parentCode}</TableCell>
+
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -348,7 +410,7 @@ export default function Material(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa CSVC này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -371,7 +433,7 @@ export default function Material(props) {
                   </Controls.ActionButton>
                   <Controls.ActionButton color="primary">
                     <Tooltip title="Thanh lý" arrow>
-                      <Icon fontSize="small">gavel</Icon>
+                      <Icon fontSize="small">cancel</Icon>
                     </Tooltip>
                   </Controls.ActionButton>
                 </TableCell>
@@ -382,7 +444,7 @@ export default function Material(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu bộ phận"
+        title="Biểu mẫu Cơ sở vật chất"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
@@ -390,7 +452,7 @@ export default function Material(props) {
       </Popup>
 
       <Popup
-        title="Điều chuyển xxx "
+        title="Điều chuyển cơ sở vật chất "
         openPopup={openPopupTransfer}
         setOpenPopup={setOpenPopupTransfer}
       >

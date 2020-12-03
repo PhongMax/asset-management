@@ -8,7 +8,6 @@ const initialFValues = {
   id: 0,
   credentialCode: "",
   status: "",
-  allocationDuration: 1,
   timeStartDepreciation: new Date(),
   haveInclude: false,
   parentCode: null,
@@ -24,13 +23,14 @@ export default function MaterialForm(props) {
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataUser, setDataUser] = useState([]);
   const [DataPlace, setDataPlace] = useState([]);
+
   const getMaterialStatus = [
-    { id: "UN_USED", title: "UN_USED" },
-    { id: "IN_USED", title: "IN_USED" },
-    { id: "DAMAGED", title: "DAMAGED" },
-    { id: "REQUEST_REPAIR", title: "REQUEST_REPAIR" },
-    { id: "REQUEST_LIQUIDATE", title: "REQUEST_LIQUIDATE" },
-    { id: "NO_LONGER", title: "NO_LONGER" },
+    { id: "UN_USED", title: "Không Sử Dụng" },
+    { id: "IN_USED", title: "Đang Sử Dụng" },
+    { id: "DAMAGED", title: "Bị Hư Hại" },
+    { id: "REQUEST_REPAIR", title: "Yêu Cầu Sửa Chữa" },
+    { id: "REQUEST_LIQUIDATE", title: "Yêu Cầu Thanh Lý" },
+    { id: "NO_LONGER", title: "Không Còn" },
   ];
 
   const validate = (fieldValues = values) => {
@@ -88,67 +88,110 @@ export default function MaterialForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="credentialCode"
-            label="credentialCode"
+            label="Mã CSVC"
             value={values.credentialCode}
             onChange={handleInputChange}
+            error={errors.credentialCode}
           />
           <Controls.Input
             name="parentCode"
-            label="parentCode"
+            label="Mã Cơ Sở Vật Chất đi kèm"
             value={values.parentCode}
             onChange={handleInputChange}
+            error={errors.parentCode}
           />
 
+          {/* <Controls.Select
+            name="additionalId"
+            label="additionalId"
+            value={values.additionalId}
+            onChange={handleInputChange}
+            options={DataAdditional}
+          /> */}
+
+          {/* <Controls.Select
+            name="userId"
+            label="userId"
+            value={values.userId}
+            onChange={handleInputChange}
+            options={DataUser}
+          /> */}
+
+          <Controls.AutoCompleteButton
+            name="additionalId"
+            label="Đợt thêm vào"
+            value={DataAdditional.find(
+              (item) => item.id === values.additionalId
+            )}
+            onChange={handleInputChange}
+            options={DataAdditional}
+            error={errors.additionalId}
+          />
+
+          <Controls.AutoCompleteButton
+            name="userId"
+            label="Người thêm"
+            value={DataUser.find((item) => item.id === values.userId)}
+            onChange={handleInputChange}
+            options={DataUser}
+            error={errors.userId}
+          />
           <Controls.Checkbox
-            label="haveInclude"
+            label="Là Bộ"
             name="haveInclude"
             value={values.haveInclude}
             onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={6}>
-          <Controls.DatePicker
-            name="timeStartDepreciation"
-            label="Danh mục"
-            value={values.timeStartDepreciation}
-            onChange={handleInputChange}
-          />
-          <Controls.Select
-            name="status"
-            label="status"
-            value={values.status}
-            onChange={handleInputChange}
-            options={getMaterialStatus}
-          />
-          <Controls.Select
-            name="productId"
-            label="productId"
-            value={values.productId}
-            onChange={handleInputChange}
-            options={DataProduct}
-          />
-          <Controls.Select
-            name="additionalId"
-            label="additionalId"
-            value={values.additionalId}
-            onChange={handleInputChange}
-            options={DataAdditional}
-          />
-
-          <Controls.Select
-            name="userId"
-            label="userId"
-            value={values.userId}
-            onChange={handleInputChange}
-            options={DataUser}
-          />
-          <Controls.Select
+          {/* <Controls.Select
             name="placeId"
             label="placeId"
             value={values.placeId}
             onChange={handleInputChange}
             options={DataPlace}
+          /> */}
+
+          <Controls.AutoCompleteButton
+            name="placeId"
+            label="Vị trí"
+            value={DataPlace.find((item) => item.id === values.placeId)}
+            onChange={handleInputChange}
+            options={DataPlace}
+            error={errors.placeId}
           />
+
+          <Controls.DatePicker
+            name="timeStartDepreciation"
+            label=" Thời gian bắt đầu khấu hao"
+            value={values.timeStartDepreciation}
+            onChange={handleInputChange}
+          />
+          <Controls.Select
+            name="status"
+            label="Trạng thái"
+            value={values.status}
+            onChange={handleInputChange}
+            options={getMaterialStatus}
+          />
+
+          {/* <Controls.Select
+            name="productId"
+            label="productId"
+            value={values.productId}
+            onChange={handleInputChange}
+            options={DataProduct}
+          /> */}
+
+          <Controls.AutoCompleteButton
+            name="productId"
+            label="Sản phẩm"
+            value={DataProduct.find((item) => item.id === values.productId)}
+            onChange={handleInputChange}
+            options={DataProduct}
+            error={errors.productId}
+          />
+
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

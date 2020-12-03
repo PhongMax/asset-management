@@ -13,10 +13,9 @@ import Liquidate from "../pages/CrudPages/Liquidate/Liquidate";
 // import UserForm from "../pages/CrudPages/User/UserForm";
 // import User from "../pages/CrudPages/User/User";
 // import Inventory from "../pages/CrudPages/Inventory/Inventory";
-import Material from "../pages/CrudPages/Material/Material";
 
 // import UserForm from "../pages/CrudPages/User/UserForm";
-// import Material from "./../pages/CrudPages/Material/Material";
+import Material from "./../pages/CrudPages/Material/Material";
 function TableTest(props) {
   return (
     <OftadehLayout>
@@ -30,10 +29,10 @@ function TableTest(props) {
       {/* <User /> */}
       {/* <TypePlace /> */}
       {/* <Place /> */}
-      <Liquidate />
+      {/* <Liquidate /> */}
       {/* <Inventory /> */}
 
-      {/* <Material /> */}
+      <Material />
     </OftadehLayout>
   );
 }

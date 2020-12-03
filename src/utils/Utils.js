@@ -86,7 +86,7 @@ export const getDataProduct = async () => {
   const { data: responseData } = await productService.getAllProduct();
   const { data: typePlaces } = responseData;
   return typePlaces.map((item) => {
-    return { id: item.id, title: item.name };
+    return { id: item.id, title: item.description };
   });
 };
 

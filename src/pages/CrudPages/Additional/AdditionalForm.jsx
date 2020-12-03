@@ -8,8 +8,8 @@ import * as Utils from "../../../utils/Utils";
 const initialFValues = {
   id: 0,
   time: new Date(),
-  userId: 0,
-  organizationId: 0,
+  userId: "",
+  organizationId: "",
 };
 
 export default function AdditionalForm(props) {
@@ -72,14 +72,15 @@ export default function AdditionalForm(props) {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={6}>
-          <Controls.Select
+          <Controls.AutoCompleteButton
             name="userId"
             label="Userxxx"
-            value={values.userId}
+            value={Users.find((item) => item.id === values.userId)}
             onChange={handleInputChange}
             options={Users}
             error={errors.userId}
           />
+
           <Controls.DatePicker
             name="time"
             label="Nhập thời gian đợt bổ sung"
@@ -89,14 +90,17 @@ export default function AdditionalForm(props) {
           />
         </Grid>
         <Grid item xs={6}>
-          <Controls.Select
+          <Controls.AutoCompleteButton
             name="organizationId"
             label="Thuộc tổ chức nào"
-            value={values.organizationId}
+            value={Organizations.find(
+              (item) => item.id === values.organizationId
+            )}
             onChange={handleInputChange}
             options={Organizations}
             error={errors.organizationId}
           />
+
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

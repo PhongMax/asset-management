@@ -167,6 +167,14 @@ const navigationConfig = [
         url: "/place",
         exact: true,
       },
+      {
+        id: "10",
+        title: "Liquidate",
+        type: "item",
+        icon: "apps",
+        url: "/liquidate",
+        exact: true,
+      },
     ],
   },
   {

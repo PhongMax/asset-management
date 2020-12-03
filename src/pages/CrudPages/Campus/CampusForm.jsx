@@ -10,14 +10,14 @@ const initialFValues = {
   contactPhone: "",
   description: "",
   location: "",
-  mapUrl: "",
+  mapUrl: null,
   name: "",
   createdAt: new Date(),
   updatedAt: new Date(),
 };
 const getCampusCollection = () => [
-  { id: "1", title: "FACILITY" },
-  { id: "2", title: "HEADQUARTERS" },
+  { id: "FACILITY", title: "Cơ sở" },
+  { id: "HEADQUARTERS", title: "Trụ sở chính" },
 ];
 export default function Campus(props) {
   const { addOrEdit, recordForEdit } = props;
@@ -26,10 +26,18 @@ export default function Campus(props) {
     let temp = { ...errors };
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
-    if ("contactPhone" in fieldValues)
-      temp.contactPhone = fieldValues.contactPhone
+    if ("description" in fieldValues)
+      temp.description = fieldValues.description
         ? ""
         : "Trường này là bắt buộc.";
+
+    if ("contactPhone" in fieldValues)
+      temp.contactPhone = /((05[5|8|9]|08[1|2|3|4|5|86|9]|03[2|3|4|5|6|7|8|9]|07[0|9|7|6|8]|09[0|2|1|4|3|6|7|8|9]|01[2|9])+([0-9]{7,8})\b)/g.test(
+        fieldValues.contactPhone
+      )
+        ? ""
+        : "Số điện thoại không hợp lệ.";
+
     if ("contactEmail" in fieldValues)
       temp.contactEmail = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/.test(
         fieldValues.contactEmail
@@ -39,11 +47,9 @@ export default function Campus(props) {
     if ("campusType" in fieldValues)
       temp.campusType = fieldValues.campusType
         ? ""
-        : "HEADQUARTERS hoặc FACILITY ";
+        : "Cơ sở hoặc trụ sở chính ";
     if ("location" in fieldValues)
       temp.location = fieldValues.location ? "" : "Trường này là bắt buộc.";
-    if ("mapUrl" in fieldValues)
-      temp.mapUrl = fieldValues.mapUrl ? "" : "Trường này là bắt buộc.";
 
     setErrors({
       ...temp,
@@ -82,24 +88,26 @@ export default function Campus(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên cơ sở"
+            label="Nhập tên khuôn viên"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}
           />
           <Controls.Input
             name="description"
-            label="Nhập mô tả"
+            label="Nhập mô tả chi tiết"
             value={values.description}
             onChange={handleInputChange}
+            error={errors.description}
           />
 
           <Controls.Select
             name="campusType"
-            label="Mã cơ sở"
+            label="Loại khuôn viên"
             value={values.campusType}
             onChange={handleInputChange}
             options={getCampusCollection()}
+            error={errors.campusType}
           />
           <Controls.Input
             name="mapUrl"

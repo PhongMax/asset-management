@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PermDeviceInformationIcon from "@material-ui/icons/PermDeviceInformation";
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -49,9 +49,10 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "time", label: "Time" },
-  { id: "startTime", label: "Start Time" },
-  { id: "endTime", label: "End Time" },
+  { id: "time", label: "Định kỳ kiểm kê" },
+  { id: "startTime", label: "Thời Gian Bắt đầu" },
+  { id: "endTime", label: "Thời Gian Kết Thúc" },
+  { id: "inCheck", label: "Cho phép kiểm kê" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -168,7 +169,7 @@ export default function Inventory(props) {
         if (target.value === "") return items;
         else
           return items.filter((x) =>
-            x.name.toLowerCase().includes(target.value)
+            x.time.toLowerCase().includes(target.value)
           );
       },
     });
@@ -199,16 +200,16 @@ export default function Inventory(props) {
     <>
       <PageHeader
         history={history}
-        title="Phòng ban"
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
-        icon={<PermDeviceInformationIcon fontSize="large" />}
+        title="Đợt kiểm kê"
+        subTitle="Tất cả các đợt kiểm kê mà bạn hiện đang quản lý"
+        icon={<EqualizerIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm đợt kiểm kê "
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -243,23 +244,24 @@ export default function Inventory(props) {
                 <TableCell>{item.time}</TableCell>
                 <TableCell>{item.startTime}</TableCell>
                 <TableCell>{item.endTime}</TableCell>
+                <TableCell>{item.inCheck.toString() === "true" ? "Cho phép" : "Không"}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
-                  {/* <Controls.ActionButton
+                  <Controls.ActionButton
                     color="primary"
                     onClick={() => {
                       openInPopup(item);
                     }}
                   >
                     <EditOutlinedIcon fontSize="small" />
-                  </Controls.ActionButton> */}
+                  </Controls.ActionButton>
                   <Controls.ActionButton
                     color="secondary"
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa bản ghi này không?",
+                        title: "Bạn có chắc chắn xóa đợt kiểm kê này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -277,7 +279,7 @@ export default function Inventory(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu bộ phận"
+        title="Biểu mẫu Đợt kiểm kê"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

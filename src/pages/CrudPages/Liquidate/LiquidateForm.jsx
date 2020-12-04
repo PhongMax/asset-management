@@ -10,7 +10,7 @@ const initialFValues = {
   userId: "",
 };
 
-export default function UserForm(props) {
+export default function LiquidateForm(props) {
   const { addOrEdit, recordForEdit } = props;
   const [Users, setUsers] = useState([]);
 

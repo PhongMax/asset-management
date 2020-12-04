@@ -12,7 +12,7 @@ const initialFValues = {
   groupId: 0,
 };
 
-export default function CategoryFormForm(props) {
+export default function CategoryForm(props) {
   const { addOrEdit, recordForEdit } = props;
   const [Groups, setGroups] = useState([]);
 

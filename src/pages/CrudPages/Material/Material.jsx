@@ -19,6 +19,7 @@ import {
 } from "@material-ui/core";
 import MaterialForm from "./MaterialForm";
 import TransferMaterialForm from "../TransferMaterial/TransferMaterialForm";
+import LiquidateMaterialForm from "../LiquidateMaterial/LiquidateMaterialForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
 import Controls from "../commons/Controls";
@@ -27,6 +28,7 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 import * as MaterialService from "../../../services/materialService";
 import * as TransferMaterialService from "../../../services/transferMaterialService";
+import * as LiquidateMaterialService from "../../../services/liquidateMaterialService";
 import * as utils from "../../../utils/Utils.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -106,7 +108,7 @@ export default function Material(props) {
   const [records, setRecords] = useState([]);
 
   const [inforTransfer, setInforTransfer] = useState(null);
-
+  const [inforLiquidate, setInforLiquidate] = useState(null);
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -114,6 +116,8 @@ export default function Material(props) {
   });
   const [openPopup, setOpenPopup] = useState(false);
   const [openPopupTransfer, setOpenPopupTransfer] = useState(false);
+  const [openPopupLiquidate, setOpenPopupLiquidate] = useState(false);
+
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -204,6 +208,18 @@ export default function Material(props) {
     return temp;
   };
 
+  const LiquidateMaterialHandledToInsert = (obj) => {
+    const temp = {
+      embedded: {
+        liquidateId: obj.liquidateId,
+        materialId: obj.materialId,
+      },
+    };
+
+    return temp;
+  };
+
+
   //=======================================   XỬ LÝ CALL API    ===========================================
   const getMaterialAndUpdateToState = async () => {
     try {
@@ -243,6 +259,26 @@ export default function Material(props) {
       toast.error("Errors: Điều chuyển thất bại ");
     }
   };
+  
+  const insertLiquidateMaterial = async (liquidateMaterial) => {
+    
+    console.log( LiquidateMaterialHandledToInsert(liquidateMaterial), " xem thử nó bị gì");
+    try {
+      await LiquidateMaterialService.insertLiquidateMaterial(
+        LiquidateMaterialHandledToInsert(liquidateMaterial)
+      );
+      getMaterialAndUpdateToState();
+      setNotify({
+        isOpen: true,
+        message: "Thao tác thanh lý thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      toast.error("Errors: Thanh lý thất bại ");
+    }
+  };
+
+
 
   const updateMaterial = async (Material) => {
     try {
@@ -315,6 +351,14 @@ export default function Material(props) {
     setOpenPopupTransfer(false);
   };
 
+  const addLiquidateMaterial = (liquidateMaterial, resetForm) => {
+    insertLiquidateMaterial(liquidateMaterial);
+    resetForm();
+
+    setOpenPopupLiquidate(false);
+  };
+
+
   const openInPopup = (item) => {
     setRecordForEdit(item);
     setOpenPopup(true);
@@ -323,6 +367,12 @@ export default function Material(props) {
   const openInPopupTransfer = (item) => {
     setInforTransfer(item);
     setOpenPopupTransfer(true);
+  };
+
+
+  const openInPopupLiquidate = (item) => {
+    setInforLiquidate(item);
+    setOpenPopupLiquidate(true);
   };
   const onDelete = (id) => {
     setConfirmDialog({
@@ -431,7 +481,10 @@ export default function Material(props) {
                       <Icon fontSize="small">directions</Icon>
                     </Tooltip>
                   </Controls.ActionButton>
-                  <Controls.ActionButton color="primary">
+                  <Controls.ActionButton color="primary"
+                   onClick={() => {
+                    openInPopupLiquidate(item);
+                  }}>
                     <Tooltip title="Thanh lý" arrow>
                       <Icon fontSize="small">cancel</Icon>
                     </Tooltip>
@@ -461,6 +514,18 @@ export default function Material(props) {
           addTransferMaterial={addTransferMaterial}
         />
       </Popup>
+
+      <Popup
+        title="Thanh lý  "
+        openPopup={openPopupLiquidate}
+        setOpenPopup={setOpenPopupLiquidate}
+      >
+        <LiquidateMaterialForm
+          inforLiquidate={inforLiquidate}
+          addLiquidateMaterial={addLiquidateMaterial}
+        />
+      </Popup>
+
 
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

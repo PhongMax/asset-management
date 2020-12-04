@@ -100,12 +100,10 @@ export const getDataGroup = async () => {
 
 export const getDataLiquidate = async () => {
   const { data: responseData } = await liquidateService.getAllLiquidate();
-  const { data: liquidate } = responseData;
+  let { data: liquidate } = responseData;
+  liquidate= liquidate.filter((item) => (item.done.toString() === "true"));
   return liquidate.map((item) => {
-    const status = item ? "Đã hoàn tất" : "Chưa hoàn tất";
-    const title =
-      "Đợt thanh lý ngày : " + convertDateTime(item.time) + " | " + status;
-    return { id: item.id, title: title };
+    return { id: item.id, title: convertDateTime(item.time) };
   });
 };
 //==========================================================================================

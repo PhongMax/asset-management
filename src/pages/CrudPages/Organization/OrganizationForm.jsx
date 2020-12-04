@@ -11,7 +11,7 @@ const initialFValues = {
   updatedAt: new Date(),
 };
 
-export default function Organization(props) {
+export default function OrganizationForm(props) {
   const { addOrEdit, recordForEdit } = props;
 
   const validate = (fieldValues = values) => {

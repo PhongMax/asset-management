@@ -16,7 +16,7 @@ const initialFValues = (materialId, placeFromId) => {
   };
 };
 
-export default function MaterialForm(props) {
+export default function TransferMaterialForm(props) {
   const { addTransferMaterial, inforTransfer } = props;
 
   const [DataPlace, setDataPlace] = useState([]);

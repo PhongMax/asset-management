@@ -208,7 +208,7 @@ const navigationConfig = [
             id: "Login",
             title: "Login",
             type: "item",
-            url: "/pages/auth/login",
+            url: "/login",
             exact: true,
           },
         ],

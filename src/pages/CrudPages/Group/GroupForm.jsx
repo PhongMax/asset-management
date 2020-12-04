@@ -11,7 +11,7 @@ const initialFValues = {
   updatedAt: new Date(),
 };
 
-export default function GroupFormForm(props) {
+export default function GroupForm(props) {
   const { addOrEdit, recordForEdit } = props;
 
   const validate = (fieldValues = values) => {

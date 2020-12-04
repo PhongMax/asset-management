@@ -10,7 +10,7 @@ const initialFValues = {
   endTime: new Date(),
 };
 
-export default function Inventory(props) {
+export default function InventoryForm(props) {
   const { addOrEdit, recordForEdit } = props;
 
   const validate = (fieldValues = values) => {

@@ -19,7 +19,7 @@ const getCampusCollection = () => [
   { id: "FACILITY", title: "Cơ sở" },
   { id: "HEADQUARTERS", title: "Trụ sở chính" },
 ];
-export default function Campus(props) {
+export default function CampusForm(props) {
   const { addOrEdit, recordForEdit } = props;
 
   const validate = (fieldValues = values) => {

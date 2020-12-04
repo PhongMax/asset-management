@@ -49,8 +49,11 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "id", label: "id" },
-  { id: "time", label: "time" },
+
+  { id: "time", label: "Thời gian thanh lý" },
+  { id: " user.fullName", label: "Người thanh lý" ,  disableSorting: true},
+  { id: "done", label: "Hoàn Tất Thanh Lý" },
+  { id: "actions", label: "Actions", disableSorting: true },
 ];
 
 export default function Liquidate(props) {
@@ -192,7 +195,7 @@ export default function Liquidate(props) {
         if (target.value === "") return items;
         else
           return items.filter((x) =>
-            x.name.toLowerCase().includes(target.value)
+            x.time.toLowerCase().includes(target.value)
           );
       },
     });
@@ -223,8 +226,8 @@ export default function Liquidate(props) {
     <>
       <PageHeader
         history={history}
-        title="Quản lý xxx (liquidate or nhân viên ) "
-        subTitle="Tất cả các phòng ban mà bạn hiện đang quản lý"
+        title="Đợt thanh lý"
+        subTitle="Tất cả các đợt thanh lý mà bạn hiện đang quản lý"
         icon={<ChildFriendlyIcon fontSize="large" />}
       />
       <Paper elevator={3} className={classes.pageContent}>
@@ -232,7 +235,7 @@ export default function Liquidate(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Tìm kiếm "
+                label="Tìm kiếm thời gian thanh lý"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (
@@ -263,15 +266,11 @@ export default function Liquidate(props) {
           <TableBody>
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
-                <TableCell>{item.id}</TableCell>
+     
                 <TableCell>{item.time}</TableCell>
-                {/* <TableCell>{item.phone}</TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell>{item.liquidatename}</TableCell>
-                <TableCell>{item.department.description}</TableCell> */}
+                <TableCell>{item.user.fullName}</TableCell>
+                <TableCell>{item.done.toString() === "true" ? "Hoàn tất" : " Chưa"}</TableCell> 
 
-                {/* <TableCell>{item.createdAt}</TableCell>
-                <TableCell>{item.updatedAt}</TableCell> */}
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -286,7 +285,7 @@ export default function Liquidate(props) {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Bạn có chắc chắn xóa người dùng này không?",
+                        title: "Bạn có chắc chắn xóa đợt thanh lý này không?",
                         subTitle: "Bạn không thể hoàn tác thao tác này",
                         onConfirm: () => {
                           onDelete(item.id);
@@ -304,7 +303,7 @@ export default function Liquidate(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu sản phẩm"
+        title="Biểu mẫu đợt thanh lý"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

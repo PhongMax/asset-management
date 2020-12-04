@@ -7,7 +7,7 @@ import * as Utils from "../../../utils/Utils";
 const initialFValues = {
   id: 0,
   time: new Date(),
-  userId: 0,
+  userId: "",
 };
 
 export default function UserForm(props) {
@@ -63,21 +63,20 @@ export default function UserForm(props) {
         <Grid item xs={6}>
           <Controls.DatePicker
             name="time"
-            label="time"
+            label="Thời gian thanh lý"
             value={values.time}
             onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={6}>
-          <Controls.Select
+          <Controls.AutoCompleteButton
             name="userId"
-            label="userId"
-            value={values.userId}
+            label="Người thanh lý"
+            value={Users.find((item) => item.id === values.userId)}
             onChange={handleInputChange}
             options={Users}
             error={errors.userId}
           />
-
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

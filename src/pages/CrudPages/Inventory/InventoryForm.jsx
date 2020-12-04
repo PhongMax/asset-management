@@ -8,8 +8,6 @@ const initialFValues = {
   time: new Date(),
   startTime: new Date(),
   endTime: new Date(),
-  createdAt: new Date(),
-  updatedAt: new Date(),
 };
 
 export default function Inventory(props) {
@@ -57,13 +55,13 @@ export default function Inventory(props) {
         <Grid item xs={6}>
           <Controls.DatePicker
             name="startTime"
-            label="Start Time"
+            label="Thời Gian Bắt đầu"
             value={values.startTime}
             onChange={handleInputChange}
           />
           <Controls.DatePicker
             name="endTime"
-            label="End Time"
+            label="Thời Gian Kết Thúc"
             value={values.endTime}
             onChange={handleInputChange}
           />
@@ -71,7 +69,7 @@ export default function Inventory(props) {
         <Grid item xs={6}>
           <Controls.DatePicker
             name="time"
-            label="Time"
+            label="Định kỳ kiểm kê"
             value={values.time}
             onChange={handleInputChange}
           />

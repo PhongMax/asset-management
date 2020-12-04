@@ -53,6 +53,8 @@ const headCells = [
   { id: "time", label: "Thời gian thanh lý" },
   { id: " user.fullName", label: "Người thanh lý" ,  disableSorting: true},
   { id: "done", label: "Hoàn Tất Thanh Lý" },
+  { id: "createdAt", label: "Ngày tạo dữ liệu" },
+  { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -270,7 +272,8 @@ export default function Liquidate(props) {
                 <TableCell>{item.time}</TableCell>
                 <TableCell>{item.user.fullName}</TableCell>
                 <TableCell>{item.done.toString() === "true" ? "Hoàn tất" : " Chưa"}</TableCell> 
-
+                <TableCell>{item.createdAt}</TableCell>
+                <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"

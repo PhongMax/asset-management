@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import authService from "../../../services/authService";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: ".85rem",
   },
   loginCard: {
-    width: "275px",
+    width: "350px",
     borderRadius: 5,
     background: "#fff",
     padding: ".85rem",
@@ -31,7 +32,7 @@ const LoginPage = (props) => {
   const [AuthObj, setAuthObj] = useState({ username: "", password: "" });
 
   const classes = useStyles();
-  // const { history } = props;
+  const { history } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,14 +58,12 @@ const LoginPage = (props) => {
       // const { state } = this.props.location;
       // window.location = state ? state.from.pathname : "/";
 
+      console.log(props, "props là gì");
+    history.push("/");
       console.log("login thành công");
     } catch (ex) {
-      if (ex.response && ex.response.status === 400) {
-        // const errors = { ...this.state.errors };
-        // errors.username = ex.response.data;
-        // this.setState({ errors });
-        console.log("lỗi rồi , lỗi rồi á");
-      }
+      console.log(ex, " lỗi loging là gì");
+      toast.error("Đăng nhập thất bại ");
     }
   };
 
@@ -85,7 +84,7 @@ const LoginPage = (props) => {
           {/* <form> */}
           <TextField
             size="small"
-            label="Usename"
+            label="Tên tài khoản"
             name="username"
             variant="outlined"
             margin="dense"
@@ -95,7 +94,7 @@ const LoginPage = (props) => {
           />
           <TextField
             size="small"
-            label="Password"
+            label="Mật khẩu"
             name="password"
             type="password"
             variant="outlined"
@@ -112,12 +111,14 @@ const LoginPage = (props) => {
           </Button> */}
           <div className={classes.mBottom}>
             <Button
+                type="submit" text="Submit"
+       
               variant="contained"
               color="primary"
               fullWidth
               className={classes.button}
               // onClick={() => history.push("/")}
-              onClick={handleSubmit}
+              // onClick={handleSubmit}
             >
               Đăng nhập
             </Button>
@@ -130,6 +131,7 @@ const LoginPage = (props) => {
             >
               Register Now!
             </Button> */}
+               
           </div>
         </form>
         <Typography variant="caption">&copy; Team K&P | QLTSHV</Typography>

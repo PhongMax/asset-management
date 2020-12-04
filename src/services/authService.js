@@ -11,7 +11,9 @@ export async function login(userLogin) {
   if (user.data.token) {
     localStorage.removeItem(userKey);
     localStorage.setItem(userKey, JSON.stringify(user.data));
+   
   }
+  return user.meta;
 }
 
 export function logout() {
@@ -27,8 +29,21 @@ export function getCurrentUser() {
   }
 }
 
+export function isLoggedIn() {
+  try {
+    const user = JSON.parse(localStorage.getItem(userKey));
+    if (user){
+      return true;
+    }else
+    return false;
+   
+  } catch (ex) {
+    return false;
+  }
+}
 export default {
   login,
   logout,
   getCurrentUser,
+  isLoggedIn,
 };

@@ -7,6 +7,7 @@ import Button from "./Button";
 import ActionButton from "./ActionButton";
 import MultipleSelect from "./MultipleSelect";
 import AutoCompleteButton from "./AutoCompleteButton";
+import SwitchButton from "./SwitchButton";
 const Controls = {
   Input,
   RadioGroup,
@@ -17,6 +18,7 @@ const Controls = {
   ActionButton,
   MultipleSelect,
   AutoCompleteButton,
+  SwitchButton,
 };
 
 export default Controls;

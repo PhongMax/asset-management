@@ -53,16 +53,18 @@ const LoginPage = (props) => {
 
   const doSubmit = async () => {
     try {
-      await authService.login(AuthObj);
-
-      // const { state } = this.props.location;
-      // window.location = state ? state.from.pathname : "/";
-
-      console.log(props, "props là gì");
-    history.push("/");
-      console.log("login thành công");
+     const metaData =  await authService.login(AuthObj);
+      if (metaData.code.toString() === "200")
+      {
+        toast("Đăng nhập thành công");
+        window.location = "/";
+      }else if (metaData.code.toString() === "400")
+      {
+        toast(metaData.message);
+      }
+    
     } catch (ex) {
-      console.log(ex, " lỗi loging là gì");
+    
       toast.error("Đăng nhập thất bại ");
     }
   };

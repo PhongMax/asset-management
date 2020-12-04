@@ -101,7 +101,7 @@ export const getDataGroup = async () => {
 export const getDataLiquidate = async () => {
   const { data: responseData } = await liquidateService.getAllLiquidate();
   let { data: liquidate } = responseData;
-  liquidate= liquidate.filter((item) => (item.done.toString() === "true"));
+  liquidate= liquidate.filter((item) => (item.done.toString() === "false"));
   return liquidate.map((item) => {
     return { id: item.id, title: convertDateTime(item.time) };
   });

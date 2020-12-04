@@ -9,6 +9,9 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
+// extra Query String
+const postQueryChangeStatus = apiEndpoint + ":changeStatus";
+
 HTTP.handleProtectedAPI();
 
 export function getLiquidate(liquidateId) {
@@ -22,6 +25,11 @@ export function getAllLiquidate() {
 export function insertLiquidate(liquidate) {
   return HTTP.POST(postQuery, liquidate);
 }
+
+export function changeStatusLiquidate(changeStatusLiquidate) {
+  return HTTP.POST(postQueryChangeStatus, changeStatusLiquidate);
+}
+
 
 export function updateLiquidate(liquidate) {
   return HTTP.PUT(putQuery, liquidate);

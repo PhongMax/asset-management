@@ -189,7 +189,7 @@ export default function User(props) {
         if (target.value === "") return items;
         else
           return items.filter((x) =>
-            x.fullName.toLowerCase().includes(target.value)
+            x.username.toLowerCase().includes(target.value)
           );
       },
     });
@@ -221,7 +221,7 @@ export default function User(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Nhập họ tên để tìm kiếm"
+                label="Nhập thông tin để tìm kiếm"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (

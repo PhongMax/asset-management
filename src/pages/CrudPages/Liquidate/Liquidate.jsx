@@ -52,10 +52,12 @@ const headCells = [
 
   { id: "time", label: "Thời gian thanh lý" },
   { id: " user.fullName", label: "Người thanh lý" ,  disableSorting: true},
-  { id: "done", label: "Hoàn Tất Thanh Lý" },
+  { id: "done", label: "Trạng thái" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
+  { id: "actionss", label: "Hoàn tất ", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
+
 ];
 
 export default function Liquidate(props) {
@@ -80,6 +82,7 @@ export default function Liquidate(props) {
     subTitle: "",
   });
 
+
   // ======================================    XỬ LÝ DATA FROM SERVER ====================================
   const LiquidateHandledToShow = (obj) => {
     const objConverted = obj.map((item) => {
@@ -91,6 +94,7 @@ export default function Liquidate(props) {
       };
       return Object.assign(item, additionalProps);
     });
+
     return objConverted;
   };
 
@@ -203,6 +207,11 @@ export default function Liquidate(props) {
     });
   };
 
+
+  const  handleChangeStatus = (e) => {
+
+  };
+
   const addOrEdit = (Liquidate, resetForm) => {
     if (Liquidate.id === 0) insertLiquidate(Liquidate);
     else updateLiquidate(Liquidate);
@@ -275,6 +284,9 @@ export default function Liquidate(props) {
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
+                <Controls.SwitchButton  value = {item.done} onChange = {handleChangeStatus} />
+                </TableCell>
+                <TableCell>
                   <Controls.ActionButton
                     color="primary"
                     onClick={() => {
@@ -299,6 +311,7 @@ export default function Liquidate(props) {
                     <CloseIcon fontSize="small" />
                   </Controls.ActionButton>
                 </TableCell>
+               
               </StyledTableRow>
             ))}
           </TableBody>

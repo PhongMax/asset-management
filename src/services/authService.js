@@ -27,8 +27,21 @@ export function getCurrentUser() {
   }
 }
 
+export function isLoggedIn() {
+  try {
+    const user = JSON.parse(localStorage.getItem(userKey));
+    if (user){
+      return true;
+    }else
+    return false;
+   
+  } catch (ex) {
+    return false;
+  }
+}
 export default {
   login,
   logout,
   getCurrentUser,
+  isLoggedIn,
 };

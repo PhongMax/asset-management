@@ -211,6 +211,7 @@ const navigationConfig = [
             url: "/login",
             exact: true,
           },
+         
         ],
       },
       {

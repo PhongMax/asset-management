@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 import {
   Avatar,
   ListItem,
@@ -20,7 +21,7 @@ import {
 import OftadehAvatarBadge from "../OftadehAvatarBadge/OftadehAvatarBadge";
 import { AccountCircle, Settings, ExitToApp } from "@material-ui/icons";
 import avataPicture from "../../assets/profiles/user.jpg";
-
+import * as authService from "../../services/authService";
 const useStyles = makeStyles((theme) => ({
   inline: {
     display: "inline",
@@ -35,8 +36,19 @@ const useStyles = makeStyles((theme) => ({
 
 const OftadehAvatarMenu = (props) => {
   const classes = useStyles(props);
-
   const [open, setOpen] = React.useState(false);
+  const [user, setUser] = React.useState("no name");
+  const history = useHistory();
+React.useEffect(() => {
+    const user = authService.getCurrentUser() && authService.getCurrentUser();
+    if (user)
+    {
+      setUser(user.username);
+    }
+  }, []);
+
+
+
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -45,11 +57,19 @@ const OftadehAvatarMenu = (props) => {
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
+    
+   
       return;
+
     }
 
     setOpen(false);
   };
+  const handleLogout = () => {
+    setOpen(false);
+        history.push("/logout");
+  };
+
 
   return (
     <>
@@ -79,7 +99,7 @@ const OftadehAvatarMenu = (props) => {
             primary={
               <React.Fragment>
                 <Typography component="span" variant="subtitle2">
-                  Team K&P
+                  {user}
                 </Typography>
               </React.Fragment>
             }
@@ -91,7 +111,7 @@ const OftadehAvatarMenu = (props) => {
                   className={classes.inline}
                   color="textPrimary"
                 >
-                  Admin
+                  xin chào,
                 </Typography>
               </React.Fragment>
             }
@@ -128,11 +148,11 @@ const OftadehAvatarMenu = (props) => {
                     </ListItemIcon>
                     settings
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem onClick={handleLogout}>
                     <ListItemIcon className={classes.menuIcon}>
                       <ExitToApp fontSize="small" />
                     </ListItemIcon>
-                    Logout
+                    Đăng xuất
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>

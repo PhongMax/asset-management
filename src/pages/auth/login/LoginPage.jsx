@@ -59,8 +59,9 @@ const LoginPage = (props) => {
       // window.location = state ? state.from.pathname : "/";
 
       console.log(props, "props là gì");
-    history.push("/");
-      console.log("login thành công");
+      toast("Đăng nhập thành công !");
+      window.location = "/";
+     
     } catch (ex) {
       console.log(ex, " lỗi loging là gì");
       toast.error("Đăng nhập thất bại ");

@@ -91,7 +91,7 @@ const convertStatus = (status) => {
     case "REQUEST_REPAIR":
       return "Yêu Cầu Sửa Chửa";
 
-    case "REQUEST_LIQUIDATE ":
+    case "REQUEST_LIQUIDATE":
       return "Yêu Cầu Thanh Lý";
 
     case "NO_LONGER":

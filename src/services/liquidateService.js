@@ -10,7 +10,7 @@ const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
 // extra Query String
-const postQueryChangeStatus = apiEndpoint + ":changeStatus";
+const putQueryChangeStatus = apiEndpoint + ":changeStatus";
 
 HTTP.handleProtectedAPI();
 
@@ -27,7 +27,7 @@ export function insertLiquidate(liquidate) {
 }
 
 export function changeStatusLiquidate(changeStatusLiquidate) {
-  return HTTP.POST(postQueryChangeStatus, changeStatusLiquidate);
+  return HTTP.PUT(putQueryChangeStatus, changeStatusLiquidate);
 }
 
 

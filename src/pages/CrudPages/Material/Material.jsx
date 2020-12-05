@@ -150,7 +150,6 @@ export default function Material(props) {
   };
 
   const MaterialHandledToInsert = (obj) => {
-    console.log(obj, " check add new");
     const temp = {
       credentialCode: obj.credentialCode,
       status: obj.status,
@@ -166,7 +165,6 @@ export default function Material(props) {
       },
     };
 
-    console.log(temp, " sau convert addnewr");
     return temp;
   };
 
@@ -187,9 +185,6 @@ export default function Material(props) {
         userId: obj.userId,
       },
     };
-
-    console.log(temp, " sau convert updated");
-
     return temp;
   };
 

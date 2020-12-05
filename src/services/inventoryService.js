@@ -8,6 +8,7 @@ const deleteQuery = apiEndpoint + ":delete/";
 const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
+const putQueryChangeStatus = apiEndpoint + ":changeStatus";
 
 HTTP.handleProtectedAPI();
 
@@ -22,6 +23,12 @@ export function getAllInventory() {
 export function insertInventory(inventroy) {
   return HTTP.POST(postQuery, inventroy);
 }
+
+export function changeStatusInventory(changeStatusInventory) {
+  return HTTP.PUT(putQueryChangeStatus, changeStatusInventory);
+}
+
+
 
 export function updateInventory(inventroy) {
   return HTTP.PUT(putQuery, inventroy);

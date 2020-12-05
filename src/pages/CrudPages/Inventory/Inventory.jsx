@@ -55,6 +55,7 @@ const headCells = [
   { id: "inCheck", label: "Cho phép kiểm kê" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
+  { id: "actionss", label: "Hoàn tất ", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -151,6 +152,28 @@ export default function Inventory(props) {
       setRecords(originalInventoryRecord);
     }
   };
+
+  
+  const changeStatusInventory = async (Inventory) => {
+
+    const infoChange =  { id:Inventory.id,
+      status:!Inventory.done};
+    try {
+      await InventoryService.changeStatusInventory(
+        infoChange
+      );
+   
+      setNotify({
+        isOpen: true,
+        message: "Thay đổi trạng thái thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      toast.error("Errors: Thay đổi trạng thái thất bại ");
+    }
+
+    getInventoryAndUpdateToState();
+  };
   //===================================================================================
 
   useEffect(getInventoryAndUpdateToState, []);
@@ -173,6 +196,10 @@ export default function Inventory(props) {
           );
       },
     });
+  };
+
+  const  handleChangeStatus = (item) => {
+    changeStatusInventory(item);
   };
 
   const addOrEdit = (Inventory, resetForm) => {
@@ -247,6 +274,7 @@ export default function Inventory(props) {
                 <TableCell>{item.inCheck.toString() === "true" ? "Cho phép" : "Không"}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
+                <Controls.AlertDialogSlide  value = {item.done} onChange = {() => handleChangeStatus(item)} />
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"

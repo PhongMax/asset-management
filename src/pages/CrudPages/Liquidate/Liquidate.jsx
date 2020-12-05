@@ -183,6 +183,28 @@ export default function Liquidate(props) {
       setRecords(originalLiquidateRecord);
     }
   };
+
+
+  const changeStatusLiquidate = async (Liquidate) => {
+
+    const infoChange =  { id:Liquidate.id,
+      status:!Liquidate.done};
+    try {
+      await liquidateService.changeStatusLiquidate(
+        infoChange
+      );
+   
+      setNotify({
+        isOpen: true,
+        message: "Thay đổi trạng thái thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      toast.error("Errors: Thay đổi trạng thái thất bại ");
+    }
+
+    getLiquidateAndUpdateToState();
+  };
   //===================================================================================
 
   useEffect(getLiquidateAndUpdateToState, []);
@@ -208,8 +230,8 @@ export default function Liquidate(props) {
   };
 
 
-  const  handleChangeStatus = (e) => {
-
+  const  handleChangeStatus = (item) => {
+    changeStatusLiquidate(item);
   };
 
   const addOrEdit = (Liquidate, resetForm) => {
@@ -284,7 +306,7 @@ export default function Liquidate(props) {
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
-                <Controls.SwitchButton  value = {item.done} onChange = {handleChangeStatus} />
+                <Controls.AlertDialogSlide  value = {item.done} onChange = {() => handleChangeStatus(item)} />
                 </TableCell>
                 <TableCell>
                   <Controls.ActionButton

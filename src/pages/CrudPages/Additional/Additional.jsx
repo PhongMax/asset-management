@@ -94,7 +94,7 @@ export default function Additional(props) {
     return objectConverted;
   };
 
-  const ProductHandledToInsert = (obj) => {
+  const AdditionalHandledToInsert = (obj) => {
     const temp = {
       time: obj.time,
       embedded: {
@@ -105,16 +105,17 @@ export default function Additional(props) {
     return temp;
   };
 
-  const ProductHandledToUpdate = (obj) => {
+  const AdditionalHandledToUpdate = (obj) => {
+    console.log(obj, "bị sao vậy ");
     const temp = {
       id: obj.id,
-      time: obj.time,
+      time: new Date(obj.time).toISOString(),
       embedded: {
         categoryId: obj.userId,
         calculationUnitId: obj.organizationId,
       },
     };
-
+    console.log(temp, "bị sao vậy ");
     return temp;
   };
 
@@ -132,7 +133,7 @@ export default function Additional(props) {
   const insertAdditional = async (Additional) => {
     try {
       await AdditionalService.insertAdditional(
-        ProductHandledToInsert(Additional)
+        AdditionalHandledToInsert(Additional)
       );
       getAdditionalAndUpdateToState();
       setNotify({
@@ -148,7 +149,7 @@ export default function Additional(props) {
   const updateAdditional = async (Additional) => {
     try {
       await AdditionalService.updateAdditional(
-        ProductHandledToUpdate(Additional)
+        AdditionalHandledToUpdate(Additional)
       );
       getAdditionalAndUpdateToState();
       setNotify({

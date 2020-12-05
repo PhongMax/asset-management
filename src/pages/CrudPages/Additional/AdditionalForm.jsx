@@ -79,6 +79,7 @@ export default function AdditionalForm(props) {
             onChange={handleInputChange}
             options={Users}
             error={errors.userId}
+            disabled
           />
 
           <Controls.DatePicker

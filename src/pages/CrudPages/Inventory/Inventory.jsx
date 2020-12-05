@@ -55,7 +55,7 @@ const headCells = [
   { id: "inCheck", label: "Cho phép kiểm kê" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
-  { id: "actionss", label: "Hoàn tất ", disableSorting: true },
+  { id: "actionss", label: "Cho phép k. kê", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 

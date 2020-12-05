@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import authService from "../../../services/authService";
 import { makeStyles, Typography, Button, TextField } from "@material-ui/core";
 import { toast } from "react-toastify";
+import * as authService from "../../../services/authService";
+import { Redirect} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,9 +69,15 @@ const LoginPage = (props) => {
       toast.error("Đăng nhập thất bại ");
     }
   };
-  
-  return (
-    <div className={classes.root}>
+
+  const isLoggedIn = authService.isLoggedIn();
+  if (isLoggedIn)
+  {
+    return <Redirect to="/" />;
+  } else
+  {
+    return (
+      <div className={classes.root}>
       <div className={classes.loginCard}>
         <Typography variant="h5" component="h1">
           Đăng nhập
@@ -140,6 +147,9 @@ const LoginPage = (props) => {
       </div>
     </div>
   );
+
+  }
+
 };
 
 export default LoginPage;

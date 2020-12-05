@@ -10,7 +10,8 @@ import * as additionalService from "../services/additionalService";
 import * as productService from "../services/productService";
 import * as groupService from "../services/groupService";
 import * as liquidateService from "../services/liquidateService";
-// ============== Dùng để truyền vào các component như select v.v.v==========================
+
+
 export const getDataDepartment = async () => {
   const { data: responseData } = await departmentService.getAllDepartment();
   const { data: Departments } = responseData;

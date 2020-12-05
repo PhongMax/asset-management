@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 export default function AutoCompleteButton(props) {
-  const { name, label, value, onChange, error = null, options } = props;
+  const { name, label, value, onChange, error = null, options , ...other } = props;
   const classes = useStyles();
   const convertToDefEventPara = (event, name, values) => {
     if (values) {
@@ -36,6 +36,7 @@ export default function AutoCompleteButton(props) {
   return (
     <FormControl variant="outlined" {...(error && { error: true })}>
       <Autocomplete
+      {...other}
         className={classes.root}
         name={name}
         value={value || null}

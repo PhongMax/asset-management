@@ -9,6 +9,7 @@ import MultipleSelect from "./MultipleSelect";
 import AutoCompleteButton from "./AutoCompleteButton";
 import SwitchButton from "./SwitchButton";
 import AlertDialogSlide from "./AlertDialogSlide";
+import MultipleInput from "./MultipleInput";
 const Controls = {
   Input,
   RadioGroup,
@@ -21,6 +22,7 @@ const Controls = {
   AutoCompleteButton,
   SwitchButton,
   AlertDialogSlide,
+  MultipleInput,
 };
 
 export default Controls;

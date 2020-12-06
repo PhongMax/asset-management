@@ -136,7 +136,7 @@ export default function MaterialForm(props) {
 
           <Controls.AutoCompleteButton
             name="additionalId"
-            label="Đợt thêm vào"
+            label="Chọn đợt bổ sung"
             value={DataAdditional.find(
               (item) => item.id === values.additionalId
             )}
@@ -203,7 +203,7 @@ export default function MaterialForm(props) {
 
           <Controls.AutoCompleteButton
             name="productId"
-            label="Sản phẩm"
+            label="Chọn sản phẩm"
             value={DataProduct.find((item) => item.id === values.productId)}
             onChange={handleInputChange}
             options={DataProduct}

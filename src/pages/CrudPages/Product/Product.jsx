@@ -289,7 +289,7 @@ export default function Product(props) {
                   {item.timeAllocationType === "YEAR" ? "Năm" : "Tháng"}
                 </TableCell>
                 <TableCell>{item.allocationDuration}</TableCell>
-                <TableCell>{item.depreciationRate}</TableCell>
+                <TableCell>{(Math.round(item.depreciationRate * 100) / 100).toFixed(2)}</TableCell>
                 <TableCell>{item.category.description}</TableCell>
                 <TableCell>{item.calculationUnit.name}</TableCell>
 

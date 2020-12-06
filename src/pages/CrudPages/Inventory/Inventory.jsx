@@ -157,7 +157,7 @@ export default function Inventory(props) {
   const changeStatusInventory = async (Inventory) => {
 
     const infoChange =  { id:Inventory.id,
-      status:!Inventory.done};
+      status:!Inventory.inCheck};
     try {
       await InventoryService.changeStatusInventory(
         infoChange
@@ -274,7 +274,10 @@ export default function Inventory(props) {
                 <TableCell>{item.inCheck.toString() === "true" ? "Cho phép" : "Không"}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
-                <Controls.AlertDialogSlide  value = {item.done} onChange = {() => handleChangeStatus(item)} />
+                <TableCell>
+                <Controls.AlertDialogSlide  value = {item.inCheck} onChange = {() => handleChangeStatus(item)} />
+                </TableCell>
+            
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"

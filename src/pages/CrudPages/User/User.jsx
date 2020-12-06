@@ -212,7 +212,7 @@ export default function User(props) {
     <>
       <PageHeader
         history={history}
-        title="(user or nhân viên ) "
+        title="(User ) "
         subTitle="Tất cả các user or nhân viên  mà bạn hiện đang quản lý"
         icon={<PersonIcon fontSize="large" />}
       />
@@ -279,7 +279,7 @@ export default function User(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu user or nhân viên"
+        title="Biểu mẫu user"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

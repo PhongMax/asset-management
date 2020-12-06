@@ -16,7 +16,7 @@ export default function AdditionalForm(props) {
   const { addOrEdit, recordForEdit } = props;
   const [Users, setUsers] = useState([]);
   const [Organizations, setOrganizations] = useState([]);
-
+  const [updatedFlag, setUpdatedFlag] = useState(false);
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
@@ -53,10 +53,13 @@ export default function AdditionalForm(props) {
   };
 
   useEffect(() => {
-    if (recordForEdit != null)
+    if (recordForEdit != null) {
+      setUpdatedFlag(true);
       setValues({
         ...recordForEdit,
       });
+    }
+     
   }, [recordForEdit, setValues]);
 
   useEffect(() => {
@@ -74,12 +77,12 @@ export default function AdditionalForm(props) {
         <Grid item xs={6}>
           <Controls.AutoCompleteButton
             name="userId"
-            label="Userxxx"
+            label="Người bổ sung"
             value={Users.find((item) => item.id === values.userId)}
             onChange={handleInputChange}
             options={Users}
             error={errors.userId}
-            disabled
+            disabled = {updatedFlag}
           />
 
           <Controls.DatePicker
@@ -100,6 +103,7 @@ export default function AdditionalForm(props) {
             onChange={handleInputChange}
             options={Organizations}
             error={errors.organizationId}
+            disabled = {updatedFlag}
           />
 
           <div>

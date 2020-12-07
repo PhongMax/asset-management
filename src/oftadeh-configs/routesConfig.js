@@ -2,8 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 import { DashboardPageConfig } from "../pages/dashboard/DashboardPageConfig";
-import { AddPostPageConfig } from "../pages/posts/add-post/AddPostPageConfig";
-import { AllPostsPageConfig } from "../pages/posts/all-posts/AllPostsPageConfig";
+
 import { LoginPageConfig } from "../pages/auth/login/LoginPageConfig";
 import { LogoutPageConfig } from "../pages/auth/logout/LogoutPageConfig";
 import { Error404PageConfig } from "../pages/errors/404/Error404PageConfig";
@@ -28,8 +27,8 @@ import { InventoryConfig } from "../pages/CrudPages/Inventory/InventoryConfig";
 import { MaterialConfig } from "../pages/CrudPages/Material/MaterialConfig";
 const routeConfigs = [
   ...DashboardPageConfig.routes,
-  ...AllPostsPageConfig.routes,
-  ...AddPostPageConfig.routes,
+
+ 
   ...LoginPageConfig.routes,
   ...LogoutPageConfig.routes,
   ...Error404PageConfig.routes,
@@ -57,7 +56,7 @@ const routeConfigs = [
 const routes = [
   ...routeConfigs,
   {
-    component: () => <Redirect to="/pages/errors/error-404" />,
+    component: () => <Redirect to="/error-404" />,
   },
 ];
 

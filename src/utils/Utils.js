@@ -112,9 +112,11 @@ export const getDataLiquidate = async () => {
 export const convertDateTime = (epochTime) => {
 
   // return moment.unix(epochTime).format('DD/MM/YYYY hh:mm:ss A').utc();
-  
-  const dateConverted = new Date(epochTime * 1000);
-  return dateConverted.toLocaleString();
+
+  // const dateConverted = new Date(epochTime * 1000);
+  // return dateConverted.toLocaleString();
+
+  return moment.unix(epochTime).format('DD/MM/YYYY hh:mm:ss A');
 };
 
 export default {

@@ -24,6 +24,7 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 import * as InventoryService from "../../../services/inventoryService";
 import * as utils from "../../../utils/Utils.js";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -121,6 +122,11 @@ export default function Inventory(props) {
   };
 
   const updateInventory = async (Inventory) => {
+    console.log(Inventory, " inventory");
+    Inventory.time = moment( Inventory.time).toISOString();
+    Inventory.startTime = moment( Inventory.time).toISOString();
+    Inventory.endTime = moment( Inventory.time).toISOString();
+    console.log(Inventory, " inventory");
     try {
       await InventoryService.updateInventory(Inventory);
       getInventoryAndUpdateToState();

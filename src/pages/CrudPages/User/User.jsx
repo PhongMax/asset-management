@@ -212,7 +212,7 @@ export default function User(props) {
     <>
       <PageHeader
         history={history}
-        title="(User ) "
+        title="User "
         subTitle="Tất cả các user or nhân viên  mà bạn hiện đang quản lý"
         icon={<PersonIcon fontSize="large" />}
       />

@@ -19,7 +19,7 @@ export default function LiquidateForm(props) {
 
     if ("userId" in fieldValues)
       temp.userId =
-        fieldValues.userId !== 0 ? "" : "Trường này không được để trống.";
+        fieldValues.userId ? "" : "Trường này không được để trống.";
 
     setErrors({
       ...temp,
@@ -61,7 +61,7 @@ export default function LiquidateForm(props) {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={6}>
-          <Controls.DatePicker
+        <Controls.DatePicker
             name="time"
             label="Thời gian thanh lý"
             value={values.time}

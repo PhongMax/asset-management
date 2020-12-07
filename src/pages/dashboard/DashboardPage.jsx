@@ -5,7 +5,7 @@ import OftadehBreadcrumbs from "../../components/OftadehBreadcrumbs/OftadehBread
 import OftadehChart from "../../components/OftadehChart/OftadehChart";
 import OftadehBarChart from "../../components/OftadehChart/OftadehBarChart";
 import OftadehPieChart from "../../components/OftadehChart/OftadehPieChart";
-import SimpleTable from "./components/SimpleTable";
+
 import clsx from "clsx";
 
 const useStyles = makeStyles((them) => ({
@@ -36,30 +36,20 @@ const DashboardPage = (props) => {
         <Grid className={classes.visitorChart} item xs={12}>
           <Paper className={classes.paddingPaper} variant="outlined">
             <Typography className={classes.titlePaper} variant="h5">
-              Visitors
+              Truy cập
             </Typography>
             <OftadehChart />
           </Paper>
         </Grid>
         <Grid item container xs={12} sm={8}>
+
           <Grid item xs={12}>
             <Paper
               className={clsx(classes.paddingPaper, classes.mt)}
               variant="outlined"
             >
               <Typography className={classes.titlePaper} variant="h5">
-                Foods
-              </Typography>
-              <SimpleTable />
-            </Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper
-              className={clsx(classes.paddingPaper, classes.mt)}
-              variant="outlined"
-            >
-              <Typography className={classes.titlePaper} variant="h5">
-                Sales
+                Chỉ số thống kê
               </Typography>
               <OftadehBarChart />
             </Paper>
@@ -68,7 +58,7 @@ const DashboardPage = (props) => {
         <Grid item xs={12} sm={4}>
           <Paper className={classes.paddingPaper} variant="outlined">
             <Typography className={classes.titlePaper} variant="h5">
-              Customers
+              Chỉ số thống kê
             </Typography>
             <OftadehPieChart />
           </Paper>

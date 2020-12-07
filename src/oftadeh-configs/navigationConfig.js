@@ -191,6 +191,15 @@ const navigationConfig = [
         url: "/material",
         exact: true,
       },
+      {
+        id: "kiemke1",
+        title: "employees test",
+        type: "item",
+        icon: "functions",
+        url: "/employees",
+        exact: true,
+      },
+    
     ],
   },
   {
@@ -222,22 +231,7 @@ const navigationConfig = [
         url: "/test",
         exact: true,
       },
-      {
-        id: "kiemke1",
-        title: "employees test",
-        type: "item",
-        icon: "functions",
-        url: "/employees",
-        exact: true,
-      },
-      {
-        id: "kiemke111",
-        title: "Department template",
-        type: "item",
-        icon: "functions",
-        url: "/tesssst",
-        exact: true,
-      },
+     
 
       {
         id: "ttts",
@@ -263,28 +257,7 @@ const navigationConfig = [
         url: "/pages/about",
         exact: true,
       },
-      {
-        id: "Errors",
-        title: "Errors và test chỗ này",
-        type: "collapse",
-        icon: "warning",
-        children: [
-          {
-            id: "404",
-            title: "404",
-            type: "item",
-            url: "/pages/errors/error-404",
-            exact: true,
-          },
-          {
-            id: "500",
-            title: "500",
-            type: "item",
-            url: "/pages/errors/error-500",
-            exact: true,
-          },
-        ],
-      },
+     
     ],
   },
   {

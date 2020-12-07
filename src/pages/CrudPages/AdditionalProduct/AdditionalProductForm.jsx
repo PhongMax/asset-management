@@ -59,7 +59,10 @@ export default function AdditionalProductForm(props) {
 //     if (validateOnChange)
 //         validate({ [name]: value })
 }
-
+ const handleContinue = () =>
+ {
+   
+ }
   useEffect(() => {
     Utils.getDataAdditional().then((response) => {
       setDataAdditional([...response]);
@@ -102,7 +105,7 @@ export default function AdditionalProductForm(props) {
           />
       <div>
           <Controls.Button type="submit" text="Submit" />
-          {/* <Controls.Button text="Reset" color="default" onClick={resetForm} /> */}
+          <Controls.Button text="Continue" color="default" onClick={handleContinue} />
         </div>
       </Grid>
       <Grid item xs={6}>

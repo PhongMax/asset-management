@@ -5,11 +5,14 @@ import moment from "moment";
 export default function DatePicker(props) {
 
     const { name, label, value, onChange } = props
-    const convertToDefEventPara = (name, value) => ({
-        target: {
-            name, value
-        }
-    })
+    const convertToDefEventPara = (name, value) =>  {
+        console.log(value, " value là gì ");
+        return ({
+            target: {
+                name, value
+            }
+        })
+    }
 
  
     // const dateToShow = (date) => { 
@@ -19,7 +22,7 @@ export default function DatePicker(props) {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker variant="inline" inputVariant="outlined"
                 label={label}
-                format="dd/MM/yyyy"
+                format="MM/dd/yyyy"
                 margin="normal"
                 name={name}
                 value={value}

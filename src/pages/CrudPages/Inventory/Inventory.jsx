@@ -24,7 +24,6 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 import * as InventoryService from "../../../services/inventoryService";
 import * as utils from "../../../utils/Utils.js";
-import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -123,9 +122,9 @@ export default function Inventory(props) {
 
   const updateInventory = async (Inventory) => {
     console.log(Inventory, " inventory");
-    Inventory.time = moment( Inventory.time).toISOString();
-    Inventory.startTime = moment( Inventory.time).toISOString();
-    Inventory.endTime = moment( Inventory.time).toISOString();
+    Inventory.time =  new Date(Inventory.time).toISOString();
+    Inventory.startTime = new Date(Inventory.startTime).toISOString() ;
+    Inventory.endTime = new Date(Inventory.endTime).toISOString();
     console.log(Inventory, " inventory");
     try {
       await InventoryService.updateInventory(Inventory);
@@ -285,14 +284,14 @@ export default function Inventory(props) {
                 </TableCell>
             
                 <TableCell>
-                  <Controls.ActionButton
+                  {/* <Controls.ActionButton
                     color="primary"
                     onClick={() => {
                       openInPopup(item);
                     }}
                   >
                     <EditOutlinedIcon fontSize="small" />
-                  </Controls.ActionButton>
+                  </Controls.ActionButton> */}
                   <Controls.ActionButton
                     color="secondary"
                     onClick={() => {

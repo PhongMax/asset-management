@@ -24,7 +24,7 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 import * as liquidateService from "../../../services/liquidateService";
 import * as utils from "../../../utils/Utils.js";
-import moment from "moment";
+
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     marginTop: theme.spacing(4),
@@ -105,19 +105,21 @@ export default function Liquidate(props) {
         userId: obj.userId,
       },
     };
-
+    console.log(temp, " xem thử tem là gì lúc insert");
     return temp;
   };
 
   const LiquidateHandledToUpdate = (obj) => {
+
+    console.log(obj, "obje")
     const temp = {
       id: obj.id,
-      time: moment(obj.time).toISOString(),
+      time: new Date(obj.time).toISOString(),
       embedded: {
         userId: obj.userId,
       },
     };
-
+    console.log(temp, " xem thử temp update");
     return temp;
   };
   // ======================================================================================================

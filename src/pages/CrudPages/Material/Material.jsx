@@ -30,7 +30,7 @@ import * as MaterialService from "../../../services/materialService";
 import * as TransferMaterialService from "../../../services/transferMaterialService";
 import * as LiquidateMaterialService from "../../../services/liquidateMaterialService";
 import * as utils from "../../../utils/Utils.js";
-import moment from "moment";
+
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -177,7 +177,7 @@ export default function Material(props) {
       status: obj.status,
       allocationDuration: obj.allocationDuration,
       haveInclude: obj.haveInclude,
-      timeStartDepreciation: moment(obj.timeStartDepreciation).toISOString(),
+      timeStartDepreciation: new Date(obj.timeStartDepreciation).toISOString(),
       parentCode: obj.parentCode,
       embedded: {
         additionalId: obj.additionalId,

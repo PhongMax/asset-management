@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
-import { useForm, Form } from "../commons/useForm";
+import {  Form } from "../commons/useForm";
 
 import * as Utils from "../../../utils/Utils";
 
@@ -9,22 +9,47 @@ const initialFValues = {
     additionalId: "",
     productId: "",
     price: "",
-    listMaterialCode: [],
+};
+// let valueToUpdate = {};
+let valueToUpdate = {
+  embedded: {
+    additionalId: "",
+    recordList: []
+  }
 };
 
-export default function AddNewMaterialForm(props) {
+export default function AddNewAdditionalProductForm(props) {
+  const { addNewAdditionalProduct } = props;
+  
   const [values, setValues] = useState(initialFValues);
   const [resetMulInput, setResetMulInput] = useState(false);
-  
-  const { addOrEdit } = props;
-
   const [errors, setErrors] = useState({});
+  const [disableAdditionInput, setDisableAdditionInput] = useState(false);
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataProduct, setDataProduct] = useState([]);
   const [DataCredentialCode, setDataCredentialCode] = useState([]);
+  const [isEmptyMultiInput, setIsEmptyMultiInput] = useState(false);
+  const [isSubmited, setIsSubmited] = useState(false);
 
+  let listCode  = [];
+  
+  const getRecordList = () =>
+  {
+   return {
+      productId: values.productId,
+      price: Number(values.price),
+      listMaterialCode: [...listCode]
+    }
+   
+  }
+ 
+ 
 
-
+  const getValueToUpdate = () =>
+  {
+   valueToUpdate.embedded.additionalId = values.additionalId;
+   valueToUpdate.embedded.recordList.push(getRecordList());
+  }
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
    
@@ -40,6 +65,7 @@ export default function AddNewMaterialForm(props) {
       )
         ? ""
         : "Trường này không hợp lệ.";
+
     setErrors({
       ...temp,
     });
@@ -48,13 +74,38 @@ export default function AddNewMaterialForm(props) {
       return Object.values(temp).every((x) => x === "");
   };
 
+  // fake : dùng để fix tự động gọi onSubmit event khi nhấn enter trong chip input component
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    if (validate()) {
-     console.log("xem thử , xem thử");
+  };
+
+  const validateMultiInput = () =>
+  {
+    if (!listCode.toString())
+    {
+    
+      setIsEmptyMultiInput(true);
+      return false;
+    }else
+    {
+     
+      setIsEmptyMultiInput(false);
+      return true;
     }
- 
+  }
+  // đây mới thực sự gọi là hàm xử lý sự kiện submit
+  const handleSubmitOnClick = (e) => {
+    e.preventDefault();
+   
+    if (validate() && validateMultiInput() ) {
+        // fix lỗi ko update value affteer set , lỗi async của state
+        //https://stackoverflow.com/questions/41446560/react-setstate-not-updating-state
+        //  setValues({...values, listMaterialCode : [...listCode]})
+          getValueToUpdate();
+          addNewAdditionalProduct(valueToUpdate);
+          setIsSubmited(!isSubmited);
+      
+    }
   };
 
   const handleInputChange = e => {
@@ -67,16 +118,21 @@ export default function AddNewMaterialForm(props) {
    validate({ [name]: value })
 }
 
-const handleInputChange1 = (e) =>
+const handleMultipleInputChange = (e) =>
 {
-  console.log(" tinh ");
+  listCode = [...e];
 }
 
+// xử lý việc nhập tiếp theo ...
  const handleContinue = () =>
  {
-   
+    setDisableAdditionInput(true);
+    setResetMulInput(!resetMulInput);
+    getValueToUpdate();
+    listCode =[];
  }
-  useEffect(() => {
+
+ useEffect(() => {
     Utils.getDataAdditional().then((response) => {
       setDataAdditional([...response]);
     });
@@ -86,7 +142,23 @@ const handleInputChange1 = (e) =>
     Utils.getDataCredentialCode().then((response) => {
       setDataCredentialCode([...response]);
     });
+
+    // cập nhật lại value
+    valueToUpdate = {
+      embedded: {
+        additionalId: "",
+        recordList: []
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    // fix lỗi unmount component
+    if (values.additionalId) {
+        addNewAdditionalProduct(valueToUpdate);
+      }
+
+  }, [isSubmited])
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -94,6 +166,7 @@ const handleInputChange1 = (e) =>
       <Grid item xs={6}>
       <Controls.AutoCompleteButton
             name="additionalId"
+            disabled = {disableAdditionInput}
             label="Chọn đợt bổ sung"
             value={DataAdditional.find(
               (item) => item.id === values.additionalId
@@ -120,14 +193,15 @@ const handleInputChange1 = (e) =>
           />
       <div>
       <Controls.Button text="Tiếp tục" color="secondary" onClick={handleContinue} />
-      <Controls.Button type="submit" text="Submit" />
+      <Controls.Button onClick = {handleSubmitOnClick} text="Submit" />
       </div>
       </Grid>
       <Grid item xs={6}>
       <Controls.MultipleInput
         resetMulInput = {resetMulInput}
         chipCheckList = {DataCredentialCode}
-        onChange ={handleInputChange1}
+        onChange ={handleMultipleInputChange}
+        isEmptyMultiInput={isEmptyMultiInput}
       />
       </Grid>
     </Grid>

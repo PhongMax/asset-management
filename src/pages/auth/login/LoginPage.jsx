@@ -33,7 +33,7 @@ const LoginPage = (props) => {
   const [AuthObj, setAuthObj] = useState({ username: "", password: "" });
 
   const classes = useStyles();
-  const { history } = props;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

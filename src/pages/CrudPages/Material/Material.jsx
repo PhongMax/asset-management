@@ -20,7 +20,7 @@ import {
 } from "@material-ui/core";
 import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import MaterialForm from "./MaterialForm";
-import AddNewMaterialForm from "./AddNewMaterialForm";
+import AddNewAdditionalProductForm from "./AddNewAdditionalProductForm";
 import TransferMaterialForm from "../TransferMaterial/TransferMaterialForm";
 import LiquidateMaterialForm from "../LiquidateMaterial/LiquidateMaterialForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
@@ -32,6 +32,7 @@ import ConfirmDialog from "../commons/ConfirmDialog";
 import * as MaterialService from "../../../services/materialService";
 import * as TransferMaterialService from "../../../services/transferMaterialService";
 import * as LiquidateMaterialService from "../../../services/liquidateMaterialService";
+import * as AdditionalProductService from "../../../services/additionalProductService";
 import * as utils from "../../../utils/Utils.js";
 
 
@@ -121,7 +122,7 @@ export default function Material(props) {
   const [openPopup, setOpenPopup] = useState(false);
   const [openPopupTransfer, setOpenPopupTransfer] = useState(false);
   const [openPopupLiquidate, setOpenPopupLiquidate] = useState(false);
-
+  const [openPopupAddNew, setOpenPopupAddNew] = useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -275,6 +276,23 @@ export default function Material(props) {
     }
   };
 
+  const insertAdditionalProduct = async (additionalProduct) => {
+    
+    try {
+      await AdditionalProductService.insertAdditionalProduct( additionalProduct);
+    
+      setNotify({
+        isOpen: true,
+        message: "Thao tác thêm mới thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      toast.error("Errors: Thêm mới  thất bại ");
+    }
+  };
+
+
+
 
 
   const updateMaterial = async (Material) => {
@@ -359,7 +377,6 @@ export default function Material(props) {
   const addTransferMaterial = (transferedMaterial, resetForm) => {
     insertTransferMaterial(transferedMaterial);
     resetForm();
-
     setOpenPopupTransfer(false);
   };
 
@@ -370,11 +387,18 @@ export default function Material(props) {
     setOpenPopupLiquidate(false);
   };
 
+  const addNewAdditionalProduct = (newAdditionalProduct) => {
+    insertAdditionalProduct(newAdditionalProduct);
+    setOpenPopupAddNew(false)
+  };
+
 
   const openInPopup = (item) => {
     setRecordForEdit(item);
     setOpenPopup(true);
   };
+
+
 
   const openInPopupTransfer = (item) => {
     setInforTransfer(item);
@@ -438,7 +462,7 @@ export default function Material(props) {
                 startIcon={<AddIcon />}
                 className={classes.newButton}
                 onClick={() => {
-                  setOpenPopup(true);
+                  setOpenPopupAddNew(true);
                   // setRecordForEdit(null);
                 }}
                 
@@ -542,11 +566,11 @@ export default function Material(props) {
       </Paper>
       <Popup
         title="Biểu mẫu thêm mới Cơ sở vật chất"
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
+        openPopup={openPopupAddNew}
+        setOpenPopup={setOpenPopupAddNew}
       >
         {/* <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} /> */}
-        <AddNewMaterialForm />
+        <AddNewAdditionalProductForm addNewAdditionalProduct = {addNewAdditionalProduct} />
       </Popup>
 
       <Popup
@@ -578,8 +602,6 @@ export default function Material(props) {
         setConfirmDialog={setConfirmDialog}
       />
       </OftadehLayout>
-
-     
     </>
   );
 }

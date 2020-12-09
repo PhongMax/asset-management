@@ -210,7 +210,7 @@ export default function Place(props) {
         if (target.value === "") return items;
         else {
           return items.filter((x) =>
-            x.code.toLowerCase().includes(target.value)
+            x.nameSpecification.toLowerCase().includes(target.value)
           );
         }
       },
@@ -252,7 +252,7 @@ export default function Place(props) {
           <Grid container spacing={3}>
             <Grid item sm={9}>
               <Controls.Input
-                label="Nhập mã code để tìm kiếm vị trí"
+                label="Nhập tên vị trí để tìm kiếm"
                 className={classes.searchInput}
                 InputProps={{
                   startAdornment: (

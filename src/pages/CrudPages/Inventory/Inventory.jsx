@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import InventoryForm from "./InventoryForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -230,7 +231,8 @@ export default function Inventory(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="Đợt kiểm kê"
         subTitle="Tất cả các đợt kiểm kê mà bạn hiện đang quản lý"
@@ -326,6 +328,9 @@ export default function Inventory(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+</OftadehLayout>
+
+    
     </>
   );
 }

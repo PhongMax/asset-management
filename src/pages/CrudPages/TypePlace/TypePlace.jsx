@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import TypePlaceForm from "./TypePlaceForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -192,7 +193,8 @@ export default function TypePlace(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="Kiểu địa điểm"
         subTitle="Quản lý thông tin tất cả các kiểu địa điểm mà hệ thống quản lý"
@@ -282,6 +284,10 @@ export default function TypePlace(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+</OftadehLayout>
+
+
+      
     </>
   );
 }

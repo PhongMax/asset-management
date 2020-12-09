@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import LiquidateForm from "./LiquidateForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -259,7 +260,8 @@ export default function Liquidate(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="Đợt thanh lý"
         subTitle="Tất cả các đợt thanh lý mà bạn hiện đang quản lý"
@@ -354,6 +356,9 @@ export default function Liquidate(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+</OftadehLayout>
+
+ 
     </>
   );
 }

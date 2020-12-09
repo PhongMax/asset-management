@@ -11,6 +11,7 @@ import * as additionalService from "../services/additionalService";
 import * as productService from "../services/productService";
 import * as groupService from "../services/groupService";
 import * as liquidateService from "../services/liquidateService";
+import * as materialService from "../services/materialService";
 
 
 export const getDataDepartment = async () => {
@@ -108,16 +109,39 @@ export const getDataLiquidate = async () => {
     return { id: item.id, title: convertDateTime(item.time) };
   });
 };
+
+export const getDataCredentialCode = async () => {
+  const { data: responseData } = await materialService.getAllMaterial();
+  let { data: material } = responseData;
+
+  return material.map((item) => {
+    return  item.credentialCode;
+  });
+};
+
+
 //==========================================================================================
 export const convertDateTime = (epochTime) => {
   const dateConverted = new Date(epochTime * 1000);
-  console.log(dateConverted.toLocaleString());
+  // console.log(dateConverted.toLocaleString());
   return dateConverted.toLocaleString();
   // console.log(moment.unix(epochTime), " coi thử moment là gì");
   // return moment.unix(epochTime).format('DD-MM-YYYY hh:mm:ss A');
 };
 
 export default {
-  convertDateTime,
   getDataDepartment,
+  getDataCalculationUnit,
+  getDataCategory,
+  getDataUser,
+  getDataOrganization,
+  getDataCampus,
+  getDataTypePlace,
+  getDataPlace,
+  getDataAdditional,
+  getDataProduct,
+  getDataGroup,
+  getDataLiquidate,
+  getDataCredentialCode,
+  convertDateTime,
 };

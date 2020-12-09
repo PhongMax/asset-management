@@ -7,6 +7,7 @@ export default function DatePicker(props) {
     const { name, label, value, onChange } = props
     const convertToDefEventPara = (name, value) =>  {
         console.log(value, " value là gì ");
+        console.log(new Date("12/9/2020, 12:14:00 AM"), " date là giif ");
         return ({
             target: {
                 name, value

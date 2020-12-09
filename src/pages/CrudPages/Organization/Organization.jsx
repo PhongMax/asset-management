@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import OrganizationForm from "./OrganizationForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -194,7 +195,8 @@ export default function Organization(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="Tổ chức"
         subTitle="Tất cả các tổ chức mà hệ thống đang  quản lý"
@@ -284,6 +286,9 @@ export default function Organization(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+</OftadehLayout>
+
+    
     </>
   );
 }

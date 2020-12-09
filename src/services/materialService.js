@@ -8,12 +8,19 @@ const deleteQuery = apiEndpoint + ":delete/";
 const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
+const exportQuery = baseApiUrl +  "/statistical/";
 
 HTTP.handleProtectedAPI();
 
 export function getMaterial(materialId) {
-  return HTTP.get(`${getOneQuery}${materialId}`);
+  return HTTP.GET(`${getOneQuery}${materialId}`);
 }
+
+export function getExportMaterial(year) {
+  console.log(`${exportQuery}${year}`, " xem thử");
+  return HTTP.GET(`${exportQuery}${year}`);
+}
+
 
 export function getAllMaterial() {
   return HTTP.GET(getAllQuery);
@@ -37,4 +44,5 @@ export default {
   insertMaterial,
   updateMaterial,
   deleteMaterial,
+  getExportMaterial,
 };

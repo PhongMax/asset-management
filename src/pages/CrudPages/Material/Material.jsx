@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import DevicesOtherIcon from "@material-ui/icons/DevicesOther";
 import { Search } from "@material-ui/icons";
-import AddIcon from "@material-ui/icons/Add";
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import { toast } from "react-toastify";
@@ -17,7 +18,9 @@ import {
   Icon,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import MaterialForm from "./MaterialForm";
+import AdditionalProductForm from "../AdditionalProduct/AdditionalProductForm";
 import TransferMaterialForm from "../TransferMaterial/TransferMaterialForm";
 import LiquidateMaterialForm from "../LiquidateMaterial/LiquidateMaterialForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
@@ -170,7 +173,6 @@ export default function Material(props) {
   };
 
   const MaterialHandledToUpdate = (obj) => {
-    console.log(obj, " check updated");
     const temp = {
       id: obj.id,
       credentialCode: obj.credentialCode,
@@ -258,7 +260,6 @@ export default function Material(props) {
   
   const insertLiquidateMaterial = async (liquidateMaterial) => {
     
-    console.log( LiquidateMaterialHandledToInsert(liquidateMaterial), " xem thử nó bị gì");
     try {
       await LiquidateMaterialService.insertLiquidateMaterial(
         LiquidateMaterialHandledToInsert(liquidateMaterial)
@@ -310,6 +311,21 @@ export default function Material(props) {
   };
   //===================================================================================
 
+  //============================================Export Material ============================
+  const exportMaterial =async () =>
+  {
+    try {
+      await MaterialService.getExportMaterial(2020);
+      setNotify({
+        isOpen: true,
+        message: "Đã xuất thành công",
+        type: "error",
+      });
+    } catch (ex) {
+      toast.error("Errors: Xuất ra file bị  lỗi "); 
+    }
+  }
+  
   useEffect(getMaterialAndUpdateToState, []);
 
   const {
@@ -380,7 +396,8 @@ export default function Material(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="Cơ sở vật chất"
         subTitle="Tất cả thông tin CSVT mà bạn hiện đang quản lý"
@@ -413,7 +430,34 @@ export default function Material(props) {
                   setOpenPopup(true);
                   setRecordForEdit(null);
                 }}
+                
               /> */}
+                 <Controls.Button
+                text="Thêm mới"
+                variant="outlined"
+                startIcon={<AddIcon />}
+                className={classes.newButton}
+                onClick={() => {
+                  setOpenPopup(true);
+                  // setRecordForEdit(null);
+                }}
+                
+              />
+
+               <Controls.Button
+                text="Xuất Excel"
+                variant="outlined"
+                startIcon={<AttachFileIcon />}
+                className={classes.newButton}
+                onClick={
+                  
+                  () => {
+                    exportMaterial();
+                  }
+                }
+
+              />
+
             </Grid>
           </Grid>
         </div>
@@ -497,7 +541,8 @@ export default function Material(props) {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
+        {/* <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} /> */}
+        <AdditionalProductForm />
       </Popup>
 
       <Popup
@@ -528,6 +573,9 @@ export default function Material(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+</OftadehLayout>
+
+     
     </>
   );
 }

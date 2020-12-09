@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import CalculationUnitForm from "./CalculationUnitForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -194,7 +195,8 @@ export default function CalculationUnit(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="Đơn vị tính"
         subTitle="Quản lý đơn vị tính cho từng tài sản"
@@ -287,6 +289,8 @@ export default function CalculationUnit(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+     </OftadehLayout>
+    
     </>
   );
 }

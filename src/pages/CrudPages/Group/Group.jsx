@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import GroupForm from "./GroupForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -190,6 +191,8 @@ export default function Group(props) {
 
   return (
     <>
+     <OftadehLayout>
+       
       <PageHeader
         history={history}
         title="Nhóm Tài sản/Công cụ dụng cụ"
@@ -280,6 +283,8 @@ export default function Group(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+</OftadehLayout>
+
     </>
   );
 }

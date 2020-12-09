@@ -9,14 +9,14 @@ const initialFValues = {
     additionalId: "",
     productId: "",
     price: "",
-    listMaterialCode: [""],
+    listMaterialCode: [],
 };
 
 export default function AdditionalProductForm(props) {
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataProduct, setDataProduct] = useState([]);
- 
   const [values, setValues] = useState(initialFValues);
+  const [resetMulInput, setResetMulInput] = useState(false);
   const [errors, setErrors] = useState({});
 
 
@@ -45,19 +45,29 @@ export default function AdditionalProductForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    if (validate()) {
+     console.log("xem thử , xem thử");
+    }
  
   };
 
   const handleInputChange = e => {
-//     const { name, value } = e.target
+    const { name, value } = e.target
 
  
-//     setValues({
-//         ...values,
-//         [name]: value
-//     })
-//     if (validateOnChange)
-//         validate({ [name]: value })
+    setValues({
+        ...values,
+        [name]: value
+    })
+
+   validate({ [name]: value })
+}
+const temp = ["code11", "code22", "code33"];
+
+const handleInputChange1 = (e) =>
+{
+  console.log(e, "coi thử state à gì");
 }
  const handleContinue = () =>
  {
@@ -99,18 +109,22 @@ export default function AdditionalProductForm(props) {
             <Controls.Input
             name="price"
             label="Giá"
-            value={values.allocationDuration}
+            value={values.price}
             onChange={handleInputChange}
-            error={errors.allocationDuration}
+            error={errors.price}
           />
       <div>
-          <Controls.Button type="submit" text="Submit" />
-          <Controls.Button text="Continue" color="default" onClick={handleContinue} />
+      <Controls.Button text="Tiếp tục" color="secondary" onClick={handleContinue} />
+      <Controls.Button type="submit" text="Submit" />
+      
         </div>
       </Grid>
       <Grid item xs={6}>
       <Controls.MultipleInput
-          />
+        resetMulInput = {resetMulInput}
+        chipCheckList = {temp}
+        onChange ={handleInputChange1}
+      />
 
         
       </Grid>

@@ -14,6 +14,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import UserForm from "./UserForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -210,7 +211,8 @@ export default function User(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="User "
         subTitle="Tất cả các user or nhân viên  mà bạn hiện đang quản lý"
@@ -290,6 +292,9 @@ export default function User(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+    </OftadehLayout>
+
+     
     </>
   );
 }

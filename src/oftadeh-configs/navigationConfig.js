@@ -81,7 +81,7 @@ const navigationConfig = [
     children: [
       {
         id: "organization",
-        title: "organization",
+        title: "Tổ chức",
         type: "item",
         icon: "apps",
         url: "/organization",
@@ -89,7 +89,7 @@ const navigationConfig = [
       },
       {
         id: "calculationUnit",
-        title: "calculationUnit",
+        title: "Đơn vị tính",
         type: "item",
         icon: "apps",
         url: "/calculationUnit",
@@ -97,7 +97,7 @@ const navigationConfig = [
       },
       {
         id: "group",
-        title: "group",
+        title: "Nhóm Tài sản/CCDC",
         type: "item",
         icon: "apps",
         url: "/group",
@@ -105,7 +105,7 @@ const navigationConfig = [
       },
       {
         id: "category",
-        title: "category",
+        title: "Danh mục",
         type: "item",
         icon: "apps",
         url: "/category",
@@ -113,7 +113,7 @@ const navigationConfig = [
       },
       {
         id: "AdditionalConfig",
-        title: "Additional",
+        title: "Đợt bổ sung",
         type: "item",
         icon: "apps",
         url: "/additional",
@@ -121,7 +121,7 @@ const navigationConfig = [
       },
       {
         id: "product",
-        title: "product",
+        title: "Sản phẩm",
         type: "item",
         icon: "apps",
         url: "/product",
@@ -129,7 +129,7 @@ const navigationConfig = [
       },
       {
         id: "campus",
-        title: "campus",
+        title: "Khuôn viên",
         type: "item",
         icon: "apps",
         url: "/campus",
@@ -137,7 +137,7 @@ const navigationConfig = [
       },
       {
         id: "typeplace",
-        title: "typeplace",
+        title: "Kiểu địa điểm",
         type: "item",
         icon: "apps",
         url: "/typeplace",
@@ -145,7 +145,7 @@ const navigationConfig = [
       },
       {
         id: "department",
-        title: "department",
+        title: "Phòng ban",
         type: "item",
         icon: "apps",
         url: "/department",
@@ -153,7 +153,7 @@ const navigationConfig = [
       },
       {
         id: "8",
-        title: "user",
+        title: "User",
         type: "item",
         icon: "apps",
         url: "/user",
@@ -161,7 +161,7 @@ const navigationConfig = [
       },
       {
         id: "9",
-        title: "place",
+        title: "Vị trí",
         type: "item",
         icon: "apps",
         url: "/place",
@@ -169,7 +169,7 @@ const navigationConfig = [
       },
       {
         id: "10",
-        title: "Liquidate",
+        title: "Đợt thanh lý",
         type: "item",
         icon: "apps",
         url: "/liquidate",
@@ -177,7 +177,7 @@ const navigationConfig = [
       },
       {
         id: "11",
-        title: "Inventory",
+        title: "Đợt kiểm kê",
         type: "item",
         icon: "apps",
         url: "/inventory",
@@ -185,7 +185,7 @@ const navigationConfig = [
       },
       {
         id: "12",
-        title: "Matearial",
+        title: "Cơ sở vật chất",
         type: "item",
         icon: "apps",
         url: "/material",

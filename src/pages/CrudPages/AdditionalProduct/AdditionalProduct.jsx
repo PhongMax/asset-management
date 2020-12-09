@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import AdditionalProductForm from "./AdditionalProductForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -221,7 +222,8 @@ export default function Additional(props) {
 
   return (
     <>
-      <PageHeader
+     <OftadehLayout>
+     <PageHeader
         history={history}
         title="Phòng ban"
         subTitle="Tất cả các xxx mà bạn hiện đang quản lý"
@@ -313,6 +315,8 @@ export default function Additional(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+     </OftadehLayout>
+    
     </>
   );
 }

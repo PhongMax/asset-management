@@ -15,6 +15,7 @@ import {
   TableCell,
   InputAdornment,
 } from "@material-ui/core";
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import CategoryForm from "./CategoryForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -222,7 +223,8 @@ export default function Category(props) {
 
   return (
     <>
-      <PageHeader
+       <OftadehLayout>
+       <PageHeader
         history={history}
         title="Danh mục"
         subTitle="Tất cả các danh mục mà bạn hiện đang quản lý"
@@ -313,6 +315,8 @@ export default function Category(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+        </OftadehLayout>
+     
     </>
   );
 }

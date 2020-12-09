@@ -13,7 +13,7 @@ import OftadehLayout from "../components/OftadehLayout/OftadehLayout";
 // import UserForm from "../pages/CrudPages/User/UserForm";
 // import User from "../pages/CrudPages/User/User";
 // import Inventory from "../pages/CrudPages/Inventory/Inventory";
-import AdditionalProductForm from "../pages/CrudPages/AdditionalProduct/AdditionalProductForm";
+import AddNewMaterialForm from "../pages/CrudPages/Material/AddNewMaterialForm";
 
 // import UserForm from "../pages/CrudPages/User/UserForm";
 // import Material from "./../pages/CrudPages/Material/Material";
@@ -32,7 +32,7 @@ function TableTest(props) {
       {/* <Place /> */}
       {/* <Liquidate /> */}
       {/* <Inventory /> */}
-       <AdditionalProductForm />
+       <AddNewMaterialForm />
       {/* <Material /> */}
     </OftadehLayout>
   );

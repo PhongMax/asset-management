@@ -5,16 +5,14 @@ export default function MultipleInput(props) {
   const { resetMulInput ,chipCheckList, onChange } = props;
   const [chips, setChips] = useState([]);
   const [error, setError] = useState(false);
-  let tempValue = [];
 
   useEffect(() => {
     setChips([]);
   }, [resetMulInput, setChips]);
 
   const validate = (chip) => {
-    if (chipCheckList.find((item) => item === chip))
+    if (chipCheckList.find((item) => item.toLowerCase() === chip.toLowerCase()))
     {
-      
       setError(true);
       return false;
     }else
@@ -22,35 +20,26 @@ export default function MultipleInput(props) {
       setError(false);
       return true;
     }
-    
   }
 
   const onBeforeAdd = (chip) => {
     return chip.length >= 5 && chip.length <= 100;
   }
-  const xxxx = () =>
-  {
-    console.log(chips, " check thử nó bị lỗi gì");
-  }
+
   const handleAdd  = (chip) => {
     if (validate(chip)) {
-      tempValue = [...chips, chip];
-      setChips( [...chips, chip]);
-      onChange(chip);
-      
+      setChips((prevChips) => [...prevChips, chip]);
     }
-   
   }
 
-
   const handleDelete = (deletedChip) => {
-   setChips( chips.filter((c) => c !== deletedChip) );
-   tempValue( chips.filter((c) => c !== deletedChip));
+   setChips( (prevChips) => prevChips.filter((c) => c !== deletedChip) );
   }
 
 
   return (
     <div>
+      <div>{onChange(chips)}</div>
         <ChipInput
           onAdd={(chip) => this.handleAdd(chip)}
           value={chips}
@@ -62,9 +51,7 @@ export default function MultipleInput(props) {
           onDelete={(deletedChip) => handleDelete(deletedChip)}
           error  = {error}
           helperText = {!error ? "": " Mã CSVC đã bị trùng với dữ liệu trong hệ thống hoặc bị trống." }
-
         />
-      
     </div>
   );
 }

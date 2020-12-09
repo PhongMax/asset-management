@@ -20,7 +20,7 @@ import {
 } from "@material-ui/core";
 import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import MaterialForm from "./MaterialForm";
-import AdditionalProductForm from "../AdditionalProduct/AdditionalProductForm";
+import AddNewMaterialForm from "./AddNewMaterialForm";
 import TransferMaterialForm from "../TransferMaterial/TransferMaterialForm";
 import LiquidateMaterialForm from "../LiquidateMaterial/LiquidateMaterialForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
@@ -541,12 +541,12 @@ export default function Material(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu Cơ sở vật chất"
+        title="Biểu mẫu thêm mới Cơ sở vật chất"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
         {/* <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} /> */}
-        <AdditionalProductForm />
+        <AddNewMaterialForm />
       </Popup>
 
       <Popup
@@ -577,7 +577,7 @@ export default function Material(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
-</OftadehLayout>
+      </OftadehLayout>
 
      
     </>

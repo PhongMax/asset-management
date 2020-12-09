@@ -12,12 +12,17 @@ const initialFValues = {
     listMaterialCode: [],
 };
 
-export default function AdditionalProductForm(props) {
-  const [DataAdditional, setDataAdditional] = useState([]);
-  const [DataProduct, setDataProduct] = useState([]);
+export default function AddNewMaterialForm(props) {
   const [values, setValues] = useState(initialFValues);
   const [resetMulInput, setResetMulInput] = useState(false);
+  
+  const { addOrEdit } = props;
+
   const [errors, setErrors] = useState({});
+  const [DataAdditional, setDataAdditional] = useState([]);
+  const [DataProduct, setDataProduct] = useState([]);
+  const [DataCredentialCode, setDataCredentialCode] = useState([]);
+
 
 
   const validate = (fieldValues = values) => {
@@ -54,8 +59,6 @@ export default function AdditionalProductForm(props) {
 
   const handleInputChange = e => {
     const { name, value } = e.target
-
- 
     setValues({
         ...values,
         [name]: value
@@ -63,12 +66,12 @@ export default function AdditionalProductForm(props) {
 
    validate({ [name]: value })
 }
-const temp = ["code11", "code22", "code33"];
 
 const handleInputChange1 = (e) =>
 {
-  console.log(e, "coi thử state à gì");
+  console.log(" tinh ");
 }
+
  const handleContinue = () =>
  {
    
@@ -79,6 +82,9 @@ const handleInputChange1 = (e) =>
     });
     Utils.getDataProduct().then((response) => {
       setDataProduct([...response]);
+    });
+    Utils.getDataCredentialCode().then((response) => {
+      setDataCredentialCode([...response]);
     });
   }, []);
 
@@ -105,7 +111,6 @@ const handleInputChange1 = (e) =>
             options={DataProduct}
             error={errors.productId}
           />
-
             <Controls.Input
             name="price"
             label="Giá"
@@ -116,17 +121,14 @@ const handleInputChange1 = (e) =>
       <div>
       <Controls.Button text="Tiếp tục" color="secondary" onClick={handleContinue} />
       <Controls.Button type="submit" text="Submit" />
-      
-        </div>
+      </div>
       </Grid>
       <Grid item xs={6}>
       <Controls.MultipleInput
         resetMulInput = {resetMulInput}
-        chipCheckList = {temp}
+        chipCheckList = {DataCredentialCode}
         onChange ={handleInputChange1}
       />
-
-        
       </Grid>
     </Grid>
   </Form>

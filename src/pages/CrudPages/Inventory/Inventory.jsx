@@ -56,7 +56,7 @@ const headCells = [
   { id: "inCheck", label: "Cho phép kiểm kê" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
-  { id: "actionss", label: "Cho phép k. kê", disableSorting: true },
+  { id: "actionss", label: "Chuyển trạng thái", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -282,7 +282,14 @@ export default function Inventory(props) {
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
-                <Controls.AlertDialogSlide  value = {item.inCheck} onChange = {() => handleChangeStatus(item)} />
+                <Controls.AlertDialogSlide 
+                 value = {item.inCheck}
+                  onChange = {() => handleChangeStatus(item)}
+                  description = {"Khi bạn mở đợt kiểm kê, các thao tác Scan QR code để kiểm kê được cho phép, ngược lại sẽ không có thao tác kiểm kê nào được thực hiện!"}
+                  title = {"Xác nhận việc chuyển đổi trạng thái của đợt kiểm kê"} 
+                  toolTipOff = {"Chuyển sang cho phép kiểm kê"}
+                  toolTipOn = {"Chuyến sang kết thúc đợt kiểm kê"}
+                  />
                 </TableCell>
             
                 <TableCell>
@@ -328,7 +335,7 @@ export default function Inventory(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
-</OftadehLayout>
+      </OftadehLayout>
 
     
     </>

@@ -406,7 +406,7 @@ export default function Material(props) {
       <Paper elevator={3} className={classes.pageContent}>
         <div className={classes.paper}>
           <Grid container spacing={3}>
-            <Grid item sm={9}>
+            <Grid item sm={6}>
               <Controls.Input
                 label="Tìm kiếm cơ sở vật chất"
                 className={classes.searchInput}
@@ -444,6 +444,9 @@ export default function Material(props) {
                 
               />
 
+            </Grid>
+            <Grid item sm={3}>
+                
                <Controls.Button
                 text="Xuất Excel"
                 variant="outlined"
@@ -457,6 +460,7 @@ export default function Material(props) {
                 }
 
               />
+
 
             </Grid>
           </Grid>

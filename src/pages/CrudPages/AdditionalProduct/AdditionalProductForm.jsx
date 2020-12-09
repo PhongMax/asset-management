@@ -13,13 +13,13 @@ const initialFValues = {
 };
 
 export default function AdditionalProductForm(props) {
-  const [DataAdditional, setDataAdditional] = useState([]);
-  const [DataProduct, setDataProduct] = useState([]);
+ 
   const [values, setValues] = useState(initialFValues);
   const [resetMulInput, setResetMulInput] = useState(false);
   const [errors, setErrors] = useState({});
 
-
+  const [DataAdditional, setDataAdditional] = useState([]);
+  const [DataProduct, setDataProduct] = useState([]);
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
    
@@ -125,8 +125,6 @@ const handleInputChange1 = (e) =>
         chipCheckList = {temp}
         onChange ={handleInputChange1}
       />
-
-        
       </Grid>
     </Grid>
   </Form>

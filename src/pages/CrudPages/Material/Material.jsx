@@ -541,7 +541,7 @@ export default function Material(props) {
         <TblPagination />
       </Paper>
       <Popup
-        title="Biểu mẫu Cơ sở vật chất"
+        title="Biểu mẫu thêm mới Cơ sở vật chất"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

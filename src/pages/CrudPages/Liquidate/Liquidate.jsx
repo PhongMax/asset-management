@@ -106,7 +106,6 @@ export default function Liquidate(props) {
         userId: obj.userId,
       },
     };
-    console.log(temp, " xem thử tem là gì lúc insert");
     return temp;
   };
 
@@ -310,7 +309,13 @@ export default function Liquidate(props) {
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
-                <Controls.AlertDialogSlide  value = {item.done} onChange = {() => handleChangeStatus(item)} />
+                <Controls.AlertDialogSlide 
+                value = {item.done}
+                disabled = {item.done ? true : false}
+                onChange = {() => handleChangeStatus(item)}
+                description = {"Khi bạn đánh dấu đợt thanh lý này là hoàn tất, bạn sẽ không thể quay trở lại trạng thái ban đầu, hãy chắc chắn mọi thứ là hợp lệ trước khi thực hiện thao tác này!"}
+                title = {"Xác nhận thao tác thanh lý"} 
+                />
                 </TableCell>
                 <TableCell>
                   <Controls.ActionButton
@@ -355,10 +360,8 @@ export default function Liquidate(props) {
       <ConfirmDialog
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
-      />
-</OftadehLayout>
-
- 
+      />  
+      </OftadehLayout>
     </>
   );
 }

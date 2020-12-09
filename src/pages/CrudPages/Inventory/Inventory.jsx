@@ -282,7 +282,12 @@ export default function Inventory(props) {
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
                 <TableCell>
-                <Controls.AlertDialogSlide  value = {item.inCheck} onChange = {() => handleChangeStatus(item)} />
+                <Controls.AlertDialogSlide 
+                 value = {item.inCheck}
+                  onChange = {() => handleChangeStatus(item)}
+                  description = {"Khi bạn mở đợt kiểm kê, các thao tác Scan QR code để kiểm kê được cho phép, ngược lại sẽ không có thao tác kiểm kê nào được thực hiện!"}
+                  title = {"Xác nhận việc chuyển đổi trạng thái của đợt kiểm kê"} 
+                   />
                 </TableCell>
             
                 <TableCell>
@@ -328,7 +333,7 @@ export default function Inventory(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
-</OftadehLayout>
+      </OftadehLayout>
 
     
     </>

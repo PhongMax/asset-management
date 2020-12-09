@@ -16,7 +16,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AlertDialogSlide(props) {
   const [open, setOpen] = React.useState(false);
-  const { value, onChange } = props;
+  const {disabled = false, value, onChange, description, title } = props;
   const [checked, setChecked] = React.useState(value);
 
 
@@ -42,6 +42,7 @@ export default function AlertDialogSlide(props) {
     <React.Fragment>
       <Tooltip title={checked ? "Chuyển về chưa hoàn tất" :"Chuyến sang hoàn tất"} arrow>             
       <Switch
+      disabled = {disabled}
       checked={checked}
       onChange={handleChange}
       color="primary"
@@ -58,11 +59,10 @@ export default function AlertDialogSlide(props) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
+          {description}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

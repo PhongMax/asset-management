@@ -72,7 +72,7 @@ export default function DepartmentForm(props) {
             name="description"
             value={values.description}
             onChange={handleInputChange}
-            required
+            error={errors.description}
           />
           <div>
             <Controls.Button type="submit" text="Submit" />

@@ -39,38 +39,7 @@ const navigationConfig = [
           },
         ],
       },
-      {
-        id: "vitri",
-        title: "Vị trí",
-        type: "item",
-        icon: "location_on",
-        url: "/pages/calendar",
-        exact: true,
-      },
-      {
-        id: "thanhly",
-        title: "Thanh lý",
-        type: "item",
-        icon: "point_of_sale",
-        url: "/pages/calendarx",
-        exact: true,
-      },
-      {
-        id: "nhansu",
-        title: "Nhân sự",
-        type: "item",
-        icon: "people_alt",
-        url: "/pages/calendars",
-        exact: true,
-      },
-      {
-        id: "bophan",
-        title: "Bộ phận ",
-        type: "item",
-        icon: "apartment",
-        url: "/pages/calendarxx",
-        exact: true,
-      },
+    
     ],
   },
 
@@ -137,7 +106,7 @@ const navigationConfig = [
       },
       {
         id: "typeplace",
-        title: "Kiểu địa điểm",
+        title: "Kiểu vị trí",
         type: "item",
         icon: "filter_list",
         url: "/typeplace",

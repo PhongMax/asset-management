@@ -25,10 +25,10 @@ import { AdditionalConfig } from "../pages/CrudPages/Additional/AdditionalConfig
 import { LiquidateConfig } from "../pages/CrudPages/Liquidate/LiquidateConfig";
 import { InventoryConfig } from "../pages/CrudPages/Inventory/InventoryConfig";
 import { MaterialConfig } from "../pages/CrudPages/Material/MaterialConfig";
+import { BackupConfig } from "../pages/CrudPages/Backup/BackupConfig";
 const routeConfigs = [
   ...DashboardPageConfig.routes,
 
- 
   ...LoginPageConfig.routes,
   ...LogoutPageConfig.routes,
   ...Error404PageConfig.routes,
@@ -51,6 +51,7 @@ const routeConfigs = [
   ...LiquidateConfig.routes,
   ...InventoryConfig.routes,
   ...MaterialConfig.routes,
+  ...BackupConfig.routes,
 ];
 
 const routes = [

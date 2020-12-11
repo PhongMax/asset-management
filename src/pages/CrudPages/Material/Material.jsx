@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DevicesOtherIcon from "@material-ui/icons/DevicesOther";
 import { Search } from "@material-ui/icons";
 import AttachFileIcon from '@material-ui/icons/AttachFile';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
@@ -22,6 +23,7 @@ import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import MaterialForm from "./MaterialForm";
 import AddNewAdditionalProductForm from "./AddNewAdditionalProductForm";
 import TransferMaterialForm from "../TransferMaterial/TransferMaterialForm";
+import FilterMaterialForm from "./FilterMaterialForm";
 import LiquidateMaterialForm from "../LiquidateMaterial/LiquidateMaterialForm";
 import PageHeader from "../../../oftadeh-layouts/layout/PageHeader";
 import useTable from "../commons/useTable";
@@ -75,9 +77,9 @@ const headCells = [
     label: "Vị trí",
     disableSorting: true,
   },
-  { id: "timeStartDepreciation", label: "Bắt đầu khấu hao" },
-  { id: "haveInclude", label: "Là bộ" },
-  { id: "parentCode", label: "Mã Cơ Sở Vật Chất đi kèm" },
+  // { id: "timeStartDepreciation", label: "Bắt đầu khấu hao" },
+  // { id: "haveInclude", label: "Là bộ" },
+  // { id: "parentCode", label: "Mã Cơ Sở Vật Chất đi kèm" },
 
   { id: "actions", label: "Actions", disableSorting: true },
 ];
@@ -123,6 +125,7 @@ export default function Material(props) {
   const [openPopupTransfer, setOpenPopupTransfer] = useState(false);
   const [openPopupLiquidate, setOpenPopupLiquidate] = useState(false);
   const [openPopupAddNew, setOpenPopupAddNew] = useState(false);
+  const [openPopupFilter, setOpenPopupFilter] = useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -444,7 +447,7 @@ export default function Material(props) {
                 onChange={handleSearch}
               />
             </Grid>
-            <Grid item sm={3}>
+            <Grid item sm={2}>
               {/* <Controls.Button
                 text="Thêm mới"
                 variant="outlined"
@@ -463,16 +466,16 @@ export default function Material(props) {
                 className={classes.newButton}
                 onClick={() => {
                   setOpenPopupAddNew(true);
-                  // setRecordForEdit(null);
+                  setRecordForEdit(null);
                 }}
                 
               />
 
             </Grid>
-            <Grid item sm={3}>
+            <Grid item sm={2}>
                 
                <Controls.Button
-                text="Xuất Excel"
+                text="Excel"
                 variant="outlined"
                 startIcon={<AttachFileIcon />}
                 className={classes.newButton}
@@ -482,10 +485,23 @@ export default function Material(props) {
                     exportMaterial();
                   }
                 }
-
               />
 
 
+            </Grid>
+             <Grid item sm={2}>
+                
+               <Controls.Button
+                text="Chi tiết"
+                variant="outlined"
+                startIcon={<FilterListIcon />}
+                className={classes.newButton}
+                onClick={            
+                  () => {
+                    setOpenPopupFilter(true);
+                  }         
+                }
+              />
             </Grid>
           </Grid>
         </div>
@@ -497,7 +513,6 @@ export default function Material(props) {
               <StyledTableRow key={item.id}>
                 <TableCell>{item.credentialCode}</TableCell>
                 <TableCell>{convertStatus(item.status)}</TableCell>
-
                 <TableCell>{item.product.name}</TableCell>
                 <TableCell>{item.product.description}</TableCell>
                 <TableCell>
@@ -510,9 +525,9 @@ export default function Material(props) {
                   {item.currentPlace && item.currentPlace.nameSpecification}
                 </TableCell>
 
-                <TableCell>{item.timeStartDepreciation}</TableCell>
+                {/* <TableCell>{item.timeStartDepreciation}</TableCell>
                 <TableCell>{item.haveInclude ? "yes" : "no"}</TableCell>
-                <TableCell>{item.parentCode}</TableCell>
+                <TableCell>{item.parentCode}</TableCell> */}
 
                 <TableCell>
                   <Controls.ActionButton
@@ -569,9 +584,18 @@ export default function Material(props) {
         openPopup={openPopupAddNew}
         setOpenPopup={setOpenPopupAddNew}
       >
-        {/* <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} /> */}
+       
         <AddNewAdditionalProductForm addNewAdditionalProduct = {addNewAdditionalProduct} />
       </Popup>
+      <Popup
+        title="Biểu mẫu chỉnh sửa Cơ sở vật chất"
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      >
+        <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
+       
+      </Popup>
+
 
       <Popup
         title="Điều chuyển cơ sở vật chất "
@@ -582,6 +606,8 @@ export default function Material(props) {
           inforTransfer={inforTransfer}
           addTransferMaterial={addTransferMaterial}
         />
+       
+
       </Popup>
 
       <Popup
@@ -595,6 +621,13 @@ export default function Material(props) {
         />
       </Popup>
 
+      <Controls.FullScreenDialog
+      title = "Xem chi tiết"
+      open = {openPopupFilter}
+      setOpen = {setOpenPopupFilter} 
+      >         
+        <FilterMaterialForm records ={records} convertStatus={convertStatus} />
+      </Controls.FullScreenDialog>
 
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

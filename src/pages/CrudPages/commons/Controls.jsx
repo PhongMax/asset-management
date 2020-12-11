@@ -10,6 +10,7 @@ import AutoCompleteButton from "./AutoCompleteButton";
 import SwitchButton from "./SwitchButton";
 import AlertDialogSlide from "./AlertDialogSlide";
 import MultipleInput from "./MultipleInput";
+import FullScreenDialog from "./FullScreenDialog";
 const Controls = {
   Input,
   RadioGroup,
@@ -23,6 +24,7 @@ const Controls = {
   SwitchButton,
   AlertDialogSlide,
   MultipleInput,
+  FullScreenDialog,
 };
 
 export default Controls;

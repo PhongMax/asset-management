@@ -25,7 +25,7 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 import * as liquidateService from "../../../services/liquidateService";
 import * as utils from "../../../utils/Utils.js";
-
+import moment from "moment";
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     marginTop: theme.spacing(4),
@@ -114,7 +114,7 @@ export default function Liquidate(props) {
     console.log(obj, "obje")
     const temp = {
       id: obj.id,
-      time: new Date(obj.time).toISOString(),
+      time: moment(obj.time, 'DD-MM-YYYY hh:mm:ss A').toISOString(),
       embedded: {
         userId: obj.userId,
       },

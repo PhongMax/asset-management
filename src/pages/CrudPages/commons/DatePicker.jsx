@@ -6,8 +6,6 @@ export default function DatePicker(props) {
 
     const { name, label, value, onChange } = props
     const convertToDefEventPara = (name, value) =>  {
-        console.log(value, " value là gì ");
-        console.log(new Date("12/9/2020, 12:14:00 AM"), " date là giif ");
         return ({
             target: {
                 name, value
@@ -15,19 +13,24 @@ export default function DatePicker(props) {
         })
     }
 
- 
-    // const dateToShow = (date) => { 
-    //   return  moment(date, 'DD-MM-YYYY hh:mm:ss a').format('MM-DD-YYYY  hh:mm:ss a');
-    // };
+    const convertValue = (date) => {
+        if (date instanceof Date){
+            return date;
+        } 
+        else {
+        const dateMomentObject = moment(date, "DD-MM-YYYY hh:mm:ss A");
+        const dateObject = dateMomentObject.toDate();
+        return  dateObject; 
+        }
+    }
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker variant="inline" inputVariant="outlined"
                 label={label}
-                format="MM/dd/yyyy"
+                format="dd/MM/yyyy"
                 margin="normal"
                 name={name}
-                value={value}
-                // value={dateToShow(value)}
+                value={convertValue(value)}
                 onChange={date =>onChange(convertToDefEventPara(name,date))}
                 KeyboardButtonProps={{
                     'aria-label': 'change date',

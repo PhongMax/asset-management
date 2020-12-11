@@ -25,7 +25,7 @@ import Notification from "../commons/Notification";
 import ConfirmDialog from "../commons/ConfirmDialog";
 import * as AdditionalService from "../../../services/additionalService";
 import * as utils from "../../../utils/Utils.js";
-
+import moment from "moment";
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     marginTop: theme.spacing(4),
@@ -112,7 +112,7 @@ export default function Additional(props) {
     console.log(obj, "bị sao vậy ");
     const temp = {
       id: obj.id,
-      time:  new Date(obj.time).toISOString(),
+      time:  moment(obj.time, 'DD-MM-YYYY hh:mm:ss A').toISOString(),
       embedded: {
         categoryId: obj.userId,
         calculationUnitId: obj.organizationId,

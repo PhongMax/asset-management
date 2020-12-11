@@ -122,11 +122,7 @@ export const getDataCredentialCode = async () => {
 
 //==========================================================================================
 export const convertDateTime = (epochTime) => {
-  const dateConverted = new Date(epochTime * 1000);
-  // console.log(dateConverted.toLocaleString());
-  return dateConverted.toLocaleString();
-  // console.log(moment.unix(epochTime), " coi thử moment là gì");
-  // return moment.unix(epochTime).format('DD-MM-YYYY hh:mm:ss A');
+  return moment.unix(epochTime).format('DD-MM-YYYY hh:mm:ss A');
 };
 
 export default {

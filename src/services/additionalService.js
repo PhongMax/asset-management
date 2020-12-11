@@ -9,6 +9,10 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 
+// extra Query String
+const putQueryChangeStatus = apiEndpoint + ":changeStatus";
+
+
 HTTP.handleProtectedAPI();
 
 export function getAdditional(additionalId) {
@@ -23,6 +27,10 @@ export function insertAdditional(additional) {
   return HTTP.POST(postQuery, additional);
 }
 
+export function changeStatusAdditional(changeStatusAdditional) {
+  return HTTP.PUT(putQueryChangeStatus, changeStatusAdditional);
+}
+
 export function updateAdditional(additional) {
   return HTTP.PUT(putQuery, additional);
 }
@@ -35,6 +43,7 @@ export default {
   getAdditional,
   getAllAdditional,
   insertAdditional,
+  changeStatusAdditional,
   updateAdditional,
   deleteAdditional,
 };

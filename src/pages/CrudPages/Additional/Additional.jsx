@@ -53,8 +53,10 @@ const headCells = [
   { id: "time", label: "Thời gian thực hiện bổ sung" },
   { id: "userId", label: "Người bổ sung" },
   { id: "organizationId", label: "Tổ chức" },
+  { id: "inProcess", label: "Trạng thái" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },
+  { id: "actionss", label: "Chuyển trạng thái ", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -181,6 +183,31 @@ export default function Additional(props) {
       setRecords(originalAdditionalRecord);
     }
   };
+
+  
+
+  const changeStatusAdditional = async (additonal) => {
+
+    const infoChange =  { id:additonal.id,
+      status:!additonal.inProcess};
+    try {
+      await AdditionalService.changeStatusAdditional(
+        infoChange
+      );
+   
+      setNotify({
+        isOpen: true,
+        message: "Thay đổi trạng thái thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      toast.error("Errors: Thay đổi trạng thái thất bại ");
+    }
+
+    getAdditionalAndUpdateToState();
+  };
+
+
   //===================================================================================
 
   useEffect(getAdditionalAndUpdateToState, []);
@@ -203,6 +230,10 @@ export default function Additional(props) {
           );
       },
     });
+  };
+
+  const  handleChangeStatus = (item) => {
+    changeStatusAdditional(item);
   };
 
   const addOrEdit = (Additional, resetForm) => {
@@ -275,9 +306,20 @@ export default function Additional(props) {
                 <TableCell>{item.time}</TableCell>
                 <TableCell>{item.user.fullName}</TableCell>
                 <TableCell>{item.organization.name}</TableCell>
+                <TableCell>{item.inProcess.toString() === "false" ? "Hoàn tất" : " Chưa"}</TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell>{item.updatedAt}</TableCell>
-
+                <TableCell>
+                <Controls.AlertDialogSlide 
+                value = {item.inProcess}
+                disabled = {item.inProcess ? false : true}
+                onChange = {() => handleChangeStatus(item)}
+                description = {" Khi bạn đánh dấu đợt bổ sung này là hoàn tất, bạn sẽ không thể quay trở lại trạng thái ban đầu, hãy chắc chắn mọi thứ là hợp lệ trước khi thực hiện thao tác này!"}
+                title = {"Xác nhận thao tác hoàn tất đợt bổ sung"} 
+                toolTipOn = {"Chuyển sang  hoàn tất"}
+                toolTipOff = {"Chuyến về chưa hoàn tất"}
+                />
+                </TableCell>
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"

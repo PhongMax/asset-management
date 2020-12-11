@@ -43,6 +43,7 @@ export default {
   getLiquidate,
   getAllLiquidate,
   insertLiquidate,
+  changeStatusLiquidate,
   updateLiquidate,
   deleteLiquidate,
 };

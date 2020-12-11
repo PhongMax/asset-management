@@ -80,14 +80,7 @@ const navigationConfig = [
         url: "/category",
         exact: true,
       },
-      {
-        id: "AdditionalConfig",
-        title: "Đợt bổ sung",
-        type: "item",
-        icon: "timer",
-        url: "/additional",
-        exact: true,
-      },
+      
       {
         id: "product",
         title: "Sản phẩm",
@@ -104,14 +97,7 @@ const navigationConfig = [
         url: "/campus",
         exact: true,
       },
-      {
-        id: "typeplace",
-        title: "Kiểu vị trí",
-        type: "item",
-        icon: "filter_list",
-        url: "/typeplace",
-        exact: true,
-      },
+     
       {
         id: "department",
         title: "Phòng ban",
@@ -120,14 +106,7 @@ const navigationConfig = [
         url: "/department",
         exact: true,
       },
-      {
-        id: "8",
-        title: "User",
-        type: "item",
-        icon: "people_alt",
-        url: "/user",
-        exact: true,
-      },
+    
       {
         id: "9",
         title: "Vị trí",
@@ -137,10 +116,18 @@ const navigationConfig = [
         exact: true,
       },
       {
+        id: "typeplace",
+        title: "Kiểu vị trí",
+        type: "item",
+        icon: "filter_list",
+        url: "/typeplace",
+        exact: true,
+      },
+      {
         id: "10",
         title: "Đợt thanh lý",
         type: "item",
-        icon: "leak_remove",
+        icon: "settings_backup_restore",
         url: "/liquidate",
         exact: true,
       },
@@ -150,6 +137,14 @@ const navigationConfig = [
         type: "item",
         icon: "functions",
         url: "/inventory",
+        exact: true,
+      },
+      {
+        id: "AdditionalConfig",
+        title: "Đợt bổ sung",
+        type: "item",
+        icon: "timer",
+        url: "/additional",
         exact: true,
       },
       {
@@ -187,6 +182,14 @@ const navigationConfig = [
             title: "Login",
             type: "item",
             url: "/login",
+            exact: true,
+          },
+          {
+            id: "8",
+            title: "User",
+            type: "item",
+            icon: "people_alt",
+            url: "/user",
             exact: true,
           },
          

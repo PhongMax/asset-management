@@ -9,6 +9,8 @@ const initialFValues = {
     additionalId: "",
     productId: "",
     price: "",
+    timeStartDepreciation:  new Date(),
+    placeId: "",
 };
 // let valueToUpdate = {};
 let valueToUpdate = {
@@ -28,6 +30,8 @@ export default function AddNewAdditionalProductForm(props) {
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataProduct, setDataProduct] = useState([]);
   const [DataCredentialCode, setDataCredentialCode] = useState([]);
+  const [DataPlace, setDataPlace] = useState([]);
+
   const [isEmptyMultiInput, setIsEmptyMultiInput] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
 
@@ -37,19 +41,18 @@ export default function AddNewAdditionalProductForm(props) {
   {
    return {
       productId: values.productId,
-      price: Number(values.price),
+      price: values.price,
       listMaterialCode: [...listCode]
     }
    
   }
- 
- 
 
   const getValueToUpdate = () =>
   {
    valueToUpdate.embedded.additionalId = values.additionalId;
    valueToUpdate.embedded.recordList.push(getRecordList());
   }
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
    
@@ -58,6 +61,9 @@ export default function AddNewAdditionalProductForm(props) {
       
       if ("additionalId" in fieldValues)
       temp.additionalId = fieldValues.additionalId ? "" : "Trường này là bắt buộc.";
+
+      if ("placeId" in fieldValues)
+      temp.placeId = fieldValues.placeId ? "" : "Trường này là bắt buộc.";
 
       if ("price" in fieldValues)
       temp.price = /^([0-9.])+$/.test(
@@ -136,6 +142,10 @@ const handleMultipleInputChange = (e) =>
     Utils.getDataAdditional().then((response) => {
       setDataAdditional([...response]);
     });
+    Utils.getDataPlace().then((response) => {
+      setDataPlace([...response]);
+    });
+
     Utils.getDataProduct().then((response) => {
       setDataProduct([...response]);
     });
@@ -197,6 +207,22 @@ const handleMultipleInputChange = (e) =>
       </div>
       </Grid>
       <Grid item xs={6}>
+      <Controls.AutoCompleteButton
+            name="placeId"
+            label="Chọn nơi phân bổ"
+            value={DataPlace.find((item) => item.id === values.placeId)}
+            onChange={handleInputChange}
+            options={DataPlace}
+            error={errors.placeId}
+          />
+
+      <Controls.DatePicker
+            name="timeStartDepreciation"
+            label="Nhập thời gian bắt đầu tính khấu hao"
+            value={values.timeStartDepreciation}
+            onChange={handleInputChange}
+            error={errors.timeStartDepreciation}
+          />
       <Controls.MultipleInput
         resetMulInput = {resetMulInput}
         chipCheckList = {DataCredentialCode}

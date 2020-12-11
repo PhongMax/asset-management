@@ -468,12 +468,24 @@ export default function Material(props) {
                   setOpenPopupAddNew(true);
                   setRecordForEdit(null);
                 }}
-                
               />
-
+              
             </Grid>
             <Grid item sm={2}>
-                
+                <Controls.Button
+                 text="Chi tiết"
+                 variant="outlined"
+                 startIcon={<FilterListIcon />}
+                 className={classes.newButton}
+                 onClick={            
+                   () => {
+                     setOpenPopupFilter(true);
+                   }         
+                 }
+               />
+             </Grid>
+
+            <Grid item sm={2}>
                <Controls.Button
                 text="Excel"
                 variant="outlined"
@@ -484,22 +496,6 @@ export default function Material(props) {
                   () => {
                     exportMaterial();
                   }
-                }
-              />
-
-
-            </Grid>
-             <Grid item sm={2}>
-                
-               <Controls.Button
-                text="Chi tiết"
-                variant="outlined"
-                startIcon={<FilterListIcon />}
-                className={classes.newButton}
-                onClick={            
-                  () => {
-                    setOpenPopupFilter(true);
-                  }         
                 }
               />
             </Grid>

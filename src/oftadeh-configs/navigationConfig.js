@@ -1,51 +1,7 @@
 const navigationConfig = [
   {
-    id: "Main",
-    title: "MAIN",
-    type: "group",
-    children: [
-      {
-        id: "trangchu",
-        title: "Trang chủ",
-        type: "item",
-        icon: "apps",
-        url: "/",
-        exact: true,
-      },
-      {
-        id: "taisan",
-        title: "Tài sản",
-        type: "collapse",
-        icon: "source",
-        badge: {
-          title: "2",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-        },
-        children: [
-          {
-            id: "tscd",
-            title: "Tài sản cố định",
-            type: "item",
-            url: "/pages/posts",
-            exact: true,
-          },
-          {
-            id: "ccdc",
-            title: "Công cụ dụng cụ",
-            type: "item",
-            url: "/pages/posts/add-post",
-            exact: true,
-          },
-        ],
-      },
-    
-    ],
-  },
-
-  {
     id: "dd",
-    title: "FORM ĐÃ LÀM",
+    title: "MAIN",
     type: "group",
     children: [
       {
@@ -54,39 +10,6 @@ const navigationConfig = [
         type: "item",
         icon: "apartment",
         url: "/organization",
-        exact: true,
-      },
-      {
-        id: "calculationUnit",
-        title: "Đơn vị tính",
-        type: "item",
-        icon: "graphic_eq",
-        url: "/calculationUnit",
-        exact: true,
-      },
-      {
-        id: "group",
-        title: "Nhóm Tài sản/CCDC",
-        type: "item",
-        icon: "widgets",
-        url: "/group",
-        exact: true,
-      },
-      {
-        id: "category",
-        title: "Danh mục",
-        type: "item",
-        icon: "category",
-        url: "/category",
-        exact: true,
-      },
-      
-      {
-        id: "product",
-        title: "Sản phẩm",
-        type: "item",
-        icon: "ballot",
-        url: "/product",
         exact: true,
       },
       {
@@ -106,47 +29,12 @@ const navigationConfig = [
         url: "/department",
         exact: true,
       },
-    
-      {
-        id: "9",
-        title: "Vị trí",
-        type: "item",
-        icon: "gps_fixed",
-        url: "/place",
-        exact: true,
-      },
-      {
-        id: "typeplace",
-        title: "Kiểu vị trí",
-        type: "item",
-        icon: "filter_list",
-        url: "/typeplace",
-        exact: true,
-      },
-      {
-        id: "10",
-        title: "Đợt thanh lý",
-        type: "item",
-        icon: "settings_backup_restore",
-        url: "/liquidate",
-        exact: true,
-      },
-      {
-        id: "11",
-        title: "Đợt kiểm kê",
-        type: "item",
-        icon: "functions",
-        url: "/inventory",
-        exact: true,
-      },
-      {
-        id: "AdditionalConfig",
-        title: "Đợt bổ sung",
-        type: "item",
-        icon: "timer",
-        url: "/additional",
-        exact: true,
-      },
+     
+  {
+    id: "taisan",
+    title: "Tài sản - CCDC",
+    type: "group",
+    children: [
       {
         id: "12",
         title: "Cơ sở vật chất",
@@ -156,40 +44,138 @@ const navigationConfig = [
         exact: true,
       },
       {
-        id: "kiemke1",
-        title: "employees test",
+        id: "product",
+        title: "Sản phẩm",
         type: "item",
-        icon: "functions",
-        url: "/employees",
+        icon: "ballot",
+        url: "/product",
         exact: true,
       },
-    
+      {
+        id: "vitri ",
+        title: "Vị trí",
+        type: "collapse",
+        icon: "source",
+        badge: {
+          title: "2",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+        },
+        children: [
+          {
+            id: "9",
+            title: "Vị trí",
+            type: "item",
+            icon: "gps_fixed",
+            url: "/place",
+            exact: true,
+          },
+          {
+            id: "typeplace",
+            title: "Kiểu vị trí",
+            type: "item",
+            icon: "filter_list",
+            url: "/typeplace",
+            exact: true,
+          },
+        ],
+      },
+      {
+        id: "Quanlydot ",
+        title: "Quản lý đợt",
+        type: "collapse",
+        icon: "source",
+        badge: {
+          title: "3",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+        },
+        children: [
+          {
+            id: "10",
+            title: "Đợt thanh lý",
+            type: "item",
+            icon: "settings_backup_restore",
+            url: "/liquidate",
+            exact: true,
+          },
+          {
+            id: "11",
+            title: "Đợt kiểm kê",
+            type: "item",
+            icon: "functions",
+            url: "/inventory",
+            exact: true,
+          },
+          {
+            id: "AdditionalConfig",
+            title: "Đợt bổ sung",
+            type: "item",
+            icon: "timer",
+            url: "/additional",
+            exact: true,
+          },
+        ],
+      },        
     ],
   },
+      {
+        id: "group",
+        title: "Nhóm ",
+        type: "item",
+        icon: "widgets",
+        url: "/group",
+        exact: true,
+      },
+      {
+        id: "category",
+        title: "Danh mục",
+        type: "item",
+        icon: "category",
+        url: "/category",
+        exact: true,
+      },
+      {
+        id: "calculationUnit",
+        title: "Đơn vị tính",
+        type: "item",
+        icon: "graphic_eq",
+        url: "/calculationUnit",
+        exact: true,
+      },
+    ],
+  },
+
   {
     id: "khac",
     title: "KHÁC",
     type: "group",
     children: [
       {
-        id: "Authentication",
-        title: "Authentication",
+        id: "Hethong",
+        title: "Hệ thống",
         type: "collapse",
-        icon: "lock",
+        icon: "settings",
+        badge: {
+          title: "2",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+        },
         children: [
-          {
-            id: "Login",
-            title: "Login",
-            type: "item",
-            url: "/login",
-            exact: true,
-          },
           {
             id: "8",
             title: "User",
             type: "item",
             icon: "people_alt",
             url: "/user",
+            exact: true,
+          },
+          {
+            id: "9",
+            title: "Backup và Restore",
+            type: "item",
+            icon: "cached",
+            url: "/backup",
             exact: true,
           },
          

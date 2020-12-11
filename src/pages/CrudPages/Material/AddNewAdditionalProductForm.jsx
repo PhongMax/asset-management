@@ -62,9 +62,7 @@ export default function AddNewAdditionalProductForm(props) {
       if ("additionalId" in fieldValues)
       temp.additionalId = fieldValues.additionalId ? "" : "Trường này là bắt buộc.";
 
-      if ("placeId" in fieldValues)
-      temp.placeId = fieldValues.placeId ? "" : "Trường này là bắt buộc.";
-
+  
       if ("price" in fieldValues)
       temp.price = /^([0-9.])+$/.test(
         fieldValues.price

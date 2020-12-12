@@ -9,6 +9,9 @@ const getAllQuery = apiEndpoint + ":fetchAll";
 const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 const exportQuery = baseApiUrl +  "/statistical/";
+const historyQuery = baseApiUrl +  "/material:fetchHistoryTransfer/";
+
+
 
 HTTP.handleProtectedAPI();
 
@@ -16,11 +19,14 @@ export function getMaterial(materialId) {
   return HTTP.GET(`${getOneQuery}${materialId}`);
 }
 
+export function getHistoryMaterial(materialId) {
+  return HTTP.GET(`${historyQuery}${materialId}`);
+}
+
 export function getExportMaterial(year) {
   console.log(`${exportQuery}${year}`, " xem thử");
   return HTTP.GET(`${exportQuery}${year}`);
 }
-
 
 export function getAllMaterial() {
   return HTTP.GET(getAllQuery);
@@ -40,9 +46,10 @@ export function deleteMaterial(materialId) {
 
 export default {
   getMaterial,
+  getHistoryMaterial,
+  getExportMaterial,
   getAllMaterial,
   insertMaterial,
   updateMaterial,
   deleteMaterial,
-  getExportMaterial,
 };

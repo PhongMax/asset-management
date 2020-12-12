@@ -22,6 +22,7 @@ import {
 import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 import MaterialForm from "./MaterialForm";
 import AddNewAdditionalProductForm from "./AddNewAdditionalProductForm";
+import HistoryMaterialForm from "./HistoryMaterialForm";
 import TransferMaterialForm from "../TransferMaterial/TransferMaterialForm";
 import FilterMaterialForm from "./FilterMaterialForm";
 import LiquidateMaterialForm from "../LiquidateMaterial/LiquidateMaterialForm";
@@ -80,7 +81,6 @@ const headCells = [
   // { id: "timeStartDepreciation", label: "Bắt đầu khấu hao" },
   // { id: "haveInclude", label: "Là bộ" },
   // { id: "parentCode", label: "Mã Cơ Sở Vật Chất đi kèm" },
-
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -116,6 +116,7 @@ export default function Material(props) {
 
   const [inforTransfer, setInforTransfer] = useState(null);
   const [inforLiquidate, setInforLiquidate] = useState(null);
+  const [inforHistory, setInforHistory] = useState(null);
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -126,6 +127,7 @@ export default function Material(props) {
   const [openPopupLiquidate, setOpenPopupLiquidate] = useState(false);
   const [openPopupAddNew, setOpenPopupAddNew] = useState(false);
   const [openPopupFilter, setOpenPopupFilter] = useState(false);
+  const [openPopupHistory, setOpenPopupHistory] = useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -413,6 +415,11 @@ export default function Material(props) {
     setInforLiquidate(item);
     setOpenPopupLiquidate(true);
   };
+
+  const openInPopupHistory = (item) => {
+    setInforHistory(item);
+    setOpenPopupHistory(true);
+  }
   const onDelete = (id) => {
     setConfirmDialog({
       ...confirmDialog,
@@ -568,6 +575,17 @@ export default function Material(props) {
                       <Icon fontSize="small">cancel</Icon>
                     </Tooltip>
                   </Controls.ActionButton>
+
+                  <Controls.ActionButton color="primary"
+                   onClick={() => {
+                    openInPopupHistory(item);
+                  }}>
+                    <Tooltip title="Lịch sử điều chuyển" arrow>
+                      <Icon fontSize="small">timeline</Icon>
+                    </Tooltip>
+                  </Controls.ActionButton>
+
+
                 </TableCell>
               </StyledTableRow>
             ))}
@@ -589,12 +607,10 @@ export default function Material(props) {
         setOpenPopup={setOpenPopup}
       >
         <MaterialForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
-       
       </Popup>
 
-
       <Popup
-        title="Điều chuyển cơ sở vật chất "
+        title= "Điều chuyển cơ sở vật chất "
         openPopup={openPopupTransfer}
         setOpenPopup={setOpenPopupTransfer}
       >
@@ -602,8 +618,6 @@ export default function Material(props) {
           inforTransfer={inforTransfer}
           addTransferMaterial={addTransferMaterial}
         />
-       
-
       </Popup>
 
       <Popup
@@ -616,6 +630,16 @@ export default function Material(props) {
           addLiquidateMaterial={addLiquidateMaterial}
         />
       </Popup>
+      <Popup
+        title= "Lịch sử điều chuyển"
+        openPopup={openPopupHistory}
+        setOpenPopup={setOpenPopupHistory}
+      >
+        <HistoryMaterialForm
+          inforHistory={inforHistory}
+        />
+      </Popup>
+
 
       <Controls.FullScreenDialog
       title = "Xem chi tiết"

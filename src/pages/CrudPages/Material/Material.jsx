@@ -631,7 +631,7 @@ export default function Material(props) {
         />
       </Popup>
       <Popup
-        title= "Lịch sử điều chuyển"
+        title= {"Lịch sử điều chuyển "}
         openPopup={openPopupHistory}
         setOpenPopup={setOpenPopupHistory}
       >

@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     padding: theme.spacing(3),
   },
+  pageTitle: {
+    padding: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 const StyledTableRow = withStyles((theme) => ({
@@ -78,11 +82,6 @@ export default function Backup(props) {
   return (
     <>
         <Paper elevator={3} className={classes.pageContent}>
-          <Paper elevation={3}> 
-            {
-              inforHistory.product.name
-            }
-          </Paper>
           <TblContainer>
             <TblHead />
             <TableBody>

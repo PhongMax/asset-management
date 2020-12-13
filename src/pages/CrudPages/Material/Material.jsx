@@ -594,6 +594,7 @@ export default function Material(props) {
         <TblPagination />
       </Paper>
       <Popup
+        maxWidth={"lg"}
         title="Biểu mẫu thêm mới Cơ sở vật chất"
         openPopup={openPopupAddNew}
         setOpenPopup={setOpenPopupAddNew}

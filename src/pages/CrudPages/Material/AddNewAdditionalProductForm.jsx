@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import {  Form } from "../commons/useForm";
-
+import PreviewForm from "./PreviewForm";
 import * as Utils from "../../../utils/Utils";
 
 const initialFValues = {
@@ -171,7 +171,7 @@ const handleMultipleInputChange = (e) =>
   return (
     <Form onSubmit={handleSubmit}>
     <Grid container>
-      <Grid item xs={6}>
+      <Grid item xs={4}>
       <Controls.AutoCompleteButton
             name="additionalId"
             disabled = {disableAdditionInput}
@@ -204,7 +204,14 @@ const handleMultipleInputChange = (e) =>
       <Controls.Button onClick = {handleSubmitOnClick} text="Submit" />
       </div>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={3}>
+      <Controls.MultipleInput
+        resetMulInput = {resetMulInput}
+        chipCheckList = {DataCredentialCode}
+        onChange ={handleMultipleInputChange}
+        isEmptyMultiInput={isEmptyMultiInput}
+      />
+      
       <Controls.AutoCompleteButton
             name="placeId"
             label="Chọn nơi phân bổ"
@@ -216,17 +223,15 @@ const handleMultipleInputChange = (e) =>
 
       <Controls.DatePicker
             name="timeStartDepreciation"
-            label="Nhập thời gian bắt đầu tính khấu hao"
+            label="Thời gian b.đầu tính khấu hao"
             value={values.timeStartDepreciation}
             onChange={handleInputChange}
             error={errors.timeStartDepreciation}
           />
-      <Controls.MultipleInput
-        resetMulInput = {resetMulInput}
-        chipCheckList = {DataCredentialCode}
-        onChange ={handleMultipleInputChange}
-        isEmptyMultiInput={isEmptyMultiInput}
-      />
+    
+      </Grid>
+      <Grid item xs={5}>
+      <PreviewForm /> 
       </Grid>
     </Grid>
   </Form>

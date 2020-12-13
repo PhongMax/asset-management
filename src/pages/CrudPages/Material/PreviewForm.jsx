@@ -10,7 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import moment from "moment";
 const useStyles = makeStyles({
   table: {
      minWidth: 400,
@@ -34,25 +34,9 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
-}
 
-const rows = [
-  createData('code444', 'Phòng Thực Hành B14', '13/12/2020'),
-  createData('code555', 'Phòng Thực Hành B12', '13/12/2020'),
-  createData('code666', 'Phòng Thực Hành B14', '15/12/2020'),
-  createData('code777', 'Phòng Thực Hành B15', '17/12/2020'),
-  createData('code888', 'Phòng Thực Hành B12', '13/12/2020'),
-  createData('code999', 'Phòng Thực Hành B14', '15/12/2020'),
-  createData('code844', 'Phòng Thực Hành B12', '13/12/2020'),
-  createData('code754', 'Phòng Thực Hành B14', '15/12/2020'),
-  createData('code865', 'Phòng Thực Hành B12', '13/12/2020'),
-  createData('code123', 'Phòng Thực Hành B14', '15/12/2020'),
-  
-];
-
-export default function DenseTable() {
+export default function DenseTable(props) {
+  const{ values , onDelete, dataPlace } = props;
   const classes = useStyles();
 
   return (
@@ -67,15 +51,21 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+          {values.map((row) => (
+              <StyledTableRow key={row.credential}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.credential}
               </TableCell>
-              <TableCell >{row.calories}</TableCell>
-              <TableCell >{row.fat}</TableCell>
+            
+              <TableCell >{dataPlace.find((item) => item.id === row.placeId).title}</TableCell>
+              <TableCell >{moment(row.timeStartDepreciation).format("DD-MM-YYYY hh:mm:ss A")}</TableCell>
               <TableCell>
-              <IconButton className={classes.delete} edge="end" aria-label="delete">
+              <IconButton 
+              className={classes.delete}
+              edge="end"
+              aria-label="delete"
+              onClick={() => onDelete(row)}
+              >
                     <DeleteIcon />
               </IconButton>
               </TableCell>

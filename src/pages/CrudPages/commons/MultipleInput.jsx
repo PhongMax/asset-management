@@ -43,11 +43,13 @@ export default function MultipleInput(props) {
     {
       setError(true);
       return false;
-    }else
+    }
+    else
     {
       setError(false);
       return true;
     }
+    
   }
 
   const onBeforeAdd = (chip) => {

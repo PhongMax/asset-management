@@ -16,17 +16,14 @@ const initialFValues = {
     listMaterialCode: [],
 };
 
-let valueToUpdate = {
-  embedded: {
-    additionalId: "",
-    recordList: []
-  }
-};
+
 
 export default function AddNewAdditionalProductForm(props) {
   const { addNewAdditionalProduct } = props;
   
   const [values, setValues] = useState(initialFValues);
+  const [valuesPreView, setValuesPreView] = useState([]);
+
   const [resetMulInput, setResetMulInput] = useState(false);
   const [errors, setErrors] = useState({});
   const [disableInput, setDisableInput] = useState(false);
@@ -38,7 +35,7 @@ export default function AddNewAdditionalProductForm(props) {
   const [DataPlace, setDataPlace] = useState([]);
 
   const [isEmptyMultiInput, setIsEmptyMultiInput] = useState(false);
-  const [isSubmited, setIsSubmited] = useState(false);
+
 
 
 
@@ -78,6 +75,7 @@ export default function AddNewAdditionalProductForm(props) {
 
   const validateMultiInput = () =>
   {
+    // trường hợp rỗng
     if (!values.listMaterialCode.toString())
     {
     
@@ -89,6 +87,24 @@ export default function AddNewAdditionalProductForm(props) {
       setIsEmptyMultiInput(false);
       return true;
     }
+
+
+    // // trường hợp trùng vs mã code đã nhập trước đó ở bảng preview
+    // if (!valuesPreView.listMaterialCode)
+    // return true;
+
+    // const tempArr = [...values.listMaterialCode, ...valuesPreView.listMaterialCode.map((item) =>item.credential)];
+    // // đoạn code này dùng để check trùng  
+    // if (tempArr.length === new Set(tempArr).size)
+    // {
+    //   setIsEmptyMultiInput(false);
+    //   return true;
+    // }else
+    // {
+    //   setIsEmptyMultiInput(true);
+    //   return false;
+    // }
+
   }
   // đây mới thực sự gọi là hàm xử lý sự kiện submit
   const handleSubmitOnClick = (e) => {
@@ -106,15 +122,43 @@ export default function AddNewAdditionalProductForm(props) {
 }
 
 // xử lý việc nhập tiếp theo ...
- const handleContinue = () =>
- {
+ const handleNextButton = () =>
+ {    const tempArr = [...valuesPreView];
+  console.log(tempArr, "giá trị banđầu ");
+
     if (validate() && validateMultiInput() ){
       setDisableInput(true);
       setResetMulInput(!resetMulInput);
-    }
-  
- }
 
+      //lưu vào data vào trong state để render ra preview form
+  
+  
+      values.listMaterialCode.forEach((item) => {
+          console.log(!tempArr.includes(item), "choi thử");
+          console.log(item, " tem");
+          console.log(tempArr, " temparrr");
+        // loại bỏ trường hợp trùng
+        if (!tempArr.includes(item)) {
+          const temp = {  credential: item,
+            timeStartDepreciation: values.timeStartDepreciation.toString(),
+            placeId: values.placeId,
+          }
+          tempArr.push(temp);
+        }
+       
+      });
+      setValuesPreView(tempArr);
+    }
+
+ 
+ }
+ 
+  const onDeletePreview = (row) => {
+  const valuesPreview = valuesPreView.filter(m => m.credential!== row.credential);
+ 
+  setValuesPreView(valuesPreview);
+
+ }
  useEffect(() => {
     Utils.getDataAdditional().then((response) => {
       setDataAdditional([...response]);
@@ -130,13 +174,6 @@ export default function AddNewAdditionalProductForm(props) {
       setDataCredentialCode([...response]);
     });
 
-    // cập nhật lại value
-    valueToUpdate = {
-      embedded: {
-        additionalId: "",
-        recordList: []
-      }
-    };
   }, []);
 
   return (
@@ -178,7 +215,7 @@ export default function AddNewAdditionalProductForm(props) {
       size="small"
       endIcon={<Icon>skip_next</Icon>}
       color="secondary"
-      onClick={handleContinue} />
+      onClick={handleNextButton} />
       <Controls.Button 
       size="small"
       startIcon={<SaveIcon />} 
@@ -187,7 +224,7 @@ export default function AddNewAdditionalProductForm(props) {
 
       </div>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={3}>
       <Controls.MultipleInput
         name = "listMaterialCode"
         resetMulInput = {resetMulInput}
@@ -214,8 +251,12 @@ export default function AddNewAdditionalProductForm(props) {
           />
     
       </Grid>
-      <Grid item xs={5}>
-      <PreviewForm /> 
+      <Grid item xs={6}>
+      <PreviewForm
+      values = {valuesPreView}
+      onDelete = {onDeletePreview}
+      dataPlace = {DataPlace}
+       /> 
      
       </Grid>
     </Grid>

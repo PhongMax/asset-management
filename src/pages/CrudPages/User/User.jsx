@@ -54,7 +54,6 @@ const headCells = [
   { id: "fullName", label: "Họ tên" },
   { id: "phone", label: "Số điện thoại" },
   { id: "email", label: "Email" },
-
   { id: "department", label: "Thuộc phòng ban" },
   { id: "actions", label: "Actions", disableSorting: true },
 ];

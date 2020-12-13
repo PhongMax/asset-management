@@ -50,10 +50,8 @@ export default function Backup(props) {
       placeFrom : item.placeFrom,
       placeTarget : item.placeTarget,
       reason : item.reason,
-    };
+      };
     });
-
-    console.log(objectConverted, " objectConverted");
     return objectConverted;
   };
 

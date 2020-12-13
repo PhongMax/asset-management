@@ -111,7 +111,7 @@ export default function Liquidate(props) {
 
   const LiquidateHandledToUpdate = (obj) => {
 
-    console.log(obj, "obje")
+
     const temp = {
       id: obj.id,
       time: moment(obj.time, 'DD-MM-YYYY hh:mm:ss A').toISOString(),
@@ -119,7 +119,7 @@ export default function Liquidate(props) {
         userId: obj.userId,
       },
     };
-    console.log(temp, " xem thử temp update");
+
     return temp;
   };
   // ======================================================================================================

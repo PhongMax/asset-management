@@ -24,7 +24,6 @@ export function getHistoryMaterial(materialId) {
 }
 
 export function getExportMaterial(year) {
-  console.log(`${exportQuery}${year}`, " xem thử");
   return HTTP.GET(`${exportQuery}${year}`);
 }
 

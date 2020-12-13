@@ -3,6 +3,8 @@ import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import {  Form } from "../commons/useForm";
 import PreviewForm from "./PreviewForm";
+import SaveIcon from '@material-ui/icons/Save';
+import Icon from '@material-ui/core/Icon';
 import * as Utils from "../../../utils/Utils";
 
 const initialFValues = {
@@ -11,8 +13,9 @@ const initialFValues = {
     price: "",
     timeStartDepreciation:  new Date(),
     placeId: "",
+    listMaterialCode: [],
 };
-// let valueToUpdate = {};
+
 let valueToUpdate = {
   embedded: {
     additionalId: "",
@@ -26,7 +29,9 @@ export default function AddNewAdditionalProductForm(props) {
   const [values, setValues] = useState(initialFValues);
   const [resetMulInput, setResetMulInput] = useState(false);
   const [errors, setErrors] = useState({});
-  const [disableAdditionInput, setDisableAdditionInput] = useState(false);
+  const [disableInput, setDisableInput] = useState(false);
+
+
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataProduct, setDataProduct] = useState([]);
   const [DataCredentialCode, setDataCredentialCode] = useState([]);
@@ -35,23 +40,7 @@ export default function AddNewAdditionalProductForm(props) {
   const [isEmptyMultiInput, setIsEmptyMultiInput] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
 
-  let listCode  = [];
-  
-  const getRecordList = () =>
-  {
-   return {
-      productId: values.productId,
-      price: values.price,
-      listMaterialCode: [...listCode]
-    }
-   
-  }
 
-  const getValueToUpdate = () =>
-  {
-   valueToUpdate.embedded.additionalId = values.additionalId;
-   valueToUpdate.embedded.recordList.push(getRecordList());
-  }
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -62,14 +51,18 @@ export default function AddNewAdditionalProductForm(props) {
       if ("additionalId" in fieldValues)
       temp.additionalId = fieldValues.additionalId ? "" : "Trường này là bắt buộc.";
 
-  
+      if ("placeId" in fieldValues)
+      temp.placeId = fieldValues.placeId ? "" : "Trường này là bắt buộc.";
+
       if ("price" in fieldValues)
       temp.price = /^([0-9.])+$/.test(
         fieldValues.price
       )
         ? ""
         : "Trường này không hợp lệ.";
+    
 
+       
     setErrors({
       ...temp,
     });
@@ -85,7 +78,7 @@ export default function AddNewAdditionalProductForm(props) {
 
   const validateMultiInput = () =>
   {
-    if (!listCode.toString())
+    if (!values.listMaterialCode.toString())
     {
     
       setIsEmptyMultiInput(true);
@@ -100,40 +93,26 @@ export default function AddNewAdditionalProductForm(props) {
   // đây mới thực sự gọi là hàm xử lý sự kiện submit
   const handleSubmitOnClick = (e) => {
     e.preventDefault();
-   
+ 
     if (validate() && validateMultiInput() ) {
-        // fix lỗi ko update value affteer set , lỗi async của state
-        //https://stackoverflow.com/questions/41446560/react-setstate-not-updating-state
-        //  setValues({...values, listMaterialCode : [...listCode]})
-          getValueToUpdate();
-          addNewAdditionalProduct(valueToUpdate);
-          setIsSubmited(!isSubmited);
-      
+          addNewAdditionalProduct(values);
     }
   };
 
   const handleInputChange = e => {
-    const { name, value } = e.target
-    setValues({
-        ...values,
-        [name]: value
-    })
-
-   validate({ [name]: value })
-}
-
-const handleMultipleInputChange = (e) =>
-{
-  listCode = [...e];
+    const { name, value } = e.target;
+    setValues(prevValues => ({...prevValues, [name]: value})); 
+    validate({ [name]: value });
 }
 
 // xử lý việc nhập tiếp theo ...
  const handleContinue = () =>
  {
-    setDisableAdditionInput(true);
-    setResetMulInput(!resetMulInput);
-    getValueToUpdate();
-    listCode =[];
+    if (validate() && validateMultiInput() ){
+      setDisableInput(true);
+      setResetMulInput(!resetMulInput);
+    }
+  
  }
 
  useEffect(() => {
@@ -160,21 +139,13 @@ const handleMultipleInputChange = (e) =>
     };
   }, []);
 
-  useEffect(() => {
-    // fix lỗi unmount component
-    if (values.additionalId) {
-        addNewAdditionalProduct(valueToUpdate);
-      }
-
-  }, [isSubmited])
-
   return (
     <Form onSubmit={handleSubmit}>
     <Grid container>
-      <Grid item xs={4}>
+      <Grid item xs={3}>
       <Controls.AutoCompleteButton
             name="additionalId"
-            disabled = {disableAdditionInput}
+            disabled =  {disableInput}
             label="Chọn đợt bổ sung"
             value={DataAdditional.find(
               (item) => item.id === values.additionalId
@@ -186,6 +157,7 @@ const handleMultipleInputChange = (e) =>
 
           <Controls.AutoCompleteButton
             name="productId"
+            disabled =  {disableInput}
             label="Chọn sản phẩm"
             value={DataProduct.find((item) => item.id === values.productId)}
             onChange={handleInputChange}
@@ -194,24 +166,36 @@ const handleMultipleInputChange = (e) =>
           />
             <Controls.Input
             name="price"
+            disabled = {disableInput}
             label="Giá"
             value={values.price}
             onChange={handleInputChange}
             error={errors.price}
           />
       <div>
-      <Controls.Button text="Tiếp tục" color="secondary" onClick={handleContinue} />
-      <Controls.Button onClick = {handleSubmitOnClick} text="Submit" />
+      <Controls.Button 
+      text="Next" 
+      size="small"
+      endIcon={<Icon>skip_next</Icon>}
+      color="secondary"
+      onClick={handleContinue} />
+      <Controls.Button 
+      size="small"
+      startIcon={<SaveIcon />} 
+      onClick = {handleSubmitOnClick} 
+      text="Lưu" />
+
       </div>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={4}>
       <Controls.MultipleInput
+        name = "listMaterialCode"
         resetMulInput = {resetMulInput}
         chipCheckList = {DataCredentialCode}
-        onChange ={handleMultipleInputChange}
+        onChange ={handleInputChange}
         isEmptyMultiInput={isEmptyMultiInput}
       />
-      
+
       <Controls.AutoCompleteButton
             name="placeId"
             label="Chọn nơi phân bổ"
@@ -232,6 +216,7 @@ const handleMultipleInputChange = (e) =>
       </Grid>
       <Grid item xs={5}>
       <PreviewForm /> 
+     
       </Grid>
     </Grid>
   </Form>

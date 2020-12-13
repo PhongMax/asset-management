@@ -109,7 +109,6 @@ export default function Additional(props) {
   };
 
   const AdditionalHandledToUpdate = (obj) => {
-    console.log(obj, "bị sao vậy ");
     const temp = {
       id: obj.id,
       time:  moment(obj.time, 'DD-MM-YYYY hh:mm:ss A').toISOString(),
@@ -118,7 +117,6 @@ export default function Additional(props) {
         calculationUnitId: obj.organizationId,
       },
     };
-    console.log(temp, "bị sao vậy ");
     return temp;
   };
 

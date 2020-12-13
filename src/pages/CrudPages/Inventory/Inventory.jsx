@@ -123,11 +123,11 @@ export default function Inventory(props) {
   };
 
   const updateInventory = async (Inventory) => {
-    console.log(Inventory, " inventory");
+ 
     Inventory.time = moment(Inventory.time, 'DD-MM-YYYY hh:mm:ss A').toISOString();
     Inventory.startTime = moment(Inventory.startTime, 'DD-MM-YYYY hh:mm:ss A').toISOString() ;
     Inventory.endTime = moment(Inventory.endTime, 'DD-MM-YYYY hh:mm:ss A').toISOString();
-    console.log(Inventory, " inventory");
+ 
     try {
       await InventoryService.updateInventory(Inventory);
       getInventoryAndUpdateToState();

@@ -11,6 +11,7 @@ const initialFValues = {
     price: "",
     timeStartDepreciation:  new Date(),
     placeId: "",
+    listMaterialCode: [],
 };
 // let valueToUpdate = {};
 let valueToUpdate = {
@@ -27,6 +28,8 @@ export default function AddNewAdditionalProductForm(props) {
   const [resetMulInput, setResetMulInput] = useState(false);
   const [errors, setErrors] = useState({});
   const [disableAdditionInput, setDisableAdditionInput] = useState(false);
+  const [disableProductInput, setDisableProductInput] = useState(false);
+
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataProduct, setDataProduct] = useState([]);
   const [DataCredentialCode, setDataCredentialCode] = useState([]);
@@ -35,23 +38,23 @@ export default function AddNewAdditionalProductForm(props) {
   const [isEmptyMultiInput, setIsEmptyMultiInput] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
 
-  let listCode  = [];
+  // let listCode  = [];
   
-  const getRecordList = () =>
-  {
-   return {
-      productId: values.productId,
-      price: values.price,
-      listMaterialCode: [...listCode]
-    }
+  // const getRecordList = () =>
+  // {
+  //  return {
+  //     productId: values.productId,
+  //     price: values.price,
+  //     listMaterialCode: [...listCode]
+  //   }
    
-  }
+  // }
 
-  const getValueToUpdate = () =>
-  {
-   valueToUpdate.embedded.additionalId = values.additionalId;
-   valueToUpdate.embedded.recordList.push(getRecordList());
-  }
+  // const getValueToUpdate = () =>
+  // {
+  //  valueToUpdate.embedded.additionalId = values.additionalId;
+  //  valueToUpdate.embedded.recordList.push(getRecordList());
+  // }
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -62,14 +65,18 @@ export default function AddNewAdditionalProductForm(props) {
       if ("additionalId" in fieldValues)
       temp.additionalId = fieldValues.additionalId ? "" : "Trường này là bắt buộc.";
 
-  
+      if ("placeId" in fieldValues)
+      temp.placeId = fieldValues.placeId ? "" : "Trường này là bắt buộc.";
+
       if ("price" in fieldValues)
       temp.price = /^([0-9.])+$/.test(
         fieldValues.price
       )
         ? ""
         : "Trường này không hợp lệ.";
+    
 
+       
     setErrors({
       ...temp,
     });
@@ -85,7 +92,7 @@ export default function AddNewAdditionalProductForm(props) {
 
   const validateMultiInput = () =>
   {
-    if (!listCode.toString())
+    if (!values.listMaterialCode.toString())
     {
     
       setIsEmptyMultiInput(true);
@@ -100,40 +107,50 @@ export default function AddNewAdditionalProductForm(props) {
   // đây mới thực sự gọi là hàm xử lý sự kiện submit
   const handleSubmitOnClick = (e) => {
     e.preventDefault();
-   
+ 
     if (validate() && validateMultiInput() ) {
         // fix lỗi ko update value affteer set , lỗi async của state
         //https://stackoverflow.com/questions/41446560/react-setstate-not-updating-state
         //  setValues({...values, listMaterialCode : [...listCode]})
-          getValueToUpdate();
-          addNewAdditionalProduct(valueToUpdate);
-          setIsSubmited(!isSubmited);
+          // getValueToUpdate();
+
+
+          addNewAdditionalProduct(values);
+          // setIsSubmited(!isSubmited);
       
     }
   };
 
   const handleInputChange = e => {
-    const { name, value } = e.target
-    setValues({
-        ...values,
-        [name]: value
-    })
-
-   validate({ [name]: value })
+    const { name, value } = e.target;
+    setValues(prevValues => ({...prevValues, [name]: value})); 
+    validate({ [name]: value });
 }
 
-const handleMultipleInputChange = (e) =>
-{
-  listCode = [...e];
-}
+// const handleMultipleInputChange = (e) =>
+// {
+//   listCode = [...e];
+// }
 
 // xử lý việc nhập tiếp theo ...
  const handleContinue = () =>
  {
-    setDisableAdditionInput(true);
-    setResetMulInput(!resetMulInput);
-    getValueToUpdate();
-    listCode =[];
+    if (validate() && validateMultiInput() ){
+      setDisableAdditionInput(true);
+      setDisableProductInput(true);
+      setResetMulInput(!resetMulInput);
+
+      // reset MaterialCode to Empty
+    //   setValues({
+    //     ...values,
+    //     listMaterialCode: [],
+    // })
+
+      // getValueToUpdate();
+      
+      // update lại ...
+    }
+  
  }
 
  useEffect(() => {
@@ -160,13 +177,15 @@ const handleMultipleInputChange = (e) =>
     };
   }, []);
 
-  useEffect(() => {
-    // fix lỗi unmount component
-    if (values.additionalId) {
-        addNewAdditionalProduct(valueToUpdate);
-      }
+  // useEffect(() => {
+  //   // fix lỗi unmount component
+  //   if (values.additionalId) {
+  //       addNewAdditionalProduct(valueToUpdate);
+  //     }
 
-  }, [isSubmited])
+  //     console.log("vo chỗ úe"); 
+
+  // }, [isSubmited])
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -186,6 +205,7 @@ const handleMultipleInputChange = (e) =>
 
           <Controls.AutoCompleteButton
             name="productId"
+            disabled =  {disableProductInput}
             label="Chọn sản phẩm"
             value={DataProduct.find((item) => item.id === values.productId)}
             onChange={handleInputChange}
@@ -206,12 +226,13 @@ const handleMultipleInputChange = (e) =>
       </Grid>
       <Grid item xs={3}>
       <Controls.MultipleInput
+        name = "listMaterialCode"
         resetMulInput = {resetMulInput}
         chipCheckList = {DataCredentialCode}
-        onChange ={handleMultipleInputChange}
+        onChange ={handleInputChange}
         isEmptyMultiInput={isEmptyMultiInput}
       />
-      
+
       <Controls.AutoCompleteButton
             name="placeId"
             label="Chọn nơi phân bổ"

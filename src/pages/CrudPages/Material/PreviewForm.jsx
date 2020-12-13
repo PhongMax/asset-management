@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {  withStyles } from "@material-ui/core";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -24,6 +25,15 @@ const useStyles = makeStyles({
   },
 });
 
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:nth-of-type(even)": {
+      backgroundColor: theme.palette.action.selected,
+    },
+  },
+}))(TableRow);
+
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
@@ -33,12 +43,12 @@ const rows = [
   createData('code555', 'Phòng Thực Hành B12', '13/12/2020'),
   createData('code666', 'Phòng Thực Hành B14', '15/12/2020'),
   createData('code777', 'Phòng Thực Hành B15', '17/12/2020'),
-  createData('code555', 'Phòng Thực Hành B12', '13/12/2020'),
-  createData('code666', 'Phòng Thực Hành B14', '15/12/2020'),
-  createData('code555', 'Phòng Thực Hành B12', '13/12/2020'),
-  createData('code666', 'Phòng Thực Hành B14', '15/12/2020'),
-  createData('code555', 'Phòng Thực Hành B12', '13/12/2020'),
-  createData('code666', 'Phòng Thực Hành B14', '15/12/2020'),
+  createData('code888', 'Phòng Thực Hành B12', '13/12/2020'),
+  createData('code999', 'Phòng Thực Hành B14', '15/12/2020'),
+  createData('code844', 'Phòng Thực Hành B12', '13/12/2020'),
+  createData('code754', 'Phòng Thực Hành B14', '15/12/2020'),
+  createData('code865', 'Phòng Thực Hành B12', '13/12/2020'),
+  createData('code123', 'Phòng Thực Hành B14', '15/12/2020'),
   
 ];
 
@@ -58,7 +68,7 @@ export default function DenseTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.name}>
+              <StyledTableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
@@ -69,7 +79,7 @@ export default function DenseTable() {
                     <DeleteIcon />
               </IconButton>
               </TableCell>
-            </TableRow>
+              </StyledTableRow >
           ))}
         </TableBody>
       </Table>

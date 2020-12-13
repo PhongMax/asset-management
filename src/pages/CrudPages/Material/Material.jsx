@@ -393,7 +393,8 @@ export default function Material(props) {
   };
 
   const addNewAdditionalProduct = (newAdditionalProduct) => {
-    insertAdditionalProduct(newAdditionalProduct);
+    console.log(newAdditionalProduct);
+    // insertAdditionalProduct(newAdditionalProduct);
     setOpenPopupAddNew(false)
   };
 

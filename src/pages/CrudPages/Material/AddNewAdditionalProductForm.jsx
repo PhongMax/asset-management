@@ -36,8 +36,6 @@ export default function AddNewAdditionalProductForm(props) {
 
   const [isEmptyMultiInput, setIsEmptyMultiInput] = useState(false);
 
-
-
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
    
@@ -56,8 +54,6 @@ export default function AddNewAdditionalProductForm(props) {
       )
         ? ""
         : "Trường này không hợp lệ.";
-    
-
        
     setErrors({
       ...temp,
@@ -90,7 +86,7 @@ export default function AddNewAdditionalProductForm(props) {
   // đây mới thực sự gọi là hàm xử lý sự kiện submit
   const handleSubmitOnClick =  (e) => {
     e.preventDefault();
-    if (window.confirm("Press a button!")) {
+    if (window.confirm("Mời bạn hãy xem kỹ lại danh sách một lần nữa trước khi lưu vào hệ thống!")) {
       addNewAdditionalProduct(ObjecAdditionalProduct(values,valuesPreView ));
     }
     
@@ -123,7 +119,7 @@ export default function AddNewAdditionalProductForm(props) {
  {    
    
     const tempArr = [...valuesPreView];
-    console.log(tempArr, "giá trị banđầu ");
+   
 
     if (validate() && validateMultiInput() ){
       setDisableInput(true);
@@ -135,7 +131,10 @@ export default function AddNewAdditionalProductForm(props) {
           console.log(item, " tem");
           console.log(tempArr, " temparrr");
         // loại bỏ trường hợp trùng
-        if (!tempArr.includes(item)) {
+        const arrayToCheckUnique = valuesPreView.map((item) => item.credential);
+
+       
+        if (!arrayToCheckUnique.includes(item)) {
           const temp = {  credential: item,
             timeStartDepreciation: values.timeStartDepreciation,
             placeId: values.placeId,

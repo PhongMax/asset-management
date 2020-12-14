@@ -80,8 +80,9 @@ export const getDataPlace = async () => {
 };
 export const getDataAdditional = async () => {
   const { data: responseData } = await additionalService.getAllAdditional();
-  const { data: typePlaces } = responseData;
-  return typePlaces.map((item) => {
+  let { data: additionals } = responseData;
+  additionals= additionals.filter((item) => (item.inProcess.toString() === "true"));
+  return additionals.map((item) => {
     return { id: item.id, title: convertDateTime(item.time) };
   });
 };

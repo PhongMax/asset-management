@@ -285,7 +285,7 @@ export default function Material(props) {
     
     try {
       await AdditionalProductService.insertAdditionalProduct( additionalProduct);
-    
+      getMaterialAndUpdateToState();
       setNotify({
         isOpen: true,
         message: "Thao tác thêm mới thành công",
@@ -392,9 +392,9 @@ export default function Material(props) {
     setOpenPopupLiquidate(false);
   };
 
-  const addNewAdditionalProduct = (newAdditionalProduct) => {
-    console.log(newAdditionalProduct);
-    // insertAdditionalProduct(newAdditionalProduct);
+  const addNewAdditionalProduct = (additonalProduct) => {
+   
+    insertAdditionalProduct(additonalProduct);
     setOpenPopupAddNew(false)
   };
 

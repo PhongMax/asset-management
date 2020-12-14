@@ -71,7 +71,7 @@ export default function CategoryForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên danh mục"
+            label="Nhập mã danh mục"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}

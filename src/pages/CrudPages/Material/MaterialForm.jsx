@@ -111,7 +111,7 @@ export default function MaterialForm(props) {
           />
           <Controls.Input
             name="parentCode"
-            label="Mã Cơ Sở Vật Chất đi kèm"
+            label="Mã Cơ Sở Vật Chất Cha"
             value={values.parentCode}
             onChange={handleInputChange}
             error={errors.parentCode}

@@ -58,7 +58,7 @@ export default function OrganizationForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên tổ chức"
+            label="Nhập mã tổ chức"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}

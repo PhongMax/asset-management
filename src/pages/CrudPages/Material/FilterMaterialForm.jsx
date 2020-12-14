@@ -84,7 +84,7 @@ const columns = [
   },
   {
     name: "parentCode",
-    label: "Mã Cơ Sở Vật Chất đi kèm",
+    label: "Mã Cơ Sở Vật Chất Cha",
     options: {
       filter: true,
       sort: true,

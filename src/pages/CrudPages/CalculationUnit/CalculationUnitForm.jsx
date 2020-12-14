@@ -59,7 +59,7 @@ export default function CalculationUnitForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên đơn vị tính"
+            label="Nhập mã đơn vị tính"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}

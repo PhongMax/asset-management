@@ -59,7 +59,7 @@ export default function DepartmentForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên phòng ban"
+            label="Nhập mã phòng ban"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}

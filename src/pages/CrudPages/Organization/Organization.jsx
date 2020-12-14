@@ -50,7 +50,7 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-  { id: "name", label: "Tên tổ chức" },
+  { id: "name", label: "Mã tổ chức" },
   { id: "contact", label: "Thông tin liên hệ" },
   { id: "createdAt", label: "Ngày tạo dữ liệu" },
   { id: "updatedAt", label: "Ngày cập nhật" },

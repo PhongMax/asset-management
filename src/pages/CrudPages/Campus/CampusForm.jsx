@@ -88,7 +88,7 @@ export default function CampusForm(props) {
         <Grid item xs={6}>
           <Controls.Input
             name="name"
-            label="Nhập tên khuôn viên"
+            label="Nhập mã khuôn viên"
             value={values.name}
             onChange={handleInputChange}
             error={errors.name}

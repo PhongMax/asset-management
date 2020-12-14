@@ -11,8 +11,6 @@ const putQuery = apiEndpoint + ":update";
 const exportQuery = baseApiUrl +  "/statistical/";
 const historyQuery = baseApiUrl +  "/material:fetchHistoryTransfer/";
 
-
-
 HTTP.handleProtectedAPI();
 
 export function getMaterial(materialId) {

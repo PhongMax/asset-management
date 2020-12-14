@@ -3,7 +3,6 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import DateFnsUtils from "@date-io/date-fns";
 import moment from "moment";
 export default function DatePicker(props) {
-
     const { name, label, value, onChange } = props
     const convertToDefEventPara = (name, value) =>  {
         return ({

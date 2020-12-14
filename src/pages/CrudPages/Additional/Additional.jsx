@@ -182,8 +182,6 @@ export default function Additional(props) {
     }
   };
 
-  
-
   const changeStatusAdditional = async (additonal) => {
 
     const infoChange =  { id:additonal.id,
@@ -192,7 +190,6 @@ export default function Additional(props) {
       await AdditionalService.changeStatusAdditional(
         infoChange
       );
-   
       setNotify({
         isOpen: true,
         message: "Thay đổi trạng thái thành công",
@@ -201,15 +198,12 @@ export default function Additional(props) {
     } catch (ex) {
       toast.error("Errors: Thay đổi trạng thái thất bại ");
     }
-
     getAdditionalAndUpdateToState();
   };
-
 
   //===================================================================================
 
   useEffect(getAdditionalAndUpdateToState, []);
-
   const {
     TblContainer,
     TblHead,
@@ -233,7 +227,7 @@ export default function Additional(props) {
   const  handleChangeStatus = (item) => {
     changeStatusAdditional(item);
   };
-
+  
   const addOrEdit = (Additional, resetForm) => {
     if (Additional.id === 0) insertAdditional(Additional);
     else updateAdditional(Additional);

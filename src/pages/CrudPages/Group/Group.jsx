@@ -283,8 +283,7 @@ export default function Group(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
-</OftadehLayout>
-
+      </OftadehLayout>
     </>
   );
 }

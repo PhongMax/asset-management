@@ -150,9 +150,7 @@ export default function Campus(props) {
     }
   };
   //===================================================================================
-
   useEffect(getCampusAndUpdateToState, []);
-
   const {
     TblContainer,
     TblHead,

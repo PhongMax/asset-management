@@ -16,9 +16,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AlertDialogSlide(props) {
   const [open, setOpen] = React.useState(false);
-  const {toolTipOn, toolTipOff, name,disabled = false, value, onChange, description, title } = props;
+  const {toolTipOn, toolTipOff,disabled = false, value, onChange, description, title } = props;
   const [checked, setChecked] = React.useState(value);
-
 
   const handleClose = () => {
     setOpen(false);
@@ -28,15 +27,12 @@ export default function AlertDialogSlide(props) {
   const handleChange = (event) => {
     setChecked(event.target.checked );  
     setOpen(true); 
-    
   };
 
   const handleSubmit = (event) => {
     setOpen(false); 
     onChange();
   };
-
- 
 
   return (
     <React.Fragment>

@@ -36,7 +36,6 @@ export function isLoggedIn() {
       return true;
     }else
     return false;
-   
   } catch (ex) {
     return false;
   }

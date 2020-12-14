@@ -286,9 +286,7 @@ export default function Organization(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
-</OftadehLayout>
-
-    
+      </OftadehLayout>
     </>
   );
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import { toast } from "react-toastify";
@@ -159,7 +158,6 @@ export default function Inventory(props) {
       setRecords(originalInventoryRecord);
     }
   };
-
   
   const changeStatusInventory = async (Inventory) => {
 
@@ -169,7 +167,6 @@ export default function Inventory(props) {
       await InventoryService.changeStatusInventory(
         infoChange
       );
-   
       setNotify({
         isOpen: true,
         message: "Thay đổi trạng thái thành công",
@@ -178,13 +175,11 @@ export default function Inventory(props) {
     } catch (ex) {
       toast.error("Errors: Thay đổi trạng thái thất bại ");
     }
-
     getInventoryAndUpdateToState();
   };
   //===================================================================================
 
   useEffect(getInventoryAndUpdateToState, []);
-
   const {
     TblContainer,
     TblHead,
@@ -205,7 +200,7 @@ export default function Inventory(props) {
     });
   };
 
-  const  handleChangeStatus = (item) => {
+  const handleChangeStatus = (item) => {
     changeStatusInventory(item);
   };
 
@@ -215,11 +210,6 @@ export default function Inventory(props) {
     resetForm();
     setRecordForEdit(null);
     setOpenPopup(false);
-  };
-
-  const openInPopup = (item) => {
-    setRecordForEdit(item);
-    setOpenPopup(true);
   };
 
   const onDelete = (id) => {
@@ -294,14 +284,6 @@ export default function Inventory(props) {
                 </TableCell>
             
                 <TableCell>
-                  {/* <Controls.ActionButton
-                    color="primary"
-                    onClick={() => {
-                      openInPopup(item);
-                    }}
-                  >
-                    <EditOutlinedIcon fontSize="small" />
-                  </Controls.ActionButton> */}
                   <Controls.ActionButton
                     color="secondary"
                     onClick={() => {
@@ -337,8 +319,6 @@ export default function Inventory(props) {
         setConfirmDialog={setConfirmDialog}
       />
       </OftadehLayout>
-
-    
     </>
   );
 }

@@ -13,7 +13,6 @@ const initialFValues = {
 
 export default function DepartmentForm(props) {
   const { addOrEdit, recordForEdit } = props;
-
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("name" in fieldValues)

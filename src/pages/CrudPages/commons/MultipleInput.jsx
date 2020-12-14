@@ -27,7 +27,6 @@ export default function MultipleInput(props) {
     })
 }
 
-
   // xử lý lỗi not update state after setValue
   // https://stackoverflow.com/questions/41446560/react-setstate-not-updating-state
   useEffect(() => {
@@ -36,7 +35,7 @@ export default function MultipleInput(props) {
       onChange(convertToDefEventPara(name,chips))
     }
    
-  }, [chips] )
+  }, [chips ] )
 
   const validate = (chip) => {
     if (chipCheckList.find((item) => item.toLowerCase() === chip.toLowerCase()))
@@ -49,7 +48,6 @@ export default function MultipleInput(props) {
       setError(false);
       return true;
     }
-    
   }
 
   const onBeforeAdd = (chip) => {
@@ -60,21 +58,17 @@ export default function MultipleInput(props) {
     if (validate(chip)) {
       setCheckFlag (true);
       setChips((prevChips) => [...prevChips, chip]);
-      
     }
   }
 
   const handleDelete = (deletedChip) => {
   setCheckFlag (true);
-   setChips( (prevChips) => prevChips.filter((c) => c !== deletedChip) );
-  
+  setChips( (prevChips) => prevChips.filter((c) => c !== deletedChip) );
   }
 
   return (
     <div>
-    
         <ChipInput
-          onAdd={(chip) => this.handleAdd(chip)}
           value={chips}
           name={name}
           label="Mã CSVC"

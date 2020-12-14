@@ -110,7 +110,6 @@ export default function User(props) {
         departmentId: obj.departmentId,
       },
     };
-
     return temp;
   };
 
@@ -172,7 +171,6 @@ export default function User(props) {
   };
 
   //===================================================================================
-
   useEffect(getUserAndUpdateToState, []);
 
   const {
@@ -260,9 +258,6 @@ export default function User(props) {
                 <TableCell>{item.email}</TableCell>
 
                 <TableCell>{item.department.description}</TableCell>
-
-                {/* <TableCell>{item.createdAt}</TableCell>
-                <TableCell>{item.updatedAt}</TableCell> */}
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -292,8 +287,6 @@ export default function User(props) {
         setConfirmDialog={setConfirmDialog}
       />
     </OftadehLayout>
-
-     
     </>
   );
 }

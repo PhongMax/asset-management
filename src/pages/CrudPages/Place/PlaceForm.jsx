@@ -129,7 +129,6 @@ export default function PlaceForm(props) {
             onChange={handleInputChange}
             error={errors.description}
           />
-
           <Controls.Input
             label="Tầng"
             name="floor"
@@ -146,7 +145,6 @@ export default function PlaceForm(props) {
             onChange={handleInputChange}
             error={errors.direction}
           />
-
           <Controls.Select
             name="departmentId"
             label="Phòng ban"
@@ -163,7 +161,6 @@ export default function PlaceForm(props) {
             options={Campus}
             error={errors.campusId}
           />
-
           <Controls.Select
             name="typePlaceId"
             label="Loại vị trí"
@@ -172,7 +169,6 @@ export default function PlaceForm(props) {
             options={TypePlaces}
             error={errors.typePlaceId}
           />
-
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

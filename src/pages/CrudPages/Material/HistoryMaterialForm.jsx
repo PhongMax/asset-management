@@ -74,7 +74,6 @@ export default function Backup(props) {
     TblContainer,
     TblHead,
     TblPagination,
-    recordsAfterPagingAndSorting,
   } = useTable(records, headCells);
 
   return (

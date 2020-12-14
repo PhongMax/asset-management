@@ -167,16 +167,6 @@ export default function ProductForm(props) {
             options={getProductTypeCollection()}
             error={errors.type}
           />
-
-          {/* <Controls.Select
-            name="categoryId"
-            label="Thuộc danh mục"
-            value={values.categoryId}
-            onChange={handleInputChange}
-            options={Categories}
-            error={errors.categoryId}
-          /> */}
-
           <Controls.Select
             name="calculationUnitId"
             label="Đơn vị tính"

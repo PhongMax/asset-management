@@ -1,4 +1,4 @@
-import React , {useAffect}from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -35,7 +35,6 @@ export default function FullScreenDialog(props) {
 
   return (
     <div>
-     
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar} >
           <Toolbar>

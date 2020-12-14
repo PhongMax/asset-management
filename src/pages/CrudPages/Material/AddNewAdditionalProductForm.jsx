@@ -16,18 +16,14 @@ const initialFValues = {
     listMaterialCode: [],
 };
 
-
-
 export default function AddNewAdditionalProductForm(props) {
   const { addNewAdditionalProduct } = props;
   
   const [values, setValues] = useState(initialFValues);
   const [valuesPreView, setValuesPreView] = useState([]);
-
   const [resetMulInput, setResetMulInput] = useState(false);
   const [errors, setErrors] = useState({});
   const [disableInput, setDisableInput] = useState(false);
-
 
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataProduct, setDataProduct] = useState([]);
@@ -38,7 +34,6 @@ export default function AddNewAdditionalProductForm(props) {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-   
       if ("productId" in fieldValues)
       temp.productId = fieldValues.productId ? "" : "Trường này là bắt buộc.";
       
@@ -73,12 +68,11 @@ export default function AddNewAdditionalProductForm(props) {
     // trường hợp rỗng
     if (!values.listMaterialCode.toString())
     {
-    
       setIsEmptyMultiInput(true);
       return false;
-    }else
+    }
+    else
     {
-     
       setIsEmptyMultiInput(false);
       return true;
     }
@@ -89,7 +83,6 @@ export default function AddNewAdditionalProductForm(props) {
     if (window.confirm("Mời bạn hãy xem kỹ lại danh sách một lần nữa trước khi lưu vào hệ thống!")) {
       addNewAdditionalProduct(ObjecAdditionalProduct(values,valuesPreView ));
     }
-    
   };
 
   const handleInputChange = e => {
@@ -117,23 +110,14 @@ export default function AddNewAdditionalProductForm(props) {
 // xử lý việc nhập tiếp theo ...
  const handleNextButton = () =>
  {    
-   
     const tempArr = [...valuesPreView];
-   
-
     if (validate() && validateMultiInput() ){
       setDisableInput(true);
       setResetMulInput(!resetMulInput);
-
       //lưu vào data vào trong state để render ra preview form
       values.listMaterialCode.forEach((item) => {
-          console.log(!tempArr.includes(item), "choi thử");
-          console.log(item, " tem");
-          console.log(tempArr, " temparrr");
         // loại bỏ trường hợp trùng
         const arrayToCheckUnique = valuesPreView.map((item) => item.credential);
-
-       
         if (!arrayToCheckUnique.includes(item)) {
           const temp = {  credential: item,
             timeStartDepreciation: values.timeStartDepreciation,
@@ -164,14 +148,13 @@ export default function AddNewAdditionalProductForm(props) {
     Utils.getDataCredentialCode().then((response) => {
       setDataCredentialCode([...response]);
     });
-
   }, []);
 
   return (
     <Form onSubmit={handleSubmit}>
     <Grid container>
       <Grid item xs={3}>
-      <Controls.AutoCompleteButton
+          <Controls.AutoCompleteButton
             name="additionalId"
             disabled =  {disableInput}
             label="Chọn đợt bổ sung"
@@ -182,7 +165,6 @@ export default function AddNewAdditionalProductForm(props) {
             options={DataAdditional}
             error={errors.additionalId}
           />
-
           <Controls.AutoCompleteButton
             name="productId"
             disabled =  {disableInput}
@@ -207,7 +189,6 @@ export default function AddNewAdditionalProductForm(props) {
       endIcon={<Icon>skip_next</Icon>}
       color="secondary"
       onClick={handleNextButton} />
-     
 
       </div>
       </Grid>
@@ -219,7 +200,6 @@ export default function AddNewAdditionalProductForm(props) {
         onChange ={handleInputChange}
         isEmptyMultiInput={isEmptyMultiInput}
       />
-
       <Controls.AutoCompleteButton
             name="placeId"
             label="Chọn nơi phân bổ"
@@ -228,7 +208,6 @@ export default function AddNewAdditionalProductForm(props) {
             options={DataPlace}
             error={errors.placeId}
           />
-
       <Controls.DatePicker
             name="timeStartDepreciation"
             label="Thời gian b.đầu tính khấu hao"
@@ -236,7 +215,6 @@ export default function AddNewAdditionalProductForm(props) {
             onChange={handleInputChange}
             error={errors.timeStartDepreciation}
           />
-    
       </Grid>
       <Grid item xs={6}>
       <PreviewForm
@@ -254,5 +232,4 @@ export default function AddNewAdditionalProductForm(props) {
     </Grid>
   </Form>
   );
-  
 }

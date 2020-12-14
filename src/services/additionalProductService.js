@@ -7,7 +7,6 @@ const postQuery = apiEndpoint + ":createInBox";
 
 HTTP.handleProtectedAPI();
 
-
 export function insertAdditionalProduct(additionalProduct) {
   return HTTP.POST(postQuery, additionalProduct);
 }

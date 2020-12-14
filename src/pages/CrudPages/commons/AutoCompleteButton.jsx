@@ -52,7 +52,6 @@ export default function AutoCompleteButton(props) {
           <TextField {...params} label={label} variant="outlined" />
         )}
       />
-
       {error && <FormHelperText>{error}</FormHelperText>}
     </FormControl>
   );

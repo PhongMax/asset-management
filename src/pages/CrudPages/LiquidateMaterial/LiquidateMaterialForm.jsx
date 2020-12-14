@@ -1,12 +1,8 @@
-
-
-
 import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../commons/Controls";
 import { useForm, Form } from "../commons/useForm";
 import * as Utils from "../../../utils/Utils";
-
 
 const initialFValues = (materialId) => {
   return {
@@ -17,10 +13,7 @@ const initialFValues = (materialId) => {
 
 export default function LiquidateMaterialForm(props) {
   const { addLiquidateMaterial, inforLiquidate } = props;
-
   const [DataLiquidate , setDataLiquidate ] = useState([]);
-
-
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("liquidateId" in fieldValues) {
@@ -31,7 +24,6 @@ export default function LiquidateMaterialForm(props) {
     setErrors({
       ...temp,
     });
-
 
     if (fieldValues === values)
       return Object.values(temp).every((x) => x === "");
@@ -60,8 +52,6 @@ export default function LiquidateMaterialForm(props) {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item sm={12}>
-     
-      
           <Controls.AutoCompleteButton
             name="liquidateId"
             label="Chọn đợt thanh lý"
@@ -70,7 +60,6 @@ export default function LiquidateMaterialForm(props) {
             options={DataLiquidate}
             error={errors.liquidateId}
           />
-       
           <div>
             <Controls.Button type="submit" text="Thực thi" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

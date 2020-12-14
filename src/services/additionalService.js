@@ -12,7 +12,6 @@ const putQuery = apiEndpoint + ":update";
 // extra Query String
 const putQueryChangeStatus = apiEndpoint + ":changeStatus";
 
-
 HTTP.handleProtectedAPI();
 
 export function getAdditional(additionalId) {

@@ -15,9 +15,6 @@ export default function InventoryForm(props) {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    // if ("name" in fieldValues)
-    //   temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
-
     setErrors({
       ...temp,
     });

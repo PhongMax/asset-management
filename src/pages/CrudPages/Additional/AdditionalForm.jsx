@@ -59,7 +59,6 @@ export default function AdditionalForm(props) {
         ...recordForEdit,
       });
     }
-     
   }, [recordForEdit, setValues]);
 
   useEffect(() => {
@@ -84,7 +83,6 @@ export default function AdditionalForm(props) {
             error={errors.userId}
             disabled = {updatedFlag}
           />
-
           <Controls.DatePicker
             name="time"
             label="Nhập thời gian đợt bổ sung"
@@ -105,7 +103,6 @@ export default function AdditionalForm(props) {
             error={errors.organizationId}
             disabled = {updatedFlag}
           />
-
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

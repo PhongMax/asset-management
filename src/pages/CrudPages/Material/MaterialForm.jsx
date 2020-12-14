@@ -53,7 +53,6 @@ export default function MaterialForm(props) {
       if ("additionalId" in fieldValues)
       temp.additionalId = fieldValues.additionalId ? "" : "Trường này là bắt buộc.";
 
-
     setErrors({
       ...temp,
     });
@@ -117,23 +116,6 @@ export default function MaterialForm(props) {
             onChange={handleInputChange}
             error={errors.parentCode}
           />
-
-          {/* <Controls.Select
-            name="additionalId"
-            label="additionalId"
-            value={values.additionalId}
-            onChange={handleInputChange}
-            options={DataAdditional}
-          /> */}
-
-          {/* <Controls.Select
-            name="userId"
-            label="userId"
-            value={values.userId}
-            onChange={handleInputChange}
-            options={DataUser}
-          /> */}
-
           <Controls.AutoCompleteButton
             name="additionalId"
             label="Chọn đợt bổ sung"
@@ -161,14 +143,6 @@ export default function MaterialForm(props) {
           />
         </Grid>
         <Grid item xs={6}>
-          {/* <Controls.Select
-            name="placeId"
-            label="placeId"
-            value={values.placeId}
-            onChange={handleInputChange}
-            options={DataPlace}
-          /> */}
-
           <Controls.AutoCompleteButton
             name="placeId"
             label="Vị trí"
@@ -192,15 +166,6 @@ export default function MaterialForm(props) {
             options={getMaterialStatus}
             error={errors.status}
           />
-
-          {/* <Controls.Select
-            name="productId"
-            label="productId"
-            value={values.productId}
-            onChange={handleInputChange}
-            options={DataProduct}
-          /> */}
-
           <Controls.AutoCompleteButton
             name="productId"
             label="Chọn sản phẩm"
@@ -209,7 +174,6 @@ export default function MaterialForm(props) {
             options={DataProduct}
             error={errors.productId}
           />
-
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

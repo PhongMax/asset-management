@@ -18,7 +18,6 @@ const initialFValues = (materialId, placeFromId) => {
 
 export default function TransferMaterialForm(props) {
   const { addTransferMaterial, inforTransfer } = props;
-
   const [DataPlace, setDataPlace] = useState([]);
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -27,13 +26,11 @@ export default function TransferMaterialForm(props) {
         ? ""
         : "Trường này là bắt buộc.";
     }
-
     if ("reason" in fieldValues)
       temp.reason = fieldValues.reason.length ? "" : "Trường này là bắt buộc.";
     setErrors({
       ...temp,
     });
-
     if (fieldValues === values)
       return Object.values(temp).every((x) => x === "");
   };
@@ -67,13 +64,6 @@ export default function TransferMaterialForm(props) {
             value={values.time}
             onChange={handleInputChange}
           />
-          {/* <Controls.Select
-            name="DataPlace"
-            label="DataPlace"
-            value={values.DataPlace}
-            onChange={handleInputChange}
-            options={DataPlace}
-          /> */}
           <Controls.AutoCompleteButton
             name="placeTargetId"
             label="Nơi điều chuyển đến"
@@ -89,7 +79,6 @@ export default function TransferMaterialForm(props) {
             onChange={handleInputChange}
             error={errors.reason}
           />
-
           <div>
             <Controls.Button type="submit" text="Thực thi" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

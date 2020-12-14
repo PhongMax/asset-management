@@ -177,7 +177,6 @@ export default function Backup(props) {
                   <TableCell>{item.position}</TableCell>
                   <TableCell>{item.backup_start_date}</TableCell>
                   <TableCell>{item.backup_finish_date}</TableCell>
-                
                   <TableCell>
                     <Controls.ActionButton
                       color="secondary"

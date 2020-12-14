@@ -50,7 +50,6 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 const headCells = [
-
   { id: "time", label: "Thời gian thanh lý" },
   { id: " user.fullName", label: "Người thanh lý" ,  disableSorting: true},
   { id: "done", label: "Trạng thái" },
@@ -58,7 +57,6 @@ const headCells = [
   { id: "updatedAt", label: "Ngày cập nhật" },
   { id: "actionss", label: "Chuyển trạng thái ", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
-
 ];
 
 export default function Liquidate(props) {
@@ -83,7 +81,6 @@ export default function Liquidate(props) {
     subTitle: "",
   });
 
-
   // ======================================    XỬ LÝ DATA FROM SERVER ====================================
   const LiquidateHandledToShow = (obj) => {
     const objConverted = obj.map((item) => {
@@ -95,7 +92,6 @@ export default function Liquidate(props) {
       };
       return Object.assign(item, additionalProps);
     });
-
     return objConverted;
   };
 
@@ -110,8 +106,6 @@ export default function Liquidate(props) {
   };
 
   const LiquidateHandledToUpdate = (obj) => {
-
-
     const temp = {
       id: obj.id,
       time: moment(obj.time, 'DD-MM-YYYY hh:mm:ss A').toISOString(),
@@ -119,7 +113,6 @@ export default function Liquidate(props) {
         userId: obj.userId,
       },
     };
-
     return temp;
   };
   // ======================================================================================================
@@ -188,7 +181,6 @@ export default function Liquidate(props) {
 
 
   const changeStatusLiquidate = async (Liquidate) => {
-
     const infoChange =  { id:Liquidate.id,
       status:!Liquidate.done};
     try {
@@ -204,7 +196,6 @@ export default function Liquidate(props) {
     } catch (ex) {
       toast.error("Errors: Thay đổi trạng thái thất bại ");
     }
-
     getLiquidateAndUpdateToState();
   };
   //===================================================================================
@@ -231,8 +222,7 @@ export default function Liquidate(props) {
     });
   };
 
-
-  const  handleChangeStatus = (item) => {
+  const handleChangeStatus = (item) => {
     changeStatusLiquidate(item);
   };
 
@@ -302,7 +292,6 @@ export default function Liquidate(props) {
           <TableBody>
             {recordsAfterPagingAndSorting().map((item) => (
               <StyledTableRow key={item.id}>
-     
                 <TableCell>{item.time}</TableCell>
                 <TableCell>{item.user.fullName}</TableCell>
                 <TableCell>{item.done.toString() === "true" ? "Hoàn tất" : " Chưa"}</TableCell> 

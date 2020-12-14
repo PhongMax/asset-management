@@ -10,10 +10,6 @@ const putQuery = apiEndpoint + ":update";
 
 HTTP.handleProtectedAPI();
 
-// export function getDepartment(departmentId) {
-//   return HTTP.get(departmentUrl(departmentId));
-// }
-
 export function getAllDepartment() {
   return HTTP.GET(getAllQuery);
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, makeStyles } from '@material-ui/core';
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         minWidth: 0,
@@ -22,10 +21,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function ActionButton(props) {
-
     const { color, children, onClick } = props;
     const classes = useStyles();
-
     return (
         <Button
             className={`${classes.root} ${classes[color]}`}

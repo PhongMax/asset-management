@@ -223,7 +223,6 @@ export default function Material(props) {
     return temp;
   };
 
-
   //=======================================   XỬ LÝ CALL API    ===========================================
   const getMaterialAndUpdateToState = async () => {
     try {
@@ -282,7 +281,6 @@ export default function Material(props) {
   };
 
   const insertAdditionalProduct = async (additionalProduct) => {
-    
     try {
       await AdditionalProductService.insertAdditionalProduct( additionalProduct);
       getMaterialAndUpdateToState();
@@ -295,10 +293,6 @@ export default function Material(props) {
       toast.error("Errors: Thêm mới  thất bại ");
     }
   };
-
-
-
-
 
   const updateMaterial = async (Material) => {
     try {
@@ -348,9 +342,7 @@ export default function Material(props) {
       toast.error("Errors: Xuất ra file bị  lỗi "); 
     }
   }
-  
   useEffect(getMaterialAndUpdateToState, []);
-
   const {
     TblContainer,
     TblHead,
@@ -388,29 +380,23 @@ export default function Material(props) {
   const addLiquidateMaterial = (liquidateMaterial, resetForm) => {
     insertLiquidateMaterial(liquidateMaterial);
     resetForm();
-
     setOpenPopupLiquidate(false);
   };
 
   const addNewAdditionalProduct = (additonalProduct) => {
-   
     insertAdditionalProduct(additonalProduct);
     setOpenPopupAddNew(false)
   };
-
 
   const openInPopup = (item) => {
     setRecordForEdit(item);
     setOpenPopup(true);
   };
 
-
-
   const openInPopupTransfer = (item) => {
     setInforTransfer(item);
     setOpenPopupTransfer(true);
   };
-
 
   const openInPopupLiquidate = (item) => {
     setInforLiquidate(item);
@@ -456,17 +442,6 @@ export default function Material(props) {
               />
             </Grid>
             <Grid item sm={2}>
-              {/* <Controls.Button
-                text="Thêm mới"
-                variant="outlined"
-                startIcon={<AddIcon />}
-                className={classes.newButton}
-                onClick={() => {
-                  setOpenPopup(true);
-                  setRecordForEdit(null);
-                }}
-                
-              /> */}
                  <Controls.Button
                 text="Thêm mới"
                 variant="outlined"
@@ -600,7 +575,6 @@ export default function Material(props) {
         openPopup={openPopupAddNew}
         setOpenPopup={setOpenPopupAddNew}
       >
-       
         <AddNewAdditionalProductForm addNewAdditionalProduct = {addNewAdditionalProduct} />
       </Popup>
       <Popup
@@ -642,7 +616,6 @@ export default function Material(props) {
         />
       </Popup>
 
-
       <Controls.FullScreenDialog
       title = "Xem chi tiết"
       open = {openPopupFilter}
@@ -650,7 +623,6 @@ export default function Material(props) {
       >         
         <FilterMaterialForm records ={records} convertStatus={convertStatus} />
       </Controls.FullScreenDialog>
-
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
         confirmDialog={confirmDialog}

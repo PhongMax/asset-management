@@ -28,8 +28,6 @@ export function changeStatusInventory(changeStatusInventory) {
   return HTTP.PUT(putQueryChangeStatus, changeStatusInventory);
 }
 
-
-
 export function updateInventory(inventroy) {
   return HTTP.PUT(putQuery, inventroy);
 }

@@ -7,9 +7,8 @@ import * as Utils from "../../../utils/Utils";
 
 const roles = [
   { id: "ROLE_ADMIN", title: "Admin" },
-  { id: "ROLE_CHIEF_ACCOUNTANT", title: "Kế toán trưởng" },
+  { id: "ROLE_EMPlOYEE", title: "Nhân viên" },
   { id: "ROLE_ACCOUNTANT", title: "Kế toán" },
-  { id: "ROLE_LECTURES", title: "Giảng viên" },
   { id: "ROLE_INSPECTOR", title: "Người kiểm tra" },
 ];
 
@@ -140,7 +139,6 @@ export default function UserForm(props) {
             options={departments}
             error={errors.departmentId}
           />
-
           <Controls.Checkbox
             name="active"
             label="Trạng thái hoạt động"
@@ -163,7 +161,6 @@ export default function UserForm(props) {
             onChange={handleInputChange}
             error={errors.password}
           />
-
           <Controls.MultipleSelect
             name="roles"
             label="Danh sách các quyền"
@@ -172,7 +169,6 @@ export default function UserForm(props) {
             options={roles}
             error={errors.roles}
           />
-
           <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />

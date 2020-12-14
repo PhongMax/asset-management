@@ -88,7 +88,6 @@ export default function CalculationUnit(props) {
     });
     return objectConverted;
   };
-
   //=======================================   XỬ LÝ CALL API    ===========================================
   const getCalculationUnitAndUpdateToState = async () => {
     try {
@@ -290,7 +289,6 @@ export default function CalculationUnit(props) {
         setConfirmDialog={setConfirmDialog}
       />
      </OftadehLayout>
-    
     </>
   );
 }

@@ -96,7 +96,6 @@ export default function Product(props) {
 
       return Object.assign(item, aditionalProps);
     });
-
     return objConverted;
   };
 
@@ -130,7 +129,6 @@ export default function Product(props) {
         calculationUnitId: obj.calculationUnitId,
       },
     };
-
     return temp;
   };
   //=======================================   XỬ LÝ CALL API    ===========================================
@@ -338,9 +336,7 @@ export default function Product(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
-</OftadehLayout>
-
-     
+      </OftadehLayout>
     </>
   );
 }

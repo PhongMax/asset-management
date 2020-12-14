@@ -41,14 +41,8 @@ const LoginPage = (props) => {
   };
 
   const handleChange = ({ currentTarget: input }) => {
-    // const errors = { ...this.state.errors };
-    // const errorMessage = this.validateProperty(input);
-    // if (errorMessage) errors[input.name] = errorMessage;
-    // else delete errors[input.name];
-
     const data = { ...AuthObj };
     data[input.name] = input.value;
-
     setAuthObj(data);
   };
 
@@ -63,9 +57,7 @@ const LoginPage = (props) => {
       {
         toast(metaData.message);
       }
-    
     } catch (ex) {
-    
       toast.error("Đăng nhập thất bại ");
     }
   };
@@ -82,15 +74,10 @@ const LoginPage = (props) => {
         <Typography variant="h5" component="h1">
           Đăng nhập
         </Typography>
-        {/* <Typography className={classes.brand} variant="h5" component="h1">
-          Login
-        </Typography> */}
         <Typography className={classes.mBottom} variant="body1">
           Hãy đăng nhập tài khoản của bạn
         </Typography>
-
         <form onSubmit={handleSubmit}>
-          {/* <form> */}
           <TextField
             size="small"
             label="Tên tài khoản"
@@ -112,44 +99,23 @@ const LoginPage = (props) => {
             value={AuthObj.password}
             onChange={handleChange}
           />
-          {/* <Button
-            onClick={() => history.push("/pages/auth/forgot-password")}
-            color="primary"
-          >
-            Forgot password?
-          </Button> */}
           <div className={classes.mBottom}>
             <Button
-                type="submit" text="Submit"
-       
+              type="submit" text="Submit"
               variant="contained"
               color="primary"
               fullWidth
               className={classes.button}
-              // onClick={() => history.push("/")}
-              // onClick={handleSubmit}
             >
               Đăng nhập
             </Button>
-            {/* <Button
-              variant="outlined"
-              color="primary"
-              fullWidth
-              className={classes.button}
-              onClick={() => history.push("/pages/auth/register")}
-            >
-              Register Now!
-            </Button> */}
-               
           </div>
         </form>
         <Typography variant="caption">&copy; Team K&P | QLTSHV</Typography>
       </div>
     </div>
   );
-
   }
-
 };
 
 export default LoginPage;

@@ -3,7 +3,6 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Typography, makeStyl
 import Controls from "./Controls";
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 
-
 const useStyles = makeStyles(theme => ({
     dialog: {
         padding: theme.spacing(2),
@@ -33,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function ConfirmDialog(props) {
-
     const { confirmDialog, setConfirmDialog } = props;
     const classes = useStyles()
 

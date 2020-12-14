@@ -16,11 +16,9 @@ export default function LiquidateForm(props) {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-
     if ("userId" in fieldValues)
       temp.userId =
         fieldValues.userId ? "" : "Trường này không được để trống.";
-
     setErrors({
       ...temp,
     });

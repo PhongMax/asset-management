@@ -30,7 +30,6 @@ export function changeStatusLiquidate(changeStatusLiquidate) {
   return HTTP.PUT(putQueryChangeStatus, changeStatusLiquidate);
 }
 
-
 export function updateLiquidate(liquidate) {
   return HTTP.PUT(putQuery, liquidate);
 }

@@ -335,9 +335,7 @@ export default function Place(props) {
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
-</OftadehLayout>
-
-    
+      </OftadehLayout>
     </>
   );
 }

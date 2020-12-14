@@ -14,8 +14,6 @@ import moment from "moment";
 const useStyles = makeStyles({
   table: {
      minWidth: 400,
-    // maxWidth: 550,
-    // minHeight: 100,
   },
   delete: {
     padding: 0,
@@ -55,8 +53,7 @@ export default function DenseTable(props) {
               <StyledTableRow key={row.credential}>
               <TableCell component="th" scope="row">
                 {row.credential}
-              </TableCell>
-            
+              </TableCell>   
               <TableCell >{dataPlace.find((item) => item.id === row.placeId).title}</TableCell>
               <TableCell >{moment(row.timeStartDepreciation.toString()).format("DD-MM-YYYY hh:mm:ss A")}</TableCell>
               <TableCell>

@@ -149,7 +149,6 @@ export default function Department(props) {
   //===================================================================================
 
   useEffect(getDepartmentAndUpdateToState, []);
-
   const {
     TblContainer,
     TblHead,
@@ -231,7 +230,6 @@ export default function Department(props) {
             </Grid>
           </Grid>
         </div>
-
         <TblContainer>
           <TblHead />
           <TableBody>

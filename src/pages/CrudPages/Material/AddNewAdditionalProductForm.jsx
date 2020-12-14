@@ -87,24 +87,6 @@ export default function AddNewAdditionalProductForm(props) {
       setIsEmptyMultiInput(false);
       return true;
     }
-
-
-    // // trường hợp trùng vs mã code đã nhập trước đó ở bảng preview
-    // if (!valuesPreView.listMaterialCode)
-    // return true;
-
-    // const tempArr = [...values.listMaterialCode, ...valuesPreView.listMaterialCode.map((item) =>item.credential)];
-    // // đoạn code này dùng để check trùng  
-    // if (tempArr.length === new Set(tempArr).size)
-    // {
-    //   setIsEmptyMultiInput(false);
-    //   return true;
-    // }else
-    // {
-    //   setIsEmptyMultiInput(true);
-    //   return false;
-    // }
-
   }
   // đây mới thực sự gọi là hàm xử lý sự kiện submit
   const handleSubmitOnClick = (e) => {
@@ -123,16 +105,16 @@ export default function AddNewAdditionalProductForm(props) {
 
 // xử lý việc nhập tiếp theo ...
  const handleNextButton = () =>
- {    const tempArr = [...valuesPreView];
-  console.log(tempArr, "giá trị banđầu ");
+ {    
+   
+    const tempArr = [...valuesPreView];
+    console.log(tempArr, "giá trị banđầu ");
 
     if (validate() && validateMultiInput() ){
       setDisableInput(true);
       setResetMulInput(!resetMulInput);
 
       //lưu vào data vào trong state để render ra preview form
-  
-  
       values.listMaterialCode.forEach((item) => {
           console.log(!tempArr.includes(item), "choi thử");
           console.log(item, " tem");
@@ -145,12 +127,9 @@ export default function AddNewAdditionalProductForm(props) {
           }
           tempArr.push(temp);
         }
-       
       });
       setValuesPreView(tempArr);
     }
-
- 
  }
  
   const onDeletePreview = (row) => {

@@ -38,7 +38,6 @@ export default function AddNewAdditionalProductForm(props) {
 
 
 
-
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
    
@@ -89,12 +88,12 @@ export default function AddNewAdditionalProductForm(props) {
     }
   }
   // đây mới thực sự gọi là hàm xử lý sự kiện submit
-  const handleSubmitOnClick = (e) => {
+  const handleSubmitOnClick =  (e) => {
     e.preventDefault();
- 
-    if (validate() && validateMultiInput() ) {
-          addNewAdditionalProduct(ObjecAdditionalProduct(values,valuesPreView ));
+    if (window.confirm("Press a button!")) {
+      addNewAdditionalProduct(ObjecAdditionalProduct(values,valuesPreView ));
     }
+    
   };
 
   const handleInputChange = e => {
@@ -138,7 +137,7 @@ export default function AddNewAdditionalProductForm(props) {
         // loại bỏ trường hợp trùng
         if (!tempArr.includes(item)) {
           const temp = {  credential: item,
-            timeStartDepreciation: values.timeStartDepreciation.toString(),
+            timeStartDepreciation: values.timeStartDepreciation,
             placeId: values.placeId,
           }
           tempArr.push(temp);
@@ -147,10 +146,8 @@ export default function AddNewAdditionalProductForm(props) {
       setValuesPreView(tempArr);
     }
  }
- 
   const onDeletePreview = (row) => {
   const valuesPreview = valuesPreView.filter(m => m.credential!== row.credential);
- 
   setValuesPreView(valuesPreview);
 
  }
@@ -211,11 +208,7 @@ export default function AddNewAdditionalProductForm(props) {
       endIcon={<Icon>skip_next</Icon>}
       color="secondary"
       onClick={handleNextButton} />
-      <Controls.Button 
-      size="small"
-      startIcon={<SaveIcon />} 
-      onClick = {handleSubmitOnClick} 
-      text="Lưu" />
+     
 
       </div>
       </Grid>
@@ -252,7 +245,12 @@ export default function AddNewAdditionalProductForm(props) {
       onDelete = {onDeletePreview}
       dataPlace = {DataPlace}
        /> 
-     
+      <Controls.Button 
+      style = {{float : "right"}}
+      size="small"
+      startIcon={<SaveIcon />} 
+      onClick = {handleSubmitOnClick} 
+      text="Save All" />
       </Grid>
     </Grid>
   </Form>

@@ -11,6 +11,8 @@ import SwitchButton from "./SwitchButton";
 import AlertDialogSlide from "./AlertDialogSlide";
 import MultipleInput from "./MultipleInput";
 import FullScreenDialog from "./FullScreenDialog";
+import ConfirmDropdown from "./ConfirmDropdown";
+
 const Controls = {
   Input,
   RadioGroup,
@@ -25,6 +27,7 @@ const Controls = {
   AlertDialogSlide,
   MultipleInput,
   FullScreenDialog,
+  ConfirmDropdown,
 };
 
 export default Controls;

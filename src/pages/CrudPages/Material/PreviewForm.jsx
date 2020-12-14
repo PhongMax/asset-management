@@ -58,7 +58,7 @@ export default function DenseTable(props) {
               </TableCell>
             
               <TableCell >{dataPlace.find((item) => item.id === row.placeId).title}</TableCell>
-              <TableCell >{moment(row.timeStartDepreciation).format("DD-MM-YYYY hh:mm:ss A")}</TableCell>
+              <TableCell >{moment(row.timeStartDepreciation.toString()).format("DD-MM-YYYY hh:mm:ss A")}</TableCell>
               <TableCell>
               <IconButton 
               className={classes.delete}

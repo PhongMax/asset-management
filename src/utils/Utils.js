@@ -90,7 +90,7 @@ export const getDataProduct = async () => {
   const { data: responseData } = await productService.getAllProduct();
   const { data: typePlaces } = responseData;
   return typePlaces.map((item) => {
-    return { id: item.id, title: item.description };
+    return { id: item.id, type: item.type, title: item.description };
   });
 };
 

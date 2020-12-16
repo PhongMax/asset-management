@@ -43,12 +43,28 @@ export default function AddNewAdditionalProductForm(props) {
       if ("placeId" in fieldValues)
       temp.placeId = fieldValues.placeId ? "" : "Trường này là bắt buộc.";
 
-      if ("price" in fieldValues)
-      temp.price = /^([0-9.])+$/.test(
-        fieldValues.price
-      )
-        ? ""
-        : "Trường này không hợp lệ.";
+      if ("price" in fieldValues) {
+        temp.price = /^([0-9.])+$/.test(
+          fieldValues.price
+        )
+          ? ""
+          : "Trường này không hợp lệ.";
+
+        // check trường hợp là tài sản hay là công cụ dụng cụ
+        if(/^([0-9.])+$/.test(fieldValues.price) && fieldValues.productId)
+        {
+          const product = DataProduct.find((item) => item.id === fieldValues.productId )
+          if (parseFloat(fieldValues.price) > 300000.0 &&  product.type === "TOOL")
+          {
+            temp.price = "Sản phẩm thuộc kiểu CCDC, giá phải nhỏ hơn 30tr";
+          }
+          else if (parseFloat(fieldValues.price) < 300000.0 &&  product.type === "ASSET")
+          {
+              temp.price = "Sản phẩm thuộc kiểu tài sản cố định, giá phải lớn hơn 30tr";
+          }
+        }
+ 
+      }
        
     setErrors({
       ...temp,
@@ -167,7 +183,7 @@ export default function AddNewAdditionalProductForm(props) {
           />
           <Controls.AutoCompleteButton
             name="productId"
-            disabled =  {disableInput}
+            disabled = {disableInput}
             label="Chọn sản phẩm"
             value={DataProduct.find((item) => item.id === values.productId)}
             onChange={handleInputChange}

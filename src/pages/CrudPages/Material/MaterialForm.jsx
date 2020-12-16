@@ -23,7 +23,7 @@ export default function MaterialForm(props) {
   const [DataAdditional, setDataAdditional] = useState([]);
   const [DataUser, setDataUser] = useState([]);
   const [DataPlace, setDataPlace] = useState([]);
-
+  const [DataCredentialCode, setDataCredentialCode] = useState([]);
   const getMaterialStatus = [
     { id: "UN_USED", title: "Không Sử Dụng" },
     { id: "IN_USED", title: "Đang Sử Dụng" },
@@ -73,7 +73,17 @@ export default function MaterialForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      addOrEdit(values, resetForm);
+      // xử lý trường hợp đặc biệt  - trường hơp là bộ
+      if (values.haveInclude)
+      {
+        // nếu là bộ thì phải xóa hết credentialCode 
+        const tempValues = {...values,  parentCode : null};
+        addOrEdit(tempValues, resetForm);
+      }else
+      {
+        addOrEdit(values, resetForm);
+      }
+ 
     }
   };
 
@@ -97,6 +107,9 @@ export default function MaterialForm(props) {
     Utils.getDataPlace().then((response) => {
       setDataPlace([...response]);
     });
+    Utils.getDataCredentialCodes().then((response) => {
+      setDataCredentialCode([...response]);
+    });
   }, []);
   return (
     <Form onSubmit={handleSubmit}>
@@ -109,13 +122,25 @@ export default function MaterialForm(props) {
             onChange={handleInputChange}
             error={errors.credentialCode}
           />
-          <Controls.Input
+           <Controls.Checkbox
+            label="Là Bộ (Là CSVC cha)"
+            name="haveInclude"
+            value={values.haveInclude}
+            onChange={handleInputChange}
+          />
+          <Controls.AutoCompleteButton
+            disabled = {values.haveInclude}
             name="parentCode"
             label="Mã Cơ Sở Vật Chất Cha"
-            value={values.parentCode}
+            value={DataCredentialCode.find(
+              (item) => item.id === values.parentCode
+            )}
             onChange={handleInputChange}
+            options={DataCredentialCode}
             error={errors.parentCode}
           />
+
+
           <Controls.AutoCompleteButton
             name="additionalId"
             label="Chọn đợt bổ sung"
@@ -135,12 +160,7 @@ export default function MaterialForm(props) {
             options={DataUser}
             error={errors.userId}
           />
-          <Controls.Checkbox
-            label="Là Bộ"
-            name="haveInclude"
-            value={values.haveInclude}
-            onChange={handleInputChange}
-          />
+         
         </Grid>
         <Grid item xs={6}>
           <Controls.AutoCompleteButton

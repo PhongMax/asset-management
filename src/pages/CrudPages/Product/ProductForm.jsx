@@ -119,7 +119,7 @@ export default function ProductForm(props) {
           />
           <Controls.Input
             name="description"
-            label="Nhập mô tả chi tiết"
+            label="Tên mô tả"
             value={values.description}
             onChange={handleInputChange}
             error={errors.description}

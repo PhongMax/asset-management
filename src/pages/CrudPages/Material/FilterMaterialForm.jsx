@@ -20,7 +20,7 @@ const columns = [
   },
   {
     name: "productName",
-    label: "Tên",
+    label: "Mã sản phẩm",
     options: {
       filter: true,
       sort: false,
@@ -28,12 +28,21 @@ const columns = [
   },
   {
     name: "productDescription",
-    label: "Mô tả",
+    label: "Tên mô tả",
     options: {
       filter: false,
       sort: false,
     },
   },
+  {
+    name: "priceOrigin",
+    label: "Giá ",
+    options: {
+      filter: true,
+      sort: true,
+    },
+  },
+
   {
     name: "productType",
     label: "Loại CSVC",
@@ -142,6 +151,7 @@ const FilterMaterialForm = (props) => {
         status: convertStatus(item.status),
         productName: item.product.name,
         productDescription: item.product.description,
+        priceOrigin: item.extendedInfo &&  item.extendedInfo.priceOrigin.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
         productType: item.product.type === "ASSET" ? "TSCĐ" : "CCDC",
         productTimeAllocationType: item.product.timeAllocationType === "YEAR" ? "Năm" : "Tháng",
         currentPlaceNameSpecification: item.currentPlace && item.currentPlace.nameSpecification,

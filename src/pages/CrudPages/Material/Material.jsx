@@ -65,8 +65,8 @@ const StyledTableRow = withStyles((theme) => ({
 const headCells = [
   { id: "credentialCode", label: "Mã CSVC" },
   { id: "status", label: "Trạng thái" },
-  { id: "product.name", label: "Tên ", disableSorting: true },
-  { id: "product.description", label: "Mô tả", disableSorting: true },
+  { id: "product.name", label: "Mã sản phẩm ", disableSorting: true },
+  { id: "product.description", label: "Tên mô tả", disableSorting: true },
   { id: "product.type", label: "Loại CSVC", disableSorting: true },
   {
     id: "product.timeAllocationType",

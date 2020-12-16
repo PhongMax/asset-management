@@ -120,6 +120,16 @@ export const getDataCredentialCode = async () => {
   });
 };
 
+export const getDataCredentialCodes = async () => {
+  const { data: responseData } = await materialService.getAllMaterial();
+  let { data: material } = responseData;
+
+  return material.map((item) => {
+    return { id: item.credentialCode, title: item.credentialCode };
+  });
+};
+
+
 
 //==========================================================================================
 export const convertDateTime = (epochTime) => {

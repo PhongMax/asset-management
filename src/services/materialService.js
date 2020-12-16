@@ -22,7 +22,7 @@ export function getHistoryMaterial(materialId) {
 }
 
 export function getExportMaterial(year) {
-  return HTTP.GET(`${exportQuery}${year}`);
+  return (`${exportQuery}${year}`);
 }
 
 export function getAllMaterial() {

@@ -329,10 +329,16 @@ export default function Material(props) {
   //===================================================================================
 
   //============================================Export Material ============================
-  const exportMaterial =async () =>
+  const exportMaterial = () =>
   {
     try {
-      await MaterialService.getExportMaterial(2020);
+      
+      // call api to get excel file
+      const link = document.createElement('a');
+      link.href = MaterialService.getExportMaterial(2020);
+      document.body.appendChild(link);
+      link.click();
+
       setNotify({
         isOpen: true,
         message: "Đã xuất thành công",

@@ -8,7 +8,7 @@ import * as Utils from "../../../utils/Utils";
 const roles = [
   { id: "ROLE_ACCOUNTANT", title: "Kế toán" },
   { id: "ROLE_ADMIN", title: "Admin" },
-  { id: "ROLE_EMPlOYEE", title: "Nhân viên" },
+  { id: "ROLE_EMPLOYEE", title: "Nhân viên" },
   { id: "ROLE_INSPECTOR", title: "Người kiểm tra" },
 ];
 

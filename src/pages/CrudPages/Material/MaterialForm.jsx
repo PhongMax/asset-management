@@ -164,6 +164,7 @@ export default function MaterialForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.AutoCompleteButton
+            disabled = "false"
             name="placeId"
             label="Vị trí"
             value={DataPlace.find((item) => item.id === values.placeId)}

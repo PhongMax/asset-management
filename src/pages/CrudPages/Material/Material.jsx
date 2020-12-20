@@ -117,6 +117,7 @@ export default function Material(props) {
   const [inforTransfer, setInforTransfer] = useState(null);
   const [inforLiquidate, setInforLiquidate] = useState(null);
   const [inforHistory, setInforHistory] = useState(null);
+  const [inforViewQr, setInforViewQr] = useState(null);
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -128,6 +129,9 @@ export default function Material(props) {
   const [openPopupAddNew, setOpenPopupAddNew] = useState(false);
   const [openPopupFilter, setOpenPopupFilter] = useState(false);
   const [openPopupHistory, setOpenPopupHistory] = useState(false);
+  const [openPopupViewQR, setOpenPopupViewQR] = useState(false);
+  
+
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -339,6 +343,7 @@ export default function Material(props) {
       document.body.appendChild(link);
       link.click();
 
+
       setNotify({
         isOpen: true,
         message: "Đã xuất thành công",
@@ -413,6 +418,15 @@ export default function Material(props) {
     setInforHistory(item);
     setOpenPopupHistory(true);
   }
+
+  const openInPopupQr = (item) => {
+    setInforViewQr(item);
+    console.log(item, "item là gì");
+    setOpenPopupViewQR(true);
+  }
+
+
+ 
   const onDelete = (id) => {
     setConfirmDialog({
       ...confirmDialog,
@@ -566,6 +580,14 @@ export default function Material(props) {
                       <Icon fontSize="small">timeline</Icon>
                     </Tooltip>
                   </Controls.ActionButton>
+                  <Controls.ActionButton color="primary"
+                   onClick={() => {
+                    openInPopupQr(item)
+                  }}>
+                    <Tooltip title="QR code" arrow>
+                      <Icon fontSize="small">qr_code_scanner</Icon>
+                    </Tooltip>
+                  </Controls.ActionButton>
 
 
                 </TableCell>
@@ -620,6 +642,17 @@ export default function Material(props) {
         <HistoryMaterialForm
           inforHistory={inforHistory}
         />
+      </Popup>
+
+      <Popup
+        title= {"Mã QR của Cơ sở vật chất "}
+        openPopup={openPopupViewQR}
+        setOpenPopup={setOpenPopupViewQR}
+      >
+         <img src={ inforViewQr && MaterialService.getUrlQrCodeMaterial(inforViewQr.credentialCode) } alt="Lamp" width="400  " height="400"></img>
+         <Controls.Button>
+         <Icon fontSize="small">timeline</Icon>
+         </Controls.Button>
       </Popup>
 
       <Controls.FullScreenDialog

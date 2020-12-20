@@ -1,3 +1,4 @@
 {
-    "baseApiUrl": "https://b22fb5885af7.ngrok.io/api/v1"
+    "baseApiUrl": "https://28a527fc3170.ngrok.io/api/v1",
+    "baseAPIUrlQr": "https://28a527fc3170.ngrok.io"
 }

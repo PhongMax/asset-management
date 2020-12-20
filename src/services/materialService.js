@@ -1,5 +1,5 @@
 import HTTP from "./httpService";
-import { baseApiUrl } from "../config.json";
+import { baseApiUrl , baseAPIUrlQr} from "../config.json";
 
 // set up Query String
 const apiEndpoint = baseApiUrl + "/material";
@@ -10,7 +10,7 @@ const getOneQuery = apiEndpoint + "/";
 const putQuery = apiEndpoint + ":update";
 const exportQuery = baseApiUrl +  "/statistical/";
 const historyQuery = baseApiUrl +  "/material:fetchHistoryTransfer/";
-
+const urlQRCodeBase = baseAPIUrlQr +  "/resources/public/qr-code/";
 HTTP.handleProtectedAPI();
 
 export function getMaterial(materialId) {
@@ -41,6 +41,11 @@ export function deleteMaterial(materialId) {
   return HTTP.DELETE(`${deleteQuery}${materialId}`);
 }
 
+export function getUrlQrCodeMaterial(materialId) {
+  return `${urlQRCodeBase}${materialId}.png`;
+}
+
+
 export default {
   getMaterial,
   getHistoryMaterial,
@@ -49,4 +54,5 @@ export default {
   insertMaterial,
   updateMaterial,
   deleteMaterial,
+  getUrlQrCodeMaterial,
 };

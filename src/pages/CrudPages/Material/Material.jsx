@@ -421,7 +421,6 @@ export default function Material(props) {
 
   const openInPopupQr = (item) => {
     setInforViewQr(item);
-    console.log(item, "item là gì");
     setOpenPopupViewQR(true);
   }
 
@@ -650,9 +649,6 @@ export default function Material(props) {
         setOpenPopup={setOpenPopupViewQR}
       >
          <img src={ inforViewQr && MaterialService.getUrlQrCodeMaterial(inforViewQr.credentialCode) } alt="Lamp" width="400  " height="400"></img>
-         <Controls.Button>
-         <Icon fontSize="small">timeline</Icon>
-         </Controls.Button>
       </Popup>
 
       <Controls.FullScreenDialog

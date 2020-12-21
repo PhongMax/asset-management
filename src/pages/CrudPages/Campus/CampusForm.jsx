@@ -10,7 +10,7 @@ const initialFValues = {
   contactPhone: "",
   description: "",
   location: "",
-  mapUrl: null,
+  mapUrl: "",
   name: "",
   createdAt: new Date(),
   updatedAt: new Date(),
@@ -25,7 +25,7 @@ export default function CampusForm(props) {
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("name" in fieldValues)
-      temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
+      temp.name = fieldValues.name.length > 2 &&  fieldValues.name.length < 15 ? "" : "Chiều dài trường này được giới hạn từ 2 đến 15 ký tự";
     if ("description" in fieldValues)
       temp.description = fieldValues.description
         ? ""

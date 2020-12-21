@@ -113,7 +113,12 @@ export default function Campus(props) {
         type: "success",
       });
     } catch (ex) {
-      toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      if (ex.response && ex.response.status === 500)
+      {
+        toast("Email hoặc thông tin khác bị trùng với hệ thống");
+      }else {
+        toast.error("Errors: Lỗi cập nhật dữ liệu ");
+      }
     }
   };
 
@@ -127,7 +132,12 @@ export default function Campus(props) {
         type: "success",
       });
     } catch (ex) {
-      toast.error("Errors: Lỗi cập nhật dữ liệu ");
+      if (ex.response && ex.response.status === 500)
+      {
+        toast("Email hoặc thông tin khác bị trùng với hệ thống");
+      }else {
+        toast.error("Errors: Lỗi cập nhật dữ liệu ");
+      }
     }
   };
 

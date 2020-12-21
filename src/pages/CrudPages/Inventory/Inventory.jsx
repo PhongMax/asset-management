@@ -117,7 +117,12 @@ export default function Inventory(props) {
         type: "success",
       });
     } catch (ex) {
-      toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      if (ex.response && ex.response.status === 500)
+      {
+        toast("Đợt kiêm kê chưa hoàn tất nên không thể thêm mới");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
     }
   };
 
@@ -154,7 +159,12 @@ export default function Inventory(props) {
         type: "error",
       });
     } catch (ex) {
-      toast.error("Errors: Lỗi xóa dữ liệu ");
+      if (ex.response && ex.response.status === 500)
+      {
+        toast("Đợt kiểm kê này đã tồn tại trong hệ thống nên không thể xóa");
+      }else {
+        toast.error("Errors: Lỗi xóa dữ liệu ");
+      }
       setRecords(originalInventoryRecord);
     }
   };
@@ -173,7 +183,12 @@ export default function Inventory(props) {
         type: "success",
       });
     } catch (ex) {
-      toast.error("Errors: Thay đổi trạng thái thất bại ");
+      if (ex.response && ex.response.status === 500)
+      {
+        toast("Chỉ cho phép tồn tại một đợt kiểm kê chưa hoàn tất");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
     }
     getInventoryAndUpdateToState();
   };

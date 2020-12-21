@@ -164,7 +164,7 @@ export default function MaterialForm(props) {
         </Grid>
         <Grid item xs={6}>
           <Controls.AutoCompleteButton
-            disabled = "false"
+            disabled = {false}
             name="placeId"
             label="Vị trí"
             value={DataPlace.find((item) => item.id === values.placeId)}
@@ -172,7 +172,6 @@ export default function MaterialForm(props) {
             options={DataPlace}
             error={errors.placeId}
           />
-
           <Controls.DatePicker
             name="timeStartDepreciation"
             label=" Thời gian bắt đầu khấu hao"

@@ -152,7 +152,8 @@ export default function AddNewAdditionalProductForm(props) {
  }
  useEffect(() => {
     Utils.getDataAdditional().then((response) => {
-      setDataAdditional([...response]);
+      const additional = [...response].filter((item) => (item.inProcess.toString() === "true"));
+      setDataAdditional([...additional]);
     });
     Utils.getDataPlace().then((response) => {
       setDataPlace([...response]);

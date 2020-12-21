@@ -80,10 +80,10 @@ export const getDataPlace = async () => {
 };
 export const getDataAdditional = async () => {
   const { data: responseData } = await additionalService.getAllAdditional();
-  let { data: additionals } = responseData;
-  additionals= additionals.filter((item) => (item.inProcess.toString() === "true"));
+  const { data: additionals } = responseData;
+  
   return additionals.map((item) => {
-    return { id: item.id, title: convertDateTime(item.time) };
+    return { id: item.id, inProcess: item.inProcess, title: convertDateTime(item.time) };
   });
 };
 export const getDataProduct = async () => {

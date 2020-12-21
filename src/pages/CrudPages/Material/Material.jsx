@@ -421,7 +421,6 @@ export default function Material(props) {
 
   const openInPopupQr = (item) => {
     setInforViewQr(item);
-    console.log(item, "item là gì");
     setOpenPopupViewQR(true);
   }
 

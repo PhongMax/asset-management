@@ -143,7 +143,13 @@ export default function Additional(props) {
         type: "success",
       });
     } catch (ex) {
-      toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      if (ex.response && ex.response.status === 500)
+      {
+        toast("Đợt bổ sung chưa hoàn tất nên không thể thêm mới");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
+     
     }
   };
 
@@ -177,7 +183,12 @@ export default function Additional(props) {
         type: "error",
       });
     } catch (ex) {
-      toast.error("Errors: Lỗi xóa dữ liệu ");
+      if (ex.response && ex.response.status === 500)
+      {
+        toast("Đợt bổ sung này đã tồn tại trong hệ thống nên không thể xóa");
+      }else {
+        toast.error("Errors: Lỗi xóa dữ liệu ");
+      }
       setRecords(originalAdditionalRecord);
     }
   };

@@ -3,6 +3,7 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import { Search } from "@material-ui/icons";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
 import Grid from "@material-ui/core/Grid";
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import { toast } from "react-toastify";
 import {
   Paper,
@@ -108,6 +109,22 @@ export default function Backup(props) {
       setRecords(originalBackupRecord);
     }
   };
+
+  const Restore = async () => {
+    try {
+      await BackupService.Restore();
+      getBackupAndUpdateToState();
+      setNotify({
+        isOpen: true, 
+        message: "Restore thành công",
+        type: "success",
+      });
+    } catch (ex) {
+      toast.error("Errors: không thể sao lưu");
+    
+    }
+  };
+
   //===================================================================================
 
   useEffect(getBackupAndUpdateToState, []);
@@ -140,6 +157,11 @@ export default function Backup(props) {
     Backup(position);
   };
 
+  const handleRestoreData = () => {
+    if (window.confirm("Bạn có chắc chắn muốn sao lưu dữ liệu hệ thống!")) {
+      Restore();
+    } 
+  }
   return (
     <>
       <OftadehLayout>
@@ -152,7 +174,7 @@ export default function Backup(props) {
         <Paper elevator={3} className={classes.pageContent}>
           <div className={classes.paper}>
             <Grid container spacing={3}>
-              <Grid item sm={12}>
+              <Grid item sm={10}>
                 <Controls.Input
                   label="Tìm kiếm phiên bản backup "
                   className={classes.searchInput}
@@ -166,6 +188,19 @@ export default function Backup(props) {
                   onChange={handleSearch}
                 />
               </Grid>
+              <Grid item sm={2}>
+                 <Controls.Button
+                text="Sao lưu"
+                variant="outlined"
+                startIcon={<SettingsBackupRestoreIcon />}
+                className={classes.newButton}
+                onClick={() => {
+                 // chỗ này call api nè
+                 handleRestoreData();
+                }}
+              />
+              
+            </Grid>
             </Grid>
           </div>
 

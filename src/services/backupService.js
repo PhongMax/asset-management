@@ -5,6 +5,7 @@ import { baseApiUrl } from "../config.json";
 const apiEndpoint = baseApiUrl + "/system/backup";
 const getAllQuery = apiEndpoint + ":fetchAllVersion";
 const getBackup = baseApiUrl + "/system/restoreDatabase?versionBackup=";
+const restoreQuery = baseApiUrl + "/system/backup:createBackup"
 
 HTTP.handleProtectedAPI();
 
@@ -15,7 +16,14 @@ export function Backup(position) {
   return HTTP.GET(`${getBackup}${position}`);
 }
 
+export function Restore() {
+  return HTTP.GET(restoreQuery);
+}
+
+
+
 export default {
   getAllVersionBackup,
   Backup,
+  Restore,
 };

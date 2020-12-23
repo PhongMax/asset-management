@@ -30,7 +30,7 @@ const navigationConfig = [
         exact: true,
       },
      
-  {
+    {
     id: "taisan",
     title: "Tài sản - CCDC",
     type: "group",
@@ -145,9 +145,8 @@ const navigationConfig = [
       },
     ],
   },
-
   {
-    id: "khac",
+    id: "system",
     title: "KHÁC",
     type: "group",
     children: [

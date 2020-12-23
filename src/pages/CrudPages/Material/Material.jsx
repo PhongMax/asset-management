@@ -648,7 +648,9 @@ export default function Material(props) {
         openPopup={openPopupViewQR}
         setOpenPopup={setOpenPopupViewQR}
       >
-         <img src={ inforViewQr && MaterialService.getUrlQrCodeMaterial(inforViewQr.credentialCode) } alt="Lamp" width="400  " height="400"></img>
+         <img src={ inforViewQr && MaterialService.getUrlQrCodeMaterial(inforViewQr.credentialCode) } 
+         alt="Lamp" width="400  " height="400">
+         </img>
       </Popup>
 
       <Controls.FullScreenDialog

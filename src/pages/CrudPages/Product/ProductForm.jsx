@@ -11,8 +11,8 @@ const initialFValues = {
   timeAllocationType: "",
   name: "",
   description: "",
-  categoryId: 0,
-  calculationUnitId: 0,
+  categoryId: "",
+  calculationUnitId: "",
   allocationDuration: "",
   type: "",
 };
@@ -35,7 +35,7 @@ export default function ProductForm(props) {
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("name" in fieldValues)
-      temp.name = fieldValues.name ? "" : "Trường này là bắt buộc.";
+    temp.name =  fieldValues.name.length > 2 &&  fieldValues.name.length < 200 ? "" : "Chiều dài trường này được giới hạn từ 2 đến 200 ký tự";
 
     if ("origin" in fieldValues)
       temp.origin = fieldValues.origin ? "" : "Trường này là bắt buộc.";

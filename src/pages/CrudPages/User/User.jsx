@@ -138,7 +138,12 @@ export default function User(props) {
       const { data: User } = responseData;
       setRecords(UserHandledToShow(User));
     } catch (ex) {
-      toast.error("Errors: Lỗi lấy dữ liệu ");
+      if ((ex.response && ex.response.status === 403) || (ex.response && ex.response.status === 401))
+      {
+        toast("Bạn không có quyền hạn truy cập trang này");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
     }
   };
 

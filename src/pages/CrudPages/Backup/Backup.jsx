@@ -87,7 +87,12 @@ export default function Backup(props) {
       const { data: Backup } = responseData;
       setRecords(BackupHandled(Backup));
     } catch (ex) {
-      toast.error("Errors: Lỗi lấy dữ liệu ");
+      if ((ex.response && ex.response.status === 403) || (ex.response && ex.response.status === 401))
+      {
+        toast("Bạn không có quyền hạn truy cập trang này");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
     }
   };
 
@@ -102,7 +107,7 @@ export default function Backup(props) {
       setNotify({
         isOpen: true, 
         message: "Thành công",
-        type: "error",
+        type: "success",
       });
     } catch (ex) {
       toast.error("Errors: không thể restore");

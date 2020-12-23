@@ -40,9 +40,24 @@ export function isLoggedIn() {
     return false;
   }
 }
+
+export function getRoles() {
+  try {
+    const user = JSON.parse(localStorage.getItem(userKey));
+    if (user){
+      return user.roles;
+    }else
+    return [];
+  } catch (ex) {
+    return [];
+  }
+}
+
+
 export default {
   login,
   logout,
   getCurrentUser,
   isLoggedIn,
+  getRoles,
 };

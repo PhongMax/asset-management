@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, Typography, Button } from "@material-ui/core";
-
+import OftadehLayout from "../../../components/OftadehLayout/OftadehLayout";
 const useStyles = makeStyles((theme) => ({
   root: {
     background: "#0d131d",
@@ -29,6 +29,7 @@ const Error500Page = (props) => {
   const { history } = props;
 
   return (
+    <OftadehLayout>
     <div className={classes.root}>
       <Typography variant="h3" gutterBottom>
         Oops! <span className={classes.statusCode}>500</span>
@@ -45,6 +46,7 @@ const Error500Page = (props) => {
         Quay về trang chủ
       </Button>
     </div>
+    </OftadehLayout>
   );
 };
 

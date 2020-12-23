@@ -9,6 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import { toast } from "react-toastify";
 import Tooltip from "@material-ui/core/Tooltip";
+import * as authService from "../../../services/authService";
 import {
   Paper,
   makeStyles,
@@ -234,7 +235,12 @@ export default function Material(props) {
       const { data: Material } = responseData;
       setRecords(MaterialHandledToShow(Material));
     } catch (ex) {
-      toast.error("Errors: Lỗi lấy dữ liệu ");
+      if ((ex.response && ex.response.status === 403) || (ex.response && ex.response.status === 401))
+      {
+        toast("Bạn không có quyền hạn truy cập trang này");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
     }
   };
 
@@ -434,6 +440,9 @@ export default function Material(props) {
     deleteMaterial(id);
   };
 
+  const roleUser = authService.getRoles();
+
+
   return (
     <>
      <OftadehLayout>
@@ -486,21 +495,24 @@ export default function Material(props) {
                  }
                />
              </Grid>
-
-            <Grid item sm={2}>
-               <Controls.Button
-                text="Excel"
-                variant="outlined"
-                startIcon={<AttachFileIcon />}
-                className={classes.newButton}
-                onClick={
-                  
-                  () => {
-                    exportMaterial();
-                  }
-                }
-              />
-            </Grid>
+             {
+                roleUser.includes("ROLE_ADMIN") &&  
+                <Grid item sm={2}>
+                   <Controls.Button
+                    text="Excel"
+                    variant="outlined"
+                    startIcon={<AttachFileIcon />}
+                    className={classes.newButton}
+                    onClick={
+                      
+                      () => {
+                        exportMaterial();
+                      }
+                    }
+                  />
+                </Grid>
+             }
+        
           </Grid>
         </div>
 

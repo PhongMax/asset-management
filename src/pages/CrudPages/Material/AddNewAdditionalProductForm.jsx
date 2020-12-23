@@ -54,11 +54,11 @@ export default function AddNewAdditionalProductForm(props) {
         if(/^([0-9.])+$/.test(fieldValues.price) && fieldValues.productId)
         {
           const product = DataProduct.find((item) => item.id === fieldValues.productId )
-          if (parseFloat(fieldValues.price) > 300000.0 &&  product.type === "TOOL")
+          if (parseFloat(fieldValues.price) > 30000000.0 &&  product.type === "TOOL")
           {
             temp.price = "Sản phẩm thuộc kiểu CCDC, giá phải nhỏ hơn 30tr";
           }
-          else if (parseFloat(fieldValues.price) < 300000.0 &&  product.type === "ASSET")
+          else if (parseFloat(fieldValues.price) < 30000000.0 &&  product.type === "ASSET")
           {
               temp.price = "Sản phẩm thuộc kiểu tài sản cố định, giá phải lớn hơn 30tr";
           }

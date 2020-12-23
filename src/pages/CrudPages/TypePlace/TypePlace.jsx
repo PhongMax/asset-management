@@ -96,7 +96,12 @@ export default function TypePlace(props) {
       const { data: typePlace } = responseData;
       setRecords(typePlaceHandled(typePlace));
     } catch (ex) {
-      toast.error("Errors: Lỗi lấy dữ liệu ");
+      if ((ex.response && ex.response.status === 403) || (ex.response && ex.response.status === 401))
+      {
+        toast("Bạn không có quyền hạn truy cập trang này");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
     }
   };
 

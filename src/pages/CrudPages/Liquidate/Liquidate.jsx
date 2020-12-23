@@ -124,7 +124,12 @@ export default function Liquidate(props) {
       const { data: Liquidate } = responseData;
       setRecords(LiquidateHandledToShow(Liquidate));
     } catch (ex) {
-      toast.error("Errors: Lỗi lấy dữ liệu ");
+      if ((ex.response && ex.response.status === 403) || (ex.response && ex.response.status === 401))
+      {
+        toast("Bạn không có quyền hạn truy cập trang này");
+      }else {
+        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+      }
     }
   };
 
@@ -141,12 +146,12 @@ export default function Liquidate(props) {
       });
     } catch (ex) {
 
-      if (ex.response && ex.response.status === 500)
-      {
-        toast("Đợt thanh lý chưa hoàn tất nên không thể thêm mới");
-      }else {
-        toast.error("Errors: Lỗi thêm mới dữ liệu ");
-      }
+        if (ex.response && ex.response.status === 500)
+        {
+          toast("Đợt thanh lý chưa hoàn tất nên không thể thêm mới");
+        }else {
+          toast.error("Errors: Lỗi thêm mới dữ liệu ");
+        }
     }
   };
 

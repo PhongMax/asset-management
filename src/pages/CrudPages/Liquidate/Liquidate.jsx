@@ -128,7 +128,7 @@ export default function Liquidate(props) {
       {
         toast("Bạn không có quyền hạn truy cập trang này");
       }else {
-        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+        toast.error("Errors: Lỗi tải lên dữ liệu ");
       }
     }
   };

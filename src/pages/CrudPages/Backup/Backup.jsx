@@ -121,7 +121,7 @@ export default function Backup(props) {
       getBackupAndUpdateToState();
       setNotify({
         isOpen: true, 
-        message: "Restore thành công",
+        message: "Backup thành công",
         type: "success",
       });
     } catch (ex) {

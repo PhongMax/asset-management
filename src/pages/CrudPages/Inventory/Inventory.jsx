@@ -107,7 +107,7 @@ export default function Inventory(props) {
       {
         toast("Bạn không có quyền hạn truy cập trang này");
       }else {
-        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+        toast.error("Errors: Lỗi tải lên dữ liệu ");
       }
     }
   };
@@ -192,7 +192,7 @@ export default function Inventory(props) {
       {
         toast("Chỉ cho phép tồn tại một đợt kiểm kê chưa hoàn tất");
       }else {
-        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+        toast.error("Errors: Lỗi thay đổi trạng thái");
       }
     }
     getInventoryAndUpdateToState();

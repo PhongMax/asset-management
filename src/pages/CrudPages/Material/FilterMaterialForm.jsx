@@ -36,12 +36,21 @@ const columns = [
   },
   {
     name: "priceOrigin",
-    label: "Giá ",
+    label: "Nguyên giá ",
     options: {
       filter: true,
       sort: true,
     },
   },
+  {
+    name: "currentValue",
+    label: "Giá trị h.tại ",
+    options: {
+      filter: true,
+      sort: true,
+    },
+  },
+
 
   {
     name: "productType",
@@ -152,6 +161,7 @@ const FilterMaterialForm = (props) => {
         productName: item.product.name,
         productDescription: item.product.description,
         priceOrigin: item.extendedInfo &&  item.extendedInfo.priceOrigin.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+        currentValue: item.extendedInfo &&  item.extendedInfo.currentValue.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
         productType: item.product.type === "ASSET" ? "TSCĐ" : "CCDC",
         productTimeAllocationType: item.product.timeAllocationType === "YEAR" ? "Năm" : "Tháng",
         currentPlaceNameSpecification: item.currentPlace && item.currentPlace.nameSpecification,

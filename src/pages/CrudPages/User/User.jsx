@@ -82,6 +82,7 @@ export default function User(props) {
 
   // ======================================    XỬ LÝ DATA FROM SERVER ====================================
   const UserHandledToShow = (obj) => {
+    console.log(obj,  " obj là");
     const objConverted = obj.map((item) => {
       item.createdAt = utils.convertDateTime(item.createdAt);
       item.updatedAt = utils.convertDateTime(item.updatedAt);
@@ -136,13 +137,15 @@ export default function User(props) {
     try {
       const { data: responseData } = await userService.getAllUser();
       const { data: User } = responseData;
+      console.log(User, "user alf gì");
       setRecords(UserHandledToShow(User));
     } catch (ex) {
+      console.log("chỗ ày là gì");
       if ((ex.response && ex.response.status === 403) || (ex.response && ex.response.status === 401))
       {
         toast("Bạn không có quyền hạn truy cập trang này");
       }else {
-        toast.error("Errors: Lỗi thêm mới dữ liệu ");
+        toast.error("Errors: Lỗi tải lên dữ liệu ");
       }
     }
   };

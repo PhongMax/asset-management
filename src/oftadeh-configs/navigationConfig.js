@@ -1,7 +1,7 @@
 const navigationConfig = [
   {
     id: "dd",
-    title: "MAIN",
+    title: "DANH MỤC CHÍNH",
     type: "group",
     children: [
       {
@@ -188,7 +188,7 @@ const navigationConfig = [
   },
   {
     id: "about",
-    title: "ABOUT",
+    title: "Giới thiệu",
     type: "group",
     children: [
       {

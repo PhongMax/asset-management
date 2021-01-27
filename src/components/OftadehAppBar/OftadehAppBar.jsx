@@ -117,7 +117,7 @@ const OftadehAppBar = (props) => {
         >
           <MenuIcon />
         </IconButton>
-        <div className={classes.search}>
+        {/* <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
@@ -129,7 +129,7 @@ const OftadehAppBar = (props) => {
             }}
             inputProps={{ "aria-label": "search" }}
           />
-        </div>
+        </div> */}
         <div className={classes.grow} />
         <div className={classes.appbarSection}>
           {/* <IconButton

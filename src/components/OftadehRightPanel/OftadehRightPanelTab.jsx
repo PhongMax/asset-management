@@ -7,9 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import NavigationContext from "../../context/NavigationContext";
-import NotificationsContainer from "../Notifications/Notifications-container";
-import MessagesContainer from "../Messages/Messages-container";
-import OftadehToday from "../OftadehToday/OftadehToday";
+
 import { Button } from "@material-ui/core";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 
@@ -74,7 +72,7 @@ const OftadehRightPanelTab = () => {
           classes={{ root: classes.backButton }}
           onClick={() => setOpenRightPanel(false)}
         >
-          Back <ArrowRightAltIcon />
+          Trờ lại <ArrowRightAltIcon />
         </Button>
         <AppBar position="static">
           <Tabs
@@ -82,10 +80,9 @@ const OftadehRightPanelTab = () => {
             onChange={handleChange}
             aria-label="simple tabs example"
           >
-            <Tab className={classes.TabWidth} label="Today" {...a11yProps(0)} />
             <Tab
               className={classes.TabWidth}
-              label="Notifications"
+              label="Thông báo"
               {...a11yProps(1)}
             />
             <Tab
@@ -96,15 +93,8 @@ const OftadehRightPanelTab = () => {
           </Tabs>
         </AppBar>
       </div>
-      <TabPanel value={value} index={0}>
-        <OftadehToday />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <NotificationsContainer />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <MessagesContainer />
-      </TabPanel>
+
+      <TabPanel value={value} index={2}></TabPanel>
     </div>
   );
 };

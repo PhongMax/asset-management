@@ -5,8 +5,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import { InputBase, Badge } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+import { Badge } from "@material-ui/core";
+
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import OftadehAvatarMenu from "../OftadehAvatarMenu/OftadehAvatarMenu";
 import clsx from "clsx";
@@ -169,10 +169,10 @@ const OftadehAppBar = (props) => {
           <IconButton
             aria-haspopup="true"
             onClick={(event) => handleRightPanelOpen(event, 1)}
-            aria-label="show 17 new notifications"
+            aria-label="show 1 new notifications"
             color="inherit"
           >
-            <Badge badgeContent={17} color="secondary">
+            <Badge badgeContent={1} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
